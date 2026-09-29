@@ -372,6 +372,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 .shift-info b { font-size: 30px; font-variant-numeric: tabular-nums; }
 .alpha { margin: 0; text-align: center; color: var(--muted); font-size: 16px; }
 @media (max-width: 420px) { .word span { width: 32px; height: 40px; font-size: 21px; } }
+.tile.hinted { border-color: var(--ochre) !important; background: var(--ochre-soft) !important; box-shadow: 0 2px 0 var(--ochre) !important; }
+.pick.gone { text-decoration: line-through; }
 .tuto-focus { position: relative; z-index: 2; outline: 3px solid var(--ochre) !important; outline-offset: 3px; border-radius: 10px; animation: tutopulse 1.3s ease-in-out infinite; }
 @keyframes tutopulse { 0%, 100% { outline-color: var(--ochre); box-shadow: 0 0 0 0 transparent; } 50% { outline-color: color-mix(in srgb, var(--ochre) 45%, transparent); box-shadow: 0 0 0 8px color-mix(in srgb, var(--ochre) 18%, transparent); } }
 @media (prefers-reduced-motion: reduce) { .tuto-focus { animation: none; } }
@@ -527,6 +529,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 .outro .dialog { background: linear-gradient(#4a3a3a, #3a2c2e); }
 .outro .scene-caption { color: #fbe9c8; text-shadow: 0 1px 4px rgba(0, 0, 0, .5); }
 .riddle { background: #f6ecd6; color: #2a1c14; border: 2px solid #8a6a3a; border-radius: 10px; padding: 12px 14px; font-family: var(--f-display); font-size: 19px; text-align: center; }
+.riddle .engr { display: block; margin-top: 8px; font-size: 16px; font-style: italic; color: #8a6a3a; }
 .riddle small { display: block; font-family: var(--f-caps); letter-spacing: .12em; font-size: 12.5px; color: #8a6a3a; margin-bottom: 4px; }
 .outro .name-row .btn { background: #c9a24b; border-color: #c9a24b; color: #1d1410; }
 .giant-bubble { position: absolute; left: 50%; top: 58px; transform: translateX(-50%) scale(.9); width: min(560px, calc(100% - 32px)); z-index: 3; background: #fff4e0; color: #3a140c; border: 4px solid #3a140c; border-radius: 26px 26px 26px 26px; padding: 14px 18px 10px; box-shadow: 0 8px 0 rgba(58, 20, 12, .25); display: grid; gap: 4px; opacity: 0; transition: opacity .2s, transform .2s; cursor: pointer; }
@@ -802,7 +805,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       frag: "Héraclite voyait le monde comme un changement perpétuel. On lui doit l'idée qu'on ne se baigne jamais deux fois dans le même fleuve." },
     { id: "samos", place: "Samos", sage: "Eupalinos", type: "compte", glyph: "Γ",
       lore: "À Samos, l'ingénieur Eupalinos fait creuser un tunnel à travers la montagne. Il te tend ses plaques de calcul.",
-      plates: [3, 7, 8, 25, 50, 10], target: 473,
+      plates: [3, 7, 8, 25, 50, 10], target: 473, start: "( 50 − 7 )",
       hints: ["Essaie de multiplier deux petits calculs entre parenthèses.", "L'un des deux calculs utilise le 50 et le 7."],
       frag: "Au VIᵉ siècle avant notre ère, le tunnel d'Eupalinos fut creusé depuis les deux côtés de la montagne à la fois. Les deux équipes se rejoignirent au milieu, sur plus d'un kilomètre, avec un écart infime." },
     { id: "delphes", place: "Delphes", sage: "La Pythie", type: "lien", glyph: "Δ",
@@ -824,7 +827,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       frag: "Devenu bibliothécaire d'Alexandrie, Ératosthène estima la circonférence de la Terre en comparant l'ombre du soleil à midi à Syène et à Alexandrie. Son résultat était remarquablement proche de la réalité." },
     { id: "syracuse", place: "Syracuse", sage: "Archimède", type: "compte", glyph: "Ζ",
       lore: "À Syracuse, Archimède trace des figures dans le sable. Son calcul est plus retors que celui de Samos.",
-      plates: [1, 3, 7, 8, 9, 100], target: 947,
+      plates: [1, 3, 7, 8, 9, 100], target: 947, start: "( 100 − 1 ) × 9",
       hints: ["Approche-toi d'abord de 900 avec le 100 et un chiffre, puis ajuste avec les petits nombres.", "Un calcul entre parenthèses avec le 100 et le 1, multiplié par un chiffre, t'amène tout près."],
       frag: "On prête à Archimède la phrase « Donnez-moi un point d'appui, et je soulèverai le monde ». Il mourut en 212 avant notre ère, lors de la prise de Syracuse par les Romains." },
     { id: "crotone", place: "Crotone", sage: "Pythagore", type: "boss", glyph: "Π",
@@ -852,7 +855,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       hints: ["Pense à une journée d'été à la plage.", "Ibn al-Haytham a passé sa vie à étudier sa lumière."],
       frag: "Né à Bassora vers 965, Ibn al-Haytham montra que l'on voit grâce à la lumière qui entre dans l'œil, et non grâce à un rayon qui en sortirait. On le considère comme un pionnier de la méthode expérimentale." },
     { id: "samarcande", place: "Samarcande", sage: "Ulugh Beg", type: "compte", glyph: "٣",
-      plates: [2, 4, 6, 9, 25, 75], target: 638,
+      plates: [2, 4, 6, 9, 25, 75], target: 638, start: "75 × 9",
       hints: ["Une grosse multiplication te rapproche vite de la cible.", "Le 75 multiplié par un chiffre dépasse la cible de peu : il reste à retirer ce qui dépasse."],
       frag: "Au XVᵉ siècle, le prince astronome Ulugh Beg fit bâtir à Samarcande un observatoire géant. Son catalogue d'étoiles, d'une précision remarquable, en recensait plus d'un millier." },
     { id: "lecaire", place: "Le Caire", sage: "les savants d'Al-Azhar", type: "nombre", glyph: "٤",
@@ -870,7 +873,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       hints: ["Pense à un livre.", "Dans un livre, il y en a des centaines, et on les numérote."],
       frag: "Au XIIᵉ siècle, à Tolède, des savants chrétiens, juifs et musulmans traduisirent ensemble des centaines d'ouvrages de l'arabe vers le latin. C'est ainsi que l'Europe redécouvrit la science grecque et arabe." },
     { id: "bologne", place: "Bologne", sage: "les premiers étudiants", type: "compte", glyph: "٧",
-      plates: [3, 4, 5, 9, 50, 75], target: 867,
+      plates: [3, 4, 5, 9, 50, 75], target: 867, start: "75 × 5",
       hints: ["La cible est un multiple de 3.", "867, c'est 3 fois 289. Essaie d'obtenir 289 avec les autres nombres."],
       frag: "Fondée en 1088, l'université de Bologne est considérée comme la plus ancienne université du monde occidental." },
     { id: "pise", place: "Pise", sage: "Fibonacci", type: "boss", glyph: "٨",
@@ -900,7 +903,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       hints: ["Trois d'entre eux se voient à l'œil nu depuis l'Antiquité.", "L'intrus est si loin qu'il a fallu attendre 1781 et un grand télescope pour le découvrir."],
       frag: "En 1655, le Néerlandais Christiaan Huygens découvrit Titan, la plus grande lune de Saturne, et comprit que la planète était entourée d'un anneau." },
     { id: "paris3", place: "Paris", sage: "Pascal", type: "compte", glyph: "II",
-      plates: [1, 4, 6, 7, 25, 100], target: 529,
+      plates: [1, 4, 6, 7, 25, 100], target: 529, start: "( 100 − 25 ) × 7",
       hints: ["Commence par un calcul avec le 100 et le 25.", "Ce calcul, multiplié par un chiffre, t'amène tout près. Il ne manque presque rien."],
       frag: "À 19 ans, Blaise Pascal inventa la Pascaline, l'une des premières machines à calculer, pour aider son père, collecteur d'impôts." },
     { id: "londres3", place: "Londres", sage: "Newton", type: "suite", glyph: "III",
@@ -956,7 +959,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       hints: ["Le mot caché a un rapport avec les inventions d'Ada Lovelace et de Charles Babbage.", "Il faut décaler chaque lettre de quelques crans seulement."],
       frag: "En 1843, Ada Lovelace écrivit pour la machine de Charles Babbage ce que l'on considère comme le premier programme informatique de l'histoire." },
     { id: "turin", place: "Turin", sage: "Lagrange", type: "compte", glyph: "4",
-      plates: [2, 3, 8, 10, 50, 75], target: 718,
+      plates: [2, 3, 8, 10, 50, 75], target: 718, start: "( 75 − 3 ) × 10",
       hints: ["Une multiplication par 10 aide beaucoup.", "Approche-toi de 720, puis retire le petit écart."],
       frag: "Né à Turin en 1736, Joseph-Louis Lagrange participa à la création du système métrique. On lui doit en partie le mètre et le kilogramme." },
     { id: "lyon", place: "Lyon", sage: "les frères Lumière", type: "mot", glyph: "5",
@@ -1016,7 +1019,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
         hints: ["Le matin, le midi et le soir représentent les âges de la vie.", "Le soir, la troisième « patte » est une canne."],
         frag: "Dans la mythologie grecque, Œdipe résolut l'énigme du Sphinx. Vexé, le monstre se serait jeté du haut de son rocher." } },
     { id: "princeton", place: "Princeton", sage: "von Neumann", type: "compte", glyph: "110",
-      plates: [1, 5, 7, 9, 25, 100], target: 843,
+      plates: [1, 5, 7, 9, 25, 100], target: 843, start: "( 100 − 7 ) × 9",
       hints: ["843 est tout près d'un multiple de 9.", "Un calcul entre parenthèses avec le 100 et un chiffre, multiplié par 9, t'amène tout près."],
       frag: "À Princeton, John von Neumann décrivit l'organisation d'un ordinateur moderne, avec un programme rangé dans la mémoire. La plupart de nos ordinateurs suivent encore ce plan." },
     { id: "londres5", place: "Londres", sage: "les briseurs de codes", type: "lien", glyph: "111",
@@ -1071,7 +1074,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     { id: "first", ico: "👣", name: "Premier pas", desc: "Franchir ta première étape.", test: L => L.length >= 1 },
     { id: "oneshot", ico: "🎯", name: "Du premier coup", desc: "Réussir une étape au premier essai, sans indice.", test: L => L.some(x => x.d.tries === 1 && !x.d.hints) },
     { id: "nohelp5", ico: "🧗", name: "Sans filet", desc: "Réussir 5 étapes sans aucun indice.", test: L => L.filter(x => !x.d.hints).length >= 5 },
-    { id: "stubborn", ico: "🐢", name: "Persévérant", desc: "Réussir une étape après 5 essais ou plus.", test: L => L.some(x => x.d.tries >= 5) },
+    { id: "stubborn", ico: "🐢", name: "Persévérant", desc: "Réussir une étape après 5 essais ou plus.", test: L => L.some(x => x.d.tries >= 5 && !x.d.skipped) },
     { id: "perfect", ico: "🔠", name: "Mot parfait", desc: "Trouver le plus long mot possible, avec toutes les lettres.", test: L => L.some(x => x.d.perfect) },
     { id: "calc", ico: "🧮", name: "Calculateur prodige", desc: "Réussir un Compte est bon du premier coup.", test: L => L.some(x => x.st.type === "compte" && x.d.tries === 1) },
     { id: "burning", ico: "🔥", name: "Brûlant !", desc: "Tomber à 5 ou moins de la cible au Compte est bon.", test: () => state.stats.burning },
@@ -1627,7 +1630,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 
   // ————— Épreuves —————
   let cleanups = [];
-  function cleanup() { cleanups.forEach(f => f()); cleanups = []; }
+  function cleanup() { cleanups.forEach(f => f()); cleanups = []; assist = {}; }
   let cur = null, hintsUsed = 0;
   function openStage(id, forceTuto) {
     cleanup(); tuto = null; owl.tutoOn = false; cur = STAGES[idx(id)]; hintsUsed = 0; fails = 0; state.introSeen = true; save();
@@ -1666,23 +1669,59 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     window.scrollTo(0, 0);
   }
 
-  function hintBlock(list) {
+  // coups de pouce concrets, ajoutés après les pistes écrites : jamais la réponse complète
+  let assist = {};
+  function autoHints(src) {
+    const t = src.type;
+    if (t === "mot") return [
+      { text: "Je pose la première lettre du plus long mot dans la première case.", act: "reveal", n: 1 },
+      { text: "Et voici la deuxième lettre. Le reste, c'est à toi.", act: "reveal", n: 2 },
+      { text: "Allez, une troisième. Je n'irai pas plus loin, promis.", act: "reveal", n: 3 }];
+    if (t === "compte" && src.start) return [
+      { text: "J'écris le début d'un calcul qui marche dans ta ligne. À toi de le terminer.", act: "prefill" }];
+    if (t === "code") return [{ text: "Je tourne la roue presque jusqu'au bout. Il reste un seul cran : à toi de trouver dans quel sens.", act: "nearShift" }];
+    if (t === "chrono") return [
+      { text: "Je place le plus ancien à sa place.", act: "chronoFirst" },
+      { text: "Et le plus récent aussi. Il n'en reste que deux.", act: "chronoLast" }];
+    if (t === "intrus") return [
+      { text: "J'élimine une réponse qui fait bien partie du groupe.", act: "eliminate" },
+      { text: "J'en élimine une deuxième. Plus que deux choix.", act: "eliminate" }];
+    const a = (src.answers || [])[0];
+    if (!a || a.includes("OE")) return [];
+    if (/^\d+$/.test(a)) return [{ text: a.length === 1 ? "C'est un nombre à un seul chiffre." : `C'est un nombre à ${a.length} chiffres, qui commence par ${a[0]}.` }];
+    return [{ text: `Le mot fait ${a.length} lettres et commence par « ${a[0]} ».` }];
+  }
+  function hintBlock(list, src) {
+    const all = list.concat(autoHints(src || cur));
     return {
       html: `<div class="hints" id="hints"></div>`,
       bind() {
         const box = $("#hints");
         let shown = 0;
         owl.hints = {
-          label: () => shown >= list.length ? null : shown === 0 ? "Un indice ?" : "Encore un indice ?",
+          label: () => shown < all.length ? (shown === 0 ? "Un indice ?" : "Encore un indice ?") : fails >= 2 ? "Contourner l'étape" : null,
           next() {
-            if (shown >= list.length) return;
-            const h = list[shown]; shown++; hintsUsed++; state.stats.hints++; save(); checkBadges();
-            box.insertAdjacentHTML("beforeend", `<p class="hint"><b>Glaux :</b> ${esc(h)}</p>`);
-            owl.say([(shown < list.length ? pick(VOICE.hint) : VOICE.lastHint) + h]);
+            if (shown >= all.length) return offerSkip();
+            const h = all[shown]; shown++; hintsUsed++; state.stats.hints++; save(); checkBadges();
+            const text = typeof h === "string" ? h : h.text;
+            box.insertAdjacentHTML("beforeend", `<p class="hint"><b>Glaux :</b> ${esc(text)}</p>`);
+            if (typeof h === "string") owl.say([(shown === list.length ? VOICE.lastHint : pick(VOICE.hint)) + h]);
+            else owl.say([text]);
+            if (h.act && assist[h.act]) assist[h.act](h);
+            if (shown >= all.length) setTimeout(() => owl.say([text, "C'est tout ce que je peux faire. Si tu restes bloqué, on pourra contourner cette étape."]), 0);
           }
         };
       }
     };
+  }
+  // dernier recours : contourner l'étape, on garde le fragment
+  function offerSkip() {
+    owl.say(["On contourne cette étape par les collines ? Tu garderas le fragment de savoir. Personne n'en saura rien… à part moi."],
+      { label: "Oui, contourner", fn: () => {
+        document.querySelectorAll("#body button, #body input").forEach(el => el.disabled = true);
+        document.querySelectorAll(".drag-ghost").forEach(g => g.remove());
+        win("Glaux t'a fait passer par un chemin de traverse. L'étape est franchie.", { skipped: true });
+      } });
   }
 
   function win(extra, meta) {
@@ -1692,17 +1731,17 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       owl.hints = null; if (tuto) endTuto();
       const bx = document.createElement("div");
       bx.className = "win";
-      bx.innerHTML = `<h3>Voie libre !</h3>${extra ? `<p>${extra}</p>` : ""}<p class="frag"><b>Le saviez-vous ?</b> ${esc(cur.frag)}</p>
+      bx.innerHTML = `<h3>${meta && meta.skipped ? "Obstacle contourné" : "Voie libre !"}</h3>${extra ? `<p>${extra}</p>` : ""}<p class="frag"><b>Le saviez-vous ?</b> ${esc(cur.frag)}</p>
         <div class="row"><button class="btn" id="toMap">Reprendre la route vers ${esc(cur.place)}</button></div>`;
       $("#body").appendChild(bx);
       const parent = cur.parent;
       $("#toMap").onclick = () => openStage(parent);
-      owl.say([VOICE.win(fails + 1, hintsUsed), `Allez, en route pour ${cur.place} !`]);
+      owl.say([meta && meta.skipped ? "On a contourné l'obstacle. Ni vu ni connu." : VOICE.win(fails + 1, hintsUsed), `Allez, en route pour ${cur.place} !`]);
       checkBadges(); $("#toMap").focus(); bx.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
     const isLast = firstOpen() === -1;
-    const title = cur.type === "boss" ? `${cur.sage} s'écarte et te laisse passer` : "Étape franchie";
+    const title = meta && meta.skipped ? "Étape contournée" : cur.type === "boss" ? `${cur.sage} s'écarte et te laisse passer` : "Étape franchie";
     const chapEnd = isLast, nextCh = CHAPTERS[state.chapter + 1];
     owl.hints = null; if (tuto) endTuto();
     const box = document.createElement("div");
@@ -1714,7 +1753,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     $("#body").appendChild(box);
     $("#toMap").onclick = () => { if (chapEnd && nextCh) setChapter(state.chapter + 1); home(); };
     const done = isLast && cur.type === "boss";
-    const cheer = VOICE.win(fails + 1, hintsUsed);
+    const cheer = meta && meta.skipped ? "Ce n'était pas la plus facile. La prochaine sera la bonne !" : VOICE.win(fails + 1, hintsUsed);
     owl.say(done ? [cheer, `Tu as vaincu le gardien ${chap().of}. Je suis vraiment fier de toi.`, nextCh ? "Une nouvelle route t'attend. Et je t'accompagne, évidemment." : "Mégalopolis est juste là, derrière ces montagnes. Nous y sommes presque !"]
       : [cheer, "J'ai rangé le fragment dans ton carnet. Lis-le tranquillement, c'est ta récompense."]);
     checkBadges();
@@ -1748,7 +1787,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       document.querySelectorAll("#slots .slot, #rack .rack-cell").forEach(el => {
         const zone = el.dataset.zone, id = cells[zone][+el.dataset.k];
         el.classList.toggle("full", id != null);
-        el.innerHTML = id == null ? "" : `<button class="tile${id === popId ? " pop" : ""}" data-t="${id}" aria-label="${zone === "slot" ? "Retirer" : "Placer"} la lettre ${tiles[id].c}">${tiles[id].c}</button>`;
+        el.innerHTML = id == null ? "" : `<button class="tile${id === popId ? " pop" : ""}${zone === "slot" && hinted.has(id) ? " hinted" : ""}" data-t="${id}" aria-label="${zone === "slot" ? "Retirer" : "Placer"} la lettre ${tiles[id].c}">${tiles[id].c}</button>`;
       });
       const v = verdict(), c = $("#count");
       c.innerHTML = v.html; c.className = "count status " + v.kind;
@@ -1769,6 +1808,19 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       else if (from.z === "slot" && z === "rack") emit("unplace");
     }
     const firstEmpty = z => cells[z].indexOf(null);
+    const hinted = new Set();
+    assist.reveal = h => {
+      if (finished) return;
+      const want = cur.best.slice(0, h.n).split("");
+      // on libère les premières cases, puis on y pose les bonnes lettres
+      for (let j = 0; j < want.length; j++) if (cells.slot[j] != null) { const k = firstEmpty("rack"); cells.rack[k] = cells.slot[j]; cells.slot[j] = null; }
+      want.forEach((c, j) => {
+        const id = tiles.find(t => t.c === c && !cells.slot.slice(0, j).includes(t.id)).id;
+        const from = locate(id), other = cells.slot[j];
+        cells.slot[j] = id; cells[from.z][from.k] = other; hinted.add(id);
+      });
+      msg.textContent = ""; render();
+    };
 
     // toucher : du chevalet vers la première case libre du mot, et inversement
     let suppress = false;
@@ -1987,6 +2039,15 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     function removeAt(i) { if (busy || finished) return; toks.splice(i, 1); stat.hidden = true; render(); emit("remove"); }
     let cmpVia = "tap";
     const fromEl = el => el.dataset.id ? { id: el.dataset.id } : { op: el.dataset.op };
+    assist.prefill = () => {
+      if (busy || finished) return;
+      const used = new Set();
+      toks = cur.start.split(" ").map(t => {
+        if ("+−×÷()".includes(t)) return { op: t };
+        const p = plates.find(pl => pl.v === +t && !used.has(pl.id)); used.add(p.id); return { id: p.id };
+      });
+      setStatus(stat); render();
+    };
 
     // toucher : ajoute à la fin, ou retire de la ligne
     let suppress = false;
@@ -2148,6 +2209,11 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     H.bind();
     const stat = $("#stat");
     let finished = false;
+    assist.eliminate = () => {
+      if (finished) return;
+      const b = [...document.querySelectorAll("#choices4 .pick")].find(x => +x.dataset.i !== cur.answer && !x.disabled);
+      if (b) { b.classList.add("wrong", "gone"); b.disabled = true; }
+    };
     $("#choices4").onclick = e => {
       const b = e.target.closest(".pick"); if (!b || finished || b.disabled) return;
       const i = +b.dataset.i;
@@ -2197,6 +2263,9 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       emit("cplace"); if (!slots.includes(null)) emit("cfull");
     });
     $("#reset").onclick = () => { slots = Array(n).fill(null); setStatus(stat); render(); };
+    const pin = (item, k) => { if (finished) return; const at = slots.indexOf(item); if (at >= 0) slots[at] = null; slots[k] = item; setStatus(stat); render(); };
+    assist.chronoFirst = () => pin(0, 0);
+    assist.chronoLast = () => pin(n - 1, n - 1);
     $("#ok").onclick = () => {
       if (finished || slots.includes(null)) return;
       setTimeout(() => emit("submit"), 0);
@@ -2232,6 +2301,11 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       $("#alpha").textContent = shift ? `Exemple : ${String.fromCharCode(65 + shift % 26)} devient A, ${String.fromCharCode(65 + (shift + 1) % 26)} devient B…` : "Touche › pour décaler chaque lettre d'un cran dans l'alphabet.";
     }
     const move = d => { if (finished) return; shift = (shift + d + 26) % 26; setStatus(stat); render(); emit("shift"); };
+    assist.nearShift = () => {
+      if (finished) return;
+      const a = Array.from({ length: 26 }, (_, k) => k).find(k => dec(k) === cur.answer);
+      shift = (a + 25) % 26 || (a + 1) % 26; setStatus(stat); render();
+    };
     $("#shiftNext").onclick = () => move(1);
     $("#shiftPrev").onclick = () => move(-1);
     $("#ok").onclick = () => {
@@ -2269,7 +2343,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     function showTrial(prev) {
       document.querySelectorAll(".trials span").forEach((s, i) => s.classList.toggle("on", i < k));
       const t = cur.trials[k];
-      const H = hintBlock(t.hints);
+      const H = hintBlock(t.hints, t);
       $("#trial").innerHTML = `<div class="eyebrow">Question ${k + 1} sur ${cur.trials.length}</div>
         <p class="question">${esc(t.q)}</p>
         <input class="answer" id="ans" autocomplete="off" spellcheck="false" placeholder="Ta réponse" aria-label="Ta réponse">
@@ -2520,10 +2594,10 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       await glSay(`Nous y voilà, ${name}. Mégalopolis ! Il ne reste qu'une énigme : celle de la grande porte.`);
       await glSay("Elle est gravée juste là. À toi de jouer.", false);
       // l'énigme de la porte, sans aucune aide
-      let asked = 0;
+      let asked = 0, wrongs = 0;
       const answer = await new Promise(res => {
         const draw = () => {
-          ch.innerHTML = `<div class="riddle"><small>Gravé sur la porte</small>Plus on m'enlève, plus je grandis. Qui suis-je ?</div>
+          ch.innerHTML = `<div class="riddle"><small>Gravé sur la porte</small>Plus on m'enlève, plus je grandis. Qui suis-je ?${wrongs >= 3 ? `<span class="engr">Les chercheurs d'or me creusent, les golfeurs me visent.</span>` : ""}${wrongs >= 6 ? `<span class="engr">Quatre lettres. On tombe parfois dedans.</span>` : ""}</div>
             <form class="name-row" id="gateForm"><input id="gateIn" maxlength="24" autocomplete="off" placeholder="Ma réponse" aria-label="Ma réponse"><button class="btn">Valider</button></form>
             <button class="choice" id="askGlaux" style="animation-delay:0s">Un indice, Glaux ?</button>`;
           $("#gateForm").onsubmit = async e => {
@@ -2531,7 +2605,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
             const a = norm($("#gateIn").value);
             if (["TROU", "UNTROU", "LETROU", "TROUS"].includes(a)) return res(a);
             await mySay($("#gateIn").value.trim() || "…");
-            await glSay(pick(["Hmm, non. La porte ne bouge pas d'un pouce.", "Raté. La porte a l'air de s'en moquer.", "Toujours fermé. Réfléchis encore."]), false);
+            wrongs++;
+            await glSay(wrongs === 3 ? "Oh, regarde : une nouvelle ligne vient d'apparaître sur la porte." : wrongs === 6 ? "Encore une ligne gravée ! Cette porte a pitié de toi, on dirait." : pick(["Hmm, non. La porte ne bouge pas d'un pouce.", "Raté. La porte a l'air de s'en moquer.", "Toujours fermé. Réfléchis encore."]), false);
             draw();
           };
           $("#askGlaux").onclick = async () => {
