@@ -546,6 +546,40 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 .te-title { font-family: var(--f-display); font-size: clamp(30px, 9vw, 52px); letter-spacing: .04em; }
 .te-sub { font-family: var(--f-caps); letter-spacing: .2em; color: #c9a24b; }
 @media (prefers-reduced-motion: reduce) { .clang.show, .shake, .the-end { animation: none; opacity: 1; } }
+
+/* ——— Scènes (intro et fin) : mise en page qui s'adapte à tous les écrans ———
+   La scène dessinée prend la place restante ; le panneau du bas (bulles et choix) ne dépasse jamais
+   et défile s'il le faut. Les bulles sont dans le panneau, donc jamais coupées. */
+.intro-scene { inset: auto; top: 0; left: 0; right: 0; height: 100%; height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+.intro-scene .scene-view { display: block; position: relative; flex: 1 1 0; min-height: 110px; overflow: hidden; }
+.intro-scene .scene-view > svg { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; max-height: none; }
+.intro-scene .scene-caption { top: 18%; font-size: clamp(17px, 4.6vw, 24px); }
+.intro-scene .dialog { flex: 0 1 auto; width: 100%; max-width: 640px; margin: 0 auto; min-height: min(36%, 270px); max-height: 68%; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; padding: 12px 16px calc(18px + env(safe-area-inset-bottom, 0px)); align-content: start; }
+.intro-scene .dialog .gl-bubble, .intro-scene .dialog .giant-bubble { position: relative; left: auto; top: auto !important; transform: none; width: auto; margin-top: 12px; opacity: 1; visibility: visible; pointer-events: auto; animation: bubIn .2s ease-out; }
+.intro-scene .dialog .gl-bubble:not(.show), .intro-scene .dialog .giant-bubble:not(.show) { display: none; }
+.intro-scene .dialog .gl-bubble::after { top: -13px; bottom: auto; border: 0; border-left: 2px solid #1d2433; border-top: 2px solid #1d2433; transform: translateX(-50%) rotate(45deg); }
+.intro-scene .dialog .giant-bubble::after { content: ""; position: absolute; left: 50%; top: -15px; width: 24px; height: 24px; background: #fff4e0; border-left: 4px solid #3a140c; border-top: 4px solid #3a140c; transform: translateX(-50%) rotate(45deg); }
+.intro-scene .gl-text { font-size: clamp(16.5px, 4.4vw, 19px); }
+.intro-scene .gt-text { font-size: clamp(20px, 5.4vw, 28px); }
+.t-off { visibility: hidden; }
+@keyframes bubIn { from { opacity: 0; transform: translateY(6px); } }
+/* les champs et boutons ne débordent plus sur les petits écrans */
+.intro-scene .choices { grid-template-columns: minmax(0, 1fr); }
+.intro-scene .name-row { flex-wrap: wrap; }
+.intro-scene .name-row input { flex: 1 1 170px; width: 100%; min-width: 0; }
+.intro-scene .name-row .btn { flex: 1 0 auto; padding-inline: 14px; }
+.intro-scene .choice { font-size: clamp(15.5px, 4.2vw, 17.5px); }
+.intro-scene .riddle { font-size: clamp(17px, 4.6vw, 19px); }
+/* téléphone couché : la scène à gauche, le dialogue à droite, sur toute la hauteur */
+@media (orientation: landscape) and (max-height: 540px) {
+  .intro-scene { flex-direction: row; }
+  .intro-scene .scene-view { min-height: 0; min-width: 0; }
+  .intro-scene .dialog { flex: 0 0 min(50%, 440px); max-width: none; min-height: 0; max-height: none; height: 100%; margin: 0; padding-top: 6px; }
+  .intro-scene .dialog .gl-bubble::after, .intro-scene .dialog .giant-bubble::after { left: -13px; top: 28px; transform: rotate(-45deg); }
+  .intro-scene .dialog .giant-bubble::after { left: -16px; }
+  .intro-top { right: auto; left: 12px; }
+  .intro-scene .scene-caption { top: 30%; }
+}
 </style>
 </head>
 <body>
@@ -553,7 +587,6 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   <div class="intro-top"><button class="skip" id="introSkip">Passer l'intro</button></div>
   <div class="scene-view" id="sceneView">
     <p class="scene-caption" id="sceneCap">Une belle journée. Je flâne dans les rues, sans rien de prévu. Comme d'habitude.</p>
-    <div class="gl-bubble" id="glBubble" aria-live="polite"><div class="gl-name">Glaux</div><p class="gl-text" id="glText"></p><button class="gl-next" id="glNext" hidden>Continuer ›</button></div>
     <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true">
       <defs>
         <linearGradient id="inSky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8fc7ea"/><stop offset="1" stop-color="#dcecf4"/></linearGradient>
@@ -623,6 +656,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     </svg>
   </div>
   <div class="dialog" id="dialog">
+    <div class="gl-bubble" id="glBubble" aria-live="polite"><div class="gl-name">Glaux</div><p class="gl-text" id="glText"></p><button class="gl-next" id="glNext" hidden>Continuer ›</button></div>
     <div id="meSlot"></div>
     <div class="choices" id="dlgChoices"></div>
   </div>
@@ -631,8 +665,6 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 <section class="intro-scene outro" id="outroScene" hidden aria-label="Fin de la saison 1">
   <div class="scene-view" id="outView">
     <p class="scene-caption" id="outCap"></p>
-    <div class="gl-bubble" id="outGlBubble" aria-live="polite"><div class="gl-name">Glaux</div><p class="gl-text" id="outGlText"></p><button class="gl-next" id="outGlNext" hidden>Continuer ›</button></div>
-    <div class="giant-bubble" id="gtBubble" aria-live="polite"><p class="gt-text" id="gtText"></p><button class="gl-next" id="gtNext" hidden>Continuer ›</button></div>
     <div class="clang" id="clang">CLANG !</div>
     <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax meet" aria-hidden="true" id="outSvg">
       <defs>
@@ -710,6 +742,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     </svg>
   </div>
   <div class="dialog" id="outDialog">
+    <div class="gl-bubble" id="outGlBubble" aria-live="polite"><div class="gl-name">Glaux</div><p class="gl-text" id="outGlText"></p><button class="gl-next" id="outGlNext" hidden>Continuer ›</button></div>
+    <div class="giant-bubble" id="gtBubble" aria-live="polite"><p class="gt-text" id="gtText"></p><button class="gl-next" id="gtNext" hidden>Continuer ›</button></div>
     <div id="outMe"></div>
     <div class="choices" id="outChoices"></div>
   </div>
@@ -2389,12 +2423,61 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     $("#resetNo").onclick = restoreReset;
   }; }
 
+  // ————— Outils communs aux scènes —————
+  // Cale la scène sur la partie vraiment visible de l'écran : utile quand le clavier s'ouvre
+  // ou que les barres du navigateur apparaissent. Remet aussi la page en place après le clavier (iPhone).
+  function fitScene(sc) {
+    const vv = window.visualViewport;
+    const panel = sc.querySelector(".dialog");
+    const f = () => {
+      if (vv) { sc.style.height = vv.height + "px"; sc.style.top = vv.offsetTop + "px"; }
+    };
+    const onFocus = e => { if (e.target.matches("input")) setTimeout(() => { f(); showInPanel(panel, e.target.closest("form") || e.target); }, 320); };
+    const onBlur = e => { if (e.target.matches("input")) setTimeout(() => { if (!vv || vv.offsetTop === 0) window.scrollTo(0, 0); f(); }, 120); };
+    if (vv) { vv.addEventListener("resize", f); vv.addEventListener("scroll", f); }
+    window.addEventListener("orientationchange", f);
+    sc.addEventListener("focusin", onFocus); sc.addEventListener("focusout", onBlur);
+    // chaque nouvel élément (choix, champ, bouton) est amené à l'écran dans le panneau
+    const mo = new MutationObserver(() => {
+      const ch = panel.querySelector(".choices");
+      const last = ch && ch.lastElementChild;
+      if (last) requestAnimationFrame(() => showInPanel(panel, last));
+    });
+    mo.observe(panel, { childList: true, subtree: true });
+    f();
+    return () => {
+      if (vv) { vv.removeEventListener("resize", f); vv.removeEventListener("scroll", f); }
+      window.removeEventListener("orientationchange", f);
+      sc.removeEventListener("focusin", onFocus); sc.removeEventListener("focusout", onBlur);
+      mo.disconnect(); sc.style.height = ""; sc.style.top = "";
+    };
+  }
+  // fait défiler le panneau juste assez pour montrer l'élément, sans bouger le reste de la page
+  function showInPanel(panel, el) {
+    if (!panel || !el || !panel.contains(el)) return;
+    const pr = panel.getBoundingClientRect(), er = el.getBoundingClientRect();
+    if (er.bottom > pr.bottom - 8) panel.scrollTop += er.bottom - pr.bottom + 12;
+    else if (er.top < pr.top) panel.scrollTop -= pr.top - er.top + 8;
+  }
+  // écrit un texte lettre à lettre sans changer la taille de la bulle (la place est réservée)
+  function typeText(el, text, speed, reduce, onFinish) {
+    el.innerHTML = '<span class="t-on"></span><span class="t-off"></span>';
+    const on = el.firstChild, off = el.lastChild;
+    let i = 0, timer = null;
+    const finish = () => { clearInterval(timer); on.textContent = text; off.textContent = ""; onFinish(); };
+    if (reduce) { finish(); return finish; }
+    off.textContent = text;
+    timer = setInterval(() => { i++; on.textContent = text.slice(0, i); off.textContent = text.slice(i); if (i >= text.length) finish(); }, speed);
+    return finish;
+  }
+
   // ————— Scène d'introduction : à la première personne, Glaux parle dans une bulle —————
   function playIntro(onDone) {
     const sc = $("#introScene"), reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
     const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 120) : ms));
     let skipped = false, typingDone = null;
     sc.hidden = false; sc.classList.remove("leaving"); document.documentElement.style.overflow = "hidden";
+    const unfit = fitScene(sc);
     const gl = $("#inGlaux"), cam = $("#inCam"), bub = $("#glBubble"), txt = $("#glText"), nx = $("#glNext"), ch = $("#dlgChoices"), me = $("#meSlot"), cap = $("#sceneCap");
     gl.setAttribute("transform", "translate(470 -80)"); gl.classList.remove("flying", "gl-talk");
     cam.classList.remove("walking"); bub.classList.remove("show"); ch.innerHTML = ""; me.innerHTML = ""; txt.textContent = "";
@@ -2413,31 +2496,23 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     }
     // Glaux parle dans sa bulle ; mes réponses s'affichent en bas, comme mes propres paroles
     // la bulle se place juste au-dessus de la tête de Glaux
-    function placeBubble() {
-      const v = $("#sceneView").getBoundingClientRect(), g = gl.getBoundingClientRect();
-      const top = g.top - v.top - bub.offsetHeight - 18;
-      bub.style.top = Math.max(56, top) + "px";
-    }
-    window.addEventListener("resize", placeBubble);
-    const ro = window.ResizeObserver ? new ResizeObserver(() => { if (bub.classList.contains("show")) placeBubble(); }) : null;
-    if (ro) ro.observe($("#sceneView"));
+    const panel = $("#dialog");
     function type(text) {
       cap.classList.remove("show");
-      bub.classList.add("show"); nx.hidden = true; txt.textContent = text; placeBubble(); txt.textContent = "";
+      bub.classList.add("show"); nx.hidden = true; panel.scrollTop = 0;
       gl.classList.remove("gl-talk"); void gl.getBBox(); gl.classList.add("gl-talk");
       return new Promise(res => {
-        let i = 0, timer;
-        const finish = () => { clearInterval(timer); txt.textContent = text; typingDone = null; res(); };
-        typingDone = finish;
-        if (reduce) return finish();
-        timer = setInterval(() => { i++; txt.textContent = text.slice(0, i); if (i >= text.length) finish(); }, 22);
+        let fin = null;
+        const done = () => { if (!fin) return; fin = null; typingDone = null; res(); };
+        fin = typeText(txt, text, 22, reduce, () => setTimeout(done, 0));
+        typingDone = () => fin && fin();
       });
     }
     bub.onclick = e => { if (typingDone) { typingDone(); e.stopPropagation(); } };
     async function say(text) {
       await type(text);
-      nx.hidden = false;
-      await new Promise(res => { nx.onclick = e => { e.stopPropagation(); res(); }; });
+      nx.hidden = false; showInPanel(panel, nx);
+      await new Promise(res => { nx.onclick = e => { e.stopPropagation(); nx.hidden = true; res(); }; });
     }
     async function mySay(text) { ch.innerHTML = ""; me.innerHTML = `<div class="me-bubble">${esc(text)}</div>`; await wait(1000); me.innerHTML = ""; }
     async function choose(text, options) {
@@ -2458,7 +2533,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     async function finish() {
       if (finish.done) return; finish.done = true;
       state.introDone = true; save();
-      window.removeEventListener("resize", placeBubble); if (ro) ro.disconnect();
+      unfit();
       sc.classList.add("leaving");
       await new Promise(r => setTimeout(r, reduce ? 0 : 800));
       sc.hidden = true; document.documentElement.style.overflow = "";
@@ -2532,6 +2607,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     const wait = ms => new Promise(r => setTimeout(r, reduce ? Math.min(ms, 150) : ms));
     const name = who();
     sc.hidden = false; $("#theEnd").hidden = true; document.documentElement.style.overflow = "hidden";
+    const unfit = fitScene(sc), panel = $("#outDialog");
     const view = $("#outView"), gl = $("#outGlaux"), glB = $("#outGlBubble"), glT = $("#outGlText"), glN = $("#outGlNext");
     const gtB = $("#gtBubble"), gtT = $("#gtText"), gtN = $("#gtNext"), ch = $("#outChoices"), me = $("#outMe"), cap = $("#outCap");
     const grille = $("#outGrille"), giant = $("#outGiant"), fingers = $("#outFingers"), gate = $("#outGate"), purse = $("#outPurse");
@@ -2553,20 +2629,15 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       });
     }
     const easeOut = p => 1 - Math.pow(1 - p, 3), easeIn = p => p * p * p;
-    function place(b) {
-      const v = view.getBoundingClientRect(), g = gl.getBoundingClientRect();
-      b.style.top = Math.max(16, g.top - v.top - b.offsetHeight - 18) + "px";
-    }
+    function place() { panel.scrollTop = 0; }
     let typing = null;
     function typeInto(el, text, bub) {
       cap.classList.remove("show");
       return new Promise(res => {
-        let i = 0, timer;
-        const done = () => { clearInterval(timer); el.textContent = text; typing = null; res(); };
-        typing = done;
-        if (reduce) return done();
-        el.textContent = "";
-        timer = setInterval(() => { i++; el.textContent = text.slice(0, i); if (i >= text.length) done(); }, 24);
+        let fin = null;
+        const done = () => { if (!fin) return; fin = null; typing = null; res(); };
+        fin = typeText(el, text, 24, reduce, () => setTimeout(done, 0));
+        typing = () => fin && fin();
       });
     }
     glB.onclick = gtB.onclick = e => { if (typing) { typing(); e.stopPropagation(); } };
@@ -2575,14 +2646,14 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       glT.textContent = text; place(glB);
       await typeInto(glT, text);
       if (!cont) return;
-      glN.hidden = false;
-      await new Promise(res => { glN.onclick = e => { e.stopPropagation(); res(); }; });
+      glN.hidden = false; showInPanel(panel, glN);
+      await new Promise(res => { glN.onclick = e => { e.stopPropagation(); glN.hidden = true; res(); }; });
     }
     async function gtSay(text) {
       glB.classList.remove("show"); gtB.classList.add("show"); gtN.hidden = true;
       await typeInto(gtT, text);
-      gtN.hidden = false;
-      await new Promise(res => { gtN.onclick = e => { e.stopPropagation(); res(); }; });
+      gtN.hidden = false; showInPanel(panel, gtN);
+      await new Promise(res => { gtN.onclick = e => { e.stopPropagation(); gtN.hidden = true; res(); }; });
     }
     async function mySay(text) { ch.innerHTML = ""; me.innerHTML = `<div class="me-bubble">${esc(text)}</div>`; await wait(1100); me.innerHTML = ""; }
     function shake() { view.classList.remove("shake"); void view.offsetWidth; view.classList.add("shake"); }
@@ -2658,7 +2729,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       await wait(800);
       $("#theEnd").hidden = false;
       await new Promise(res => { $("#theEndBtn").onclick = res; });
-      sc.hidden = true; document.documentElement.style.overflow = "";
+      unfit(); sc.hidden = true; document.documentElement.style.overflow = "";
       onDone && onDone();
     })();
   }
