@@ -529,6 +529,18 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 .outro .dialog { background: linear-gradient(#4a3a3a, #3a2c2e); }
 .outro .scene-caption { color: #fbe9c8; text-shadow: 0 1px 4px rgba(0, 0, 0, .5); }
 .riddle { background: #f6ecd6; color: #2a1c14; border: 2px solid #8a6a3a; border-radius: 10px; padding: 12px 14px; font-family: var(--f-display); font-size: 19px; text-align: center; }
+.trace { cursor: pointer; }
+.trace path { fill: none; stroke: #4a3b48; stroke-width: 1.6; stroke-linecap: round; }
+.trace .trace-bg { fill: #7a6a76; opacity: .55; }
+.trace.lit path { stroke: #f5d37a; filter: drop-shadow(0 0 3px rgba(245, 211, 122, .9)); }
+.trace.lit .trace-bg { fill: #8d7a86; opacity: .9; }
+.traces { display: grid; gap: 8px; }
+.traces-lbl { margin: 0; font-size: 15px; color: #e6d6c2; font-style: italic; }
+.trace-card { background: #6a5a66; color: #fbf1e2; border-left: 3px solid #f5d37a; border-radius: 0 10px 10px 0; padding: 9px 12px; font-family: var(--f-display); font-size: 17px; line-height: 1.4; animation: bubIn .25s ease-out; }
+.trace-card small { display: block; margin-top: 3px; font-family: var(--f-body); font-size: 13.5px; color: #d9c6b0; font-style: italic; }
+.stone-btn { border: 2px solid #8d7a86; background: #5a4a56; color: #fbf1e2; border-radius: 12px; padding: 11px 14px; font-size: 16.5px; text-align: left; }
+.stone-btn.beckon { border-color: #f5d37a; box-shadow: 0 0 0 3px rgba(245, 211, 122, .25); animation: tutopulse 1.3s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) { .stone-btn.beckon { animation: none; } }
 .riddle .engr { display: block; margin-top: 8px; font-size: 16px; font-style: italic; color: #8a6a3a; }
 .riddle small { display: block; font-family: var(--f-caps); letter-spacing: .12em; font-size: 12.5px; color: #8a6a3a; margin-bottom: 4px; }
 .outro .name-row .btn { background: #c9a24b; border-color: #c9a24b; color: #1d1410; }
@@ -678,6 +690,10 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
         <rect x="-30" y="-20" width="110" height="272" fill="#6a5a66"/><rect x="320" y="-20" width="110" height="272" fill="#6a5a66"/>
         <path d="M-30 30 H80 M-30 90 H80 M-30 150 H80 M-30 210 H80 M320 30 H430 M320 90 H430 M320 150 H430 M320 210 H430" stroke="#564755" stroke-width="2"/>
         <rect x="70" y="-20" width="260" height="60" fill="#5d4e5a"/>
+        <!-- traces laissées par d'anciens voyageurs -->
+        <g class="trace" id="trace0" data-k="0"><rect x="14" y="104" width="54" height="34" rx="4" class="trace-bg"/><path d="M20 114 h20 M20 121 h32 M20 128 h14 M44 128 l6 -4 M50 128 l-6 -4"/></g>
+        <g class="trace" id="trace1" data-k="1"><rect x="332" y="160" width="54" height="34" rx="4" class="trace-bg"/><path d="M338 170 h34 M338 177 h22 M338 184 h28 M376 170 v14"/></g>
+        <g class="trace" id="trace2" data-k="2"><rect x="14" y="196" width="54" height="34" rx="4" class="trace-bg"/><path d="M20 206 v12 M26 206 v12 M32 206 v12 M38 206 v12 M18 214 l24 -6 M48 206 q8 6 0 12"/></g>
         <text x="200" y="20" text-anchor="middle" font-family="Marcellus SC, serif" font-size="17" letter-spacing="5" fill="#e8c77a">ΜΕΓΑΛΟΠΟΛΙΣ</text>
         <!-- ce qu'on devine derrière la grille -->
         <rect x="80" y="40" width="240" height="212" fill="#2a2030"/>
@@ -2665,10 +2681,28 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       await glSay(`Nous y voilà, ${name}. Mégalopolis ! Il ne reste qu'une énigme : celle de la grande porte.`);
       await glSay("Elle est gravée juste là. À toi de jouer.", false);
       // l'énigme de la porte, sans aucune aide
-      let asked = 0, wrongs = 0;
+      let asked = 0, wrongs = 0, read = 0, draw = () => {};
+      const TRACES = [
+        ["Je l'ai cherché longtemps. C'est une pelle qui m'a mis sur la voie.", "Hector, de Thèbes"],
+        ["Les chercheurs d'or le creusent, les golfeurs le visent.", "L., voyageuse de Smyrne"],
+        ["Quatre lettres. On tombe parfois dedans…", "Ariane"]
+      ];
+      const readTrace = async () => {
+        if (read >= TRACES.length) return;
+        const k = read; read++;
+        const t = $("#trace" + k); if (t) t.classList.add("lit");
+        draw();
+        if (k === 0) await glSay("Tiens, des graffitis. Les humains écrivent vraiment partout.", false);
+      };
+      document.querySelectorAll("#outSvg .trace").forEach(t => { t.classList.remove("lit"); t.onclick = () => { if (+t.dataset.k === read) readTrace(); }; });
       const answer = await new Promise(res => {
-        const draw = () => {
-          ch.innerHTML = `<div class="riddle"><small>Gravé sur la porte</small>Plus on m'enlève, plus je grandis. Qui suis-je ?${wrongs >= 3 ? `<span class="engr">Les chercheurs d'or me creusent, les golfeurs me visent.</span>` : ""}${wrongs >= 6 ? `<span class="engr">Quatre lettres. On tombe parfois dedans.</span>` : ""}</div>
+        draw = () => {
+          ch.innerHTML = `<div class="riddle"><small>Gravé sur la porte</small>Plus on m'enlève, plus je grandis. Qui suis-je ?</div>
+            <div class="traces">
+              ${read ? TRACES.slice(0, read).map(([t, sgn]) => `<div class="trace-card">« ${esc(t)} »<small>— ${esc(sgn)}</small></div>`).join("")
+                     : `<p class="traces-lbl">D'autres voyageurs sont passés ici avant toi. Des mots sont gravés sur les pierres, autour de la porte.</p>`}
+              ${read < TRACES.length ? `<button class="stone-btn${wrongs >= 2 ? " beckon" : ""}" id="readStone">🪨 ${read ? "Lire une autre trace" : "Lire les pierres"} (${read + 1}/${TRACES.length})</button>` : ""}
+            </div>
             <form class="name-row" id="gateForm"><input id="gateIn" maxlength="24" autocomplete="off" placeholder="Ma réponse" aria-label="Ma réponse"><button class="btn">Valider</button></form>
             <button class="choice" id="askGlaux" style="animation-delay:0s">Un indice, Glaux ?</button>`;
           $("#gateForm").onsubmit = async e => {
@@ -2677,9 +2711,10 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
             if (["TROU", "UNTROU", "LETROU", "TROUS"].includes(a)) return res(a);
             await mySay($("#gateIn").value.trim() || "…");
             wrongs++;
-            await glSay(wrongs === 3 ? "Oh, regarde : une nouvelle ligne vient d'apparaître sur la porte." : wrongs === 6 ? "Encore une ligne gravée ! Cette porte a pitié de toi, on dirait." : pick(["Hmm, non. La porte ne bouge pas d'un pouce.", "Raté. La porte a l'air de s'en moquer.", "Toujours fermé. Réfléchis encore."]), false);
+            await glSay(pick(["Hmm, non. La porte ne bouge pas d'un pouce.", "Raté. La porte a l'air de s'en moquer.", "Toujours fermé. Réfléchis encore."]), false);
             draw();
           };
+          if ($("#readStone")) $("#readStone").onclick = readTrace;
           $("#askGlaux").onclick = async () => {
             asked++;
             await mySay(asked === 1 ? "Un indice, Glaux ?" : "Pourquoi tu ne m'aides pas, cette fois ?");
