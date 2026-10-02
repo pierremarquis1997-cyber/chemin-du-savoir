@@ -374,6 +374,89 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 @media (max-width: 420px) { .word span { width: 32px; height: 40px; font-size: 21px; } }
 .tile.hinted { border-color: var(--ochre) !important; background: var(--ochre-soft) !important; box-shadow: 0 2px 0 var(--ochre) !important; }
 .pick.gone { text-decoration: line-through; }
+.mgrid-wrap { display: grid; justify-items: center; }
+.motus { display: grid; gap: 5px; }
+.mline { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: 5px; width: min(100%, calc(var(--n) * 50px)); }
+.mc { aspect-ratio: 1; display: grid; place-items: center; border-radius: 6px; font-family: var(--f-caps); font-size: clamp(20px, 6vw, 26px); background: #1f5f9e; color: #fff; }
+.mc.empty { background: color-mix(in srgb, #1f5f9e 30%, var(--surface)); }
+.mc.ghost { background: color-mix(in srgb, #1f5f9e 55%, var(--surface)); color: rgba(255, 255, 255, .55); }
+.mc.typed { background: #1f5f9e; box-shadow: inset 0 0 0 2px #fff; }
+.mc.ok { background: #d6453b; }
+.mc.mal { background: #1f5f9e; position: relative; color: #1d1a10; z-index: 0; }
+.mc.mal::before { content: ""; position: absolute; inset: 8%; border-radius: 50%; background: #f2c230; z-index: -1; }
+.mc.non { background: #1f5f9e; }
+.mline.current .mc { animation: none; }
+.mkbd { display: grid; gap: 6px; }
+.mrow { display: flex; justify-content: center; gap: 4px; }
+.mkey { flex: 1 1 0; max-width: 40px; min-width: 0; height: 46px; border: 0; border-radius: 6px; background: var(--bg); color: var(--ink); font-weight: 700; font-size: 16px; padding: 0; box-shadow: 0 2px 0 var(--line); }
+.mkey.wide { max-width: 64px; flex: 1.6 1 0; }
+.mkey.ok { background: #d6453b; color: #fff; }
+.mkey.mal { background: #f2c230; color: #1d1a10; }
+.mkey.non { opacity: .35; }
+.eqs-sym { display: grid; gap: 8px; justify-items: center; }
+.eq-sym { font-size: clamp(24px, 7vw, 32px); font-weight: 700; font-variant-numeric: tabular-nums; background: var(--bg); border: 1.5px solid var(--line); border-radius: 12px; padding: 8px 16px; }
+.sym-ask { margin: 0; text-align: center; font-size: 20px; }
+.sym-ask span { font-size: 28px; }
+.quote { margin: 0; font-family: var(--f-display); font-size: clamp(20px, 5.4vw, 25px); line-height: 1.45; text-align: center; background: var(--bg); border-radius: 12px; padding: 16px; }
+.quote .gap { display: inline-block; min-width: 3.5em; border-bottom: 3px solid var(--ochre); color: var(--ochre); }
+.quote .gap.found { color: var(--good); border-color: var(--good); }
+.quote cite { display: block; margin-top: 8px; font-size: 16px; font-style: italic; color: var(--muted); font-family: var(--f-body); }
+.magic-goal { margin: 0; text-align: center; font-size: 18px; }
+.magic-goal b { font-size: 22px; color: var(--sea); }
+.mgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 64px)) 44px; gap: 8px; justify-content: center; align-items: center; }
+.mcell { aspect-ratio: 1; display: grid; place-items: center; border-radius: 10px; font-size: 26px; font-weight: 700; font-variant-numeric: tabular-nums; }
+.mcell.fixed { background: var(--bg); border: 1.5px solid var(--line); }
+.mcell.blank { border: 2px dashed var(--sea); background: var(--sea-soft); color: var(--sea); padding: 0; }
+.mcell.blank.filled { border-style: solid; background: var(--surface); }
+.mcell.blank.sel { box-shadow: 0 0 0 3px var(--ochre); }
+.msum { font-size: 15px; font-weight: 700; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; border-radius: 8px; padding: 4px 0; }
+.msum.good { color: var(--good); background: color-mix(in srgb, var(--good) 12%, var(--surface)); }
+.msum.bad { color: var(--bad); background: color-mix(in srgb, var(--bad) 10%, var(--surface)); }
+.mpool { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; background: var(--bg); border-radius: 10px; padding: 10px; min-height: 70px; }
+.mtile { width: 54px; height: 54px; border: 1.5px solid var(--map-road-edge); background: var(--surface); border-radius: 10px; font-size: 24px; font-weight: 700; box-shadow: 0 3px 0 var(--map-road-edge); }
+.mtile.used { width: 54px; height: 54px; border: 1.5px dashed var(--line); border-radius: 10px; }
+.dbar { position: relative; height: 18px; border-radius: 9px; background: var(--bg); border: 1.5px solid var(--line); overflow: hidden; }
+.dzone { position: absolute; top: 0; bottom: 0; background: color-mix(in srgb, var(--ochre) 45%, transparent); transition: left .4s ease, width .4s ease; }
+.dmark { position: absolute; top: 2px; bottom: 2px; width: 3px; margin-left: -1.5px; background: var(--muted); border-radius: 2px; }
+.dmark.hit { background: var(--good); width: 6px; }
+.dlimits { display: flex; justify-content: space-between; font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; margin-top: -10px; }
+.dtries { display: flex; flex-wrap: wrap; gap: 6px; }
+.dtry { border-radius: 999px; padding: 4px 10px; font-size: 15px; font-variant-numeric: tabular-nums; background: var(--bg); }
+.dtry.hot { background: color-mix(in srgb, #d6453b 18%, var(--surface)); }
+.dtry.warm { background: color-mix(in srgb, #f2a830 20%, var(--surface)); }
+.dtry.cold { background: color-mix(in srgb, #4a8bd0 16%, var(--surface)); }
+.dtry.hit { background: var(--good); color: var(--surface); }
+.band-links { flex-wrap: wrap; gap: 8px; }
+@media (max-width: 440px) { .band-link { padding: 6px 10px; font-size: 15px; gap: 4px; } .band-count { font-size: 12.5px; } }
+.quote .gap { white-space: nowrap; }
+.quest { background: var(--ochre-soft); border-radius: 12px; padding: 12px 14px; display: grid; gap: 8px; }
+.quest b { font-family: var(--f-caps); letter-spacing: .08em; color: var(--ochre); }
+.quest p { margin: 0; line-height: 1.5; }
+.quest .btn { justify-self: start; }
+.story-p { margin: 0 0 6px; line-height: 1.5; }
+.story-p b { color: var(--good); font-weight: 600; }
+.chap-card-wrap { position: fixed; inset: 0; z-index: 92; background: rgba(8, 16, 28, .6); display: grid; place-items: center; padding: 16px; }
+.chap-card { width: min(100%, 460px); max-height: 100%; overflow-y: auto; background: var(--surface); border-radius: 18px; padding: 22px 20px; display: grid; gap: 12px; text-align: center; box-shadow: 0 20px 50px rgba(0, 0, 0, .35); border-top: 6px solid var(--ochre); animation: sheetIn .3s ease-out; }
+.cc-num { font-family: var(--f-caps); letter-spacing: .14em; font-size: 14px; color: var(--muted); }
+.chap-card h2 { font-size: clamp(28px, 8vw, 36px); color: var(--sea); }
+.cc-text { margin: 0; line-height: 1.5; }
+.cc-road { display: flex; align-items: center; justify-content: center; }
+.cc-dot { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-family: var(--f-caps); font-size: 12px; border: 1.5px solid var(--line); color: var(--muted); background: var(--bg); flex: none; }
+.cc-dot.past { background: var(--sea-soft); border-color: var(--sea); color: var(--sea); }
+.cc-dot.now { background: var(--sea); border-color: var(--sea); color: var(--surface); box-shadow: 0 0 0 3px var(--sea-soft); }
+.cc-dot.city { border-color: var(--ochre); background: var(--ochre-soft); font-size: 15px; }
+.cc-line { flex: 1 1 10px; max-width: 26px; height: 2px; background: var(--line); }
+.cc-left { margin: 0; font-weight: 600; color: var(--ochre); }
+.cc-glaux { display: flex; gap: 10px; align-items: flex-start; text-align: left; background: var(--bg); border-radius: 12px; padding: 10px 12px; }
+.cc-glaux span { font-size: 28px; line-height: 1; }
+.cc-glaux p { margin: 0; font-style: italic; }
+.epilogue { position: absolute; inset: 0; z-index: 9; background: #0d0a10; color: #f1e6cc; overflow-y: auto; display: grid; place-items: center; padding: 24px 18px; animation: endIn 1.2s ease forwards; }
+.epi-inner { width: min(100%, 560px); display: grid; gap: 14px; }
+.epi-inner p { margin: 0; font-size: clamp(17px, 4.6vw, 20px); line-height: 1.55; font-family: var(--f-display); }
+.epi-inner p:first-child { font-size: clamp(21px, 6vw, 26px); color: #f5d37a; }
+.epi-inner .go-btn { justify-self: center; margin-top: 6px; position: sticky; bottom: 0; box-shadow: 0 -14px 18px #0d0a10, 0 4px 0 #0f3152; }
+.epilogue { place-items: start center; }
+.te-more { margin: 0; color: #b9ab90; font-size: 15px; }
 .tuto-focus { position: relative; z-index: 2; outline: 3px solid var(--ochre) !important; outline-offset: 3px; border-radius: 10px; animation: tutopulse 1.3s ease-in-out infinite; }
 @keyframes tutopulse { 0%, 100% { outline-color: var(--ochre); box-shadow: 0 0 0 0 transparent; } 50% { outline-color: color-mix(in srgb, var(--ochre) 45%, transparent); box-shadow: 0 0 0 8px color-mix(in srgb, var(--ochre) 18%, transparent); } }
 @media (prefers-reduced-motion: reduce) { .tuto-focus { animation: none; } }
@@ -763,9 +846,17 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     <div id="outMe"></div>
     <div class="choices" id="outChoices"></div>
   </div>
+  <div class="epilogue" id="epilogue" hidden>
+    <div class="epi-inner">
+      <div class="te-sub">Ce qui s'est vraiment passé</div>
+      <div id="epiText"></div>
+      <button class="go-btn" id="epiBtn">Continuer</button>
+    </div>
+  </div>
   <div class="the-end" id="theEnd" hidden>
     <div class="te-title">Fin de la saison 1</div>
     <div class="te-sub">À suivre : l'évasion.</div>
+    <p class="te-more">Tu peux relire toute l'histoire à tout moment, dans « Histoire ».</p>
     <button class="go-btn" id="theEndBtn">Retour</button>
   </div>
 </section>
@@ -778,6 +869,17 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   </section>
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="chap-card-wrap" id="chapCard" hidden>
+  <section class="chap-card" role="dialog" aria-modal="true" aria-labelledby="ccTitle">
+    <div class="cc-num" id="ccNum"></div>
+    <h2 id="ccTitle"></h2>
+    <p class="cc-text" id="ccText"></p>
+    <div class="cc-road" id="ccRoad"></div>
+    <p class="cc-left" id="ccLeft"></p>
+    <div class="cc-glaux"><span aria-hidden="true">🦉</span><p id="ccGlaux"></p></div>
+    <button class="btn" id="ccGo">En route</button>
+  </section>
+</div>
 
 <header class="band">
   <div class="band-inner">
@@ -786,6 +888,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     <p id="bandRule">Traverse les 8 cités de la Côte des Sages. Dans chacune, réussis une épreuve de lettres ou de chiffres pour ouvrir la route suivante.</p>
     <nav class="band-links" aria-label="Raccourcis">
       <button class="band-link" id="openNotes"><span aria-hidden="true">📜</span> Carnet <span class="band-count" id="notesCount"></span></button>
+      <button class="band-link" id="openStory"><span aria-hidden="true">📖</span> Histoire</button>
       <button class="band-link" id="openBadges"><span aria-hidden="true">🏅</span> Succès <span class="band-count" id="badgesCount"></span></button>
     </nav>
   </div>
@@ -840,251 +943,11 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
 <script>
 (function () {
   // ————— Données du chapitre I —————
-  const CH1 = [
-    { id: "milet", place: "Milet", sage: "Thalès", type: "mot", glyph: "Α",
-      lore: "À Milet, Thalès passe ses nuits à observer le ciel. Sur sa table, neuf lettres attendent.",
-      letters: "OMTRESANO", min: 7, best: "ASTRONOME",
-      lexicon: ["ASTRONOME","MONTERAS","MATERONS","RETAMONS","MAESTRO","MONSTRE","MONTRES","MONTERA","ROMANES","RAMONES","MENTORS","ETAMONS","OTERONS","OSERONT","NOTERAS"],
-      hints: ["Cherche du côté du métier de Thalès, qui passait ses nuits le nez en l'air.",
-              "Le plus long mot utilise les neuf lettres et commence par la première lettre de l'alphabet."],
-      frag: "Selon Hérodote, Thalès aurait prédit une éclipse de soleil. On raconte aussi qu'il mesura la hauteur d'une pyramide grâce à son ombre, à l'heure où l'ombre d'un homme égale sa taille." },
-    { id: "ephese", place: "Éphèse", sage: "Héraclite", type: "lien", glyph: "Β",
-      lore: "À Éphèse, Héraclite t'écrit trois mots sur une tablette et attend que tu trouves ce qui les unit.",
-      clues: ["Artifice", "Camp", "Joie"], answers: ["FEU", "FEUX"],
-      hints: ["Pense aux soirs d'été, quand tout le monde se rassemble et regarde vers le ciel.", "Pour Héraclite, c'était l'élément à l'origine de toute chose."],
-      frag: "Héraclite voyait le monde comme un changement perpétuel. On lui doit l'idée qu'on ne se baigne jamais deux fois dans le même fleuve." },
-    { id: "samos", place: "Samos", sage: "Eupalinos", type: "compte", glyph: "Γ",
-      lore: "À Samos, l'ingénieur Eupalinos fait creuser un tunnel à travers la montagne. Il te tend ses plaques de calcul.",
-      plates: [3, 7, 8, 25, 50, 10], target: 473, start: "( 50 − 7 )",
-      hints: ["Essaie de multiplier deux petits calculs entre parenthèses.", "L'un des deux calculs utilise le 50 et le 7."],
-      frag: "Au VIᵉ siècle avant notre ère, le tunnel d'Eupalinos fut creusé depuis les deux côtés de la montagne à la fois. Les deux équipes se rejoignirent au milieu, sur plus d'un kilomètre, avec un écart infime." },
-    { id: "delphes", place: "Delphes", sage: "La Pythie", type: "lien", glyph: "Δ",
-      lore: "À Delphes, l'oracle parle par énigmes. La Pythie murmure trois mots dans les vapeurs du temple.",
-      clues: ["Clin", "Trompe", "Bœuf"], answers: ["OEIL", "YEUX"],
-      hints: ["C'est une partie du visage.", "Tu en as deux, et certaines maisons en ont un : une petite fenêtre ronde."],
-      frag: "Au fronton du temple d'Apollon, à Delphes, était gravée la maxime « Connais-toi toi-même », que Socrate fit sienne." },
-    { id: "athenes", place: "Athènes", sage: "Platon", type: "nombre", glyph: "Ε",
-      lore: "À Athènes, Platon enseigne à l'Académie. Il te propose trois indices, et un seul nombre les relie.",
-      clues: ["Les solides de Platon", "Les sens", "Les anneaux olympiques"], answers: ["5", "CINQ"],
-      hints: ["Platon associait ces solides aux éléments : le feu, l'air, l'eau, la terre… et l'univers tout entier.", "Compte sur tes doigts. Une seule main suffit."],
-      frag: "Selon la tradition, l'entrée de l'Académie de Platon portait l'inscription « Que nul n'entre ici s'il n'est géomètre »." },
-    { id: "cyrene", place: "Cyrène", sage: "Ératosthène", type: "mot", glyph: "Ϛ",
-      lore: "À Cyrène, le jeune Ératosthène rêve déjà de la Bibliothèque d'Alexandrie. Neuf lettres sont posées devant lui.",
-      letters: "TUNIORIDE", min: 7, best: "ERUDITION",
-      lexicon: ["ERUDITION","EDITION","ETOURDI","ROUTINE","INDUIRE","INDUITE"],
-      hints: ["Pense à ce qu'accumule un savant qui lit toute sa vie.",
-              "Le plus long mot utilise les neuf lettres et commence par un E."],
-      frag: "Devenu bibliothécaire d'Alexandrie, Ératosthène estima la circonférence de la Terre en comparant l'ombre du soleil à midi à Syène et à Alexandrie. Son résultat était remarquablement proche de la réalité." },
-    { id: "syracuse", place: "Syracuse", sage: "Archimède", type: "compte", glyph: "Ζ",
-      lore: "À Syracuse, Archimède trace des figures dans le sable. Son calcul est plus retors que celui de Samos.",
-      plates: [1, 3, 7, 8, 9, 100], target: 947, start: "( 100 − 1 ) × 9",
-      hints: ["Approche-toi d'abord de 900 avec le 100 et un chiffre, puis ajuste avec les petits nombres.", "Un calcul entre parenthèses avec le 100 et le 1, multiplié par un chiffre, t'amène tout près."],
-      frag: "On prête à Archimède la phrase « Donnez-moi un point d'appui, et je soulèverai le monde ». Il mourut en 212 avant notre ère, lors de la prise de Syracuse par les Romains." },
-    { id: "crotone", place: "Crotone", sage: "Pythagore", type: "boss", glyph: "Π",
-      lore: "À Crotone, un homme vêtu de blanc garde la sortie de la Côte des Sages.",
-      speech: "Voyageur, tu as traversé bien des terres. Mais ici, à Crotone, tout est nombre, et rien ne passe sans harmonie. Réponds à mes trois questions, et la route s'ouvrira.",
-      trials: [
-        { q: "Un triangle rectangle a deux côtés de l'angle droit mesurant 20 et 21. Combien mesure son hypoténuse ?",
-          answers: ["29"], hints: ["Le carré de l'hypoténuse égale la somme des carrés des deux autres côtés.", "Calcule 400 + 441, puis cherche quel nombre, multiplié par lui-même, donne ce résultat."] },
-        { q: "6 est un nombre parfait : il est égal à la somme de ses diviseurs, 1 + 2 + 3. Quel est le nombre parfait suivant ?",
-          answers: ["28", "VINGTHUIT"], hints: ["Il se trouve entre 20 et 30.", "Ses diviseurs sont 1, 2, 4, 7 et 14."] },
-        { q: "Je refusais qu'on m'appelle « sage ». Je préférais me dire « ami de la sagesse ». Quel mot, venu du grec, en est né ?",
-          answers: ["PHILOSOPHE", "PHILOSOPHIE"], hints: ["Philo- signifie « aimer », et sophia « la sagesse ».", "C'est aussi le nom d'une matière qu'on étudie en terminale… presque."] }
-      ],
-      frag: "Pythagore fonda à Crotone une communauté où l'on partageait les biens et le savoir. Ses disciples tenaient que « tout est nombre », et la tradition lui attribue l'invention du mot « philosophe »." }
-  ];
-  const CH2 = [
-    { id: "bagdad", place: "Bagdad", sage: "Al-Khwârizmî", type: "mot", glyph: "١",
-      letters: "BRAOLTESA", min: 7, best: "ASTROLABE",
-      lexicon: ["ASTROLABE","ALBATROS","TABLERAS","SABOTERA","SABOTER","RABOTES","RABOTAS","OBLATES","ALTERAS","RATELAS"],
-      hints: ["Cherche un instrument qu'utilisaient les savants de Bagdad pour lire le ciel.",
-              "Le plus long mot utilise les neuf lettres et commence par un A."],
-      frag: "Au IXᵉ siècle, à la Maison de la Sagesse de Bagdad, Al-Khwârizmî écrivit un traité dont le titre a donné le mot « algèbre ». Son propre nom, déformé en latin, a donné le mot « algorithme »." },
-    { id: "bassora", place: "Bassora", sage: "Ibn al-Haytham", type: "lien", glyph: "٢",
-      clues: ["Lunettes", "Coup", "Rayon"], answers: ["SOLEIL", "SOLEILS"],
-      hints: ["Pense à une journée d'été à la plage.", "Ibn al-Haytham a passé sa vie à étudier sa lumière."],
-      frag: "Né à Bassora vers 965, Ibn al-Haytham montra que l'on voit grâce à la lumière qui entre dans l'œil, et non grâce à un rayon qui en sortirait. On le considère comme un pionnier de la méthode expérimentale." },
-    { id: "samarcande", place: "Samarcande", sage: "Ulugh Beg", type: "compte", glyph: "٣",
-      plates: [2, 4, 6, 9, 25, 75], target: 638, start: "75 × 9",
-      hints: ["Une grosse multiplication te rapproche vite de la cible.", "Le 75 multiplié par un chiffre dépasse la cible de peu : il reste à retirer ce qui dépasse."],
-      frag: "Au XVᵉ siècle, le prince astronome Ulugh Beg fit bâtir à Samarcande un observatoire géant. Son catalogue d'étoiles, d'une précision remarquable, en recensait plus d'un millier." },
-    { id: "lecaire", place: "Le Caire", sage: "les savants d'Al-Azhar", type: "nombre", glyph: "٤",
-      clues: ["Les merveilles du monde antique", "Les jours de la semaine", "Les couleurs de l'arc-en-ciel"], answers: ["7", "SEPT"],
-      hints: ["La grande pyramide, tout près du Caire, fait partie de la première liste.", "C'est un nombre premier, entre 5 et 10."],
-      frag: "Fondée au Xᵉ siècle, l'université Al-Azhar du Caire compte parmi les plus anciennes au monde encore en activité." },
-    { id: "cordoue", place: "Cordoue", sage: "Averroès", type: "mot", glyph: "٥",
-      letters: "SUCTRINAM", min: 7, best: "MANUSCRIT",
-      lexicon: ["MANUSCRIT","INCRUSTA","MUTINAS","RUMINAS","SCRUTAI"],
-      hints: ["Pense à ce que recopiaient à la main les savants de Cordoue.",
-              "Le plus long mot utilise les neuf lettres et commence par un M."],
-      frag: "Au XIIᵉ siècle, le Cordouan Averroès commenta si bien Aristote qu'en Europe on l'appelait simplement « le Commentateur »." },
-    { id: "tolede", place: "Tolède", sage: "les traducteurs", type: "lien", glyph: "٦",
-      clues: ["Tourner", "Blanche", "Garde"], answers: ["PAGE", "PAGES"],
-      hints: ["Pense à un livre.", "Dans un livre, il y en a des centaines, et on les numérote."],
-      frag: "Au XIIᵉ siècle, à Tolède, des savants chrétiens, juifs et musulmans traduisirent ensemble des centaines d'ouvrages de l'arabe vers le latin. C'est ainsi que l'Europe redécouvrit la science grecque et arabe." },
-    { id: "bologne", place: "Bologne", sage: "les premiers étudiants", type: "compte", glyph: "٧",
-      plates: [3, 4, 5, 9, 50, 75], target: 867, start: "75 × 5",
-      hints: ["La cible est un multiple de 3.", "867, c'est 3 fois 289. Essaie d'obtenir 289 avec les autres nombres."],
-      frag: "Fondée en 1088, l'université de Bologne est considérée comme la plus ancienne université du monde occidental." },
-    { id: "pise", place: "Pise", sage: "Fibonacci", type: "boss", glyph: "٨",
-      speech: "Ah, voyageur ! Moi, je compte tout : les lapins, les pétales, les spirales des coquillages. Réponds à mes trois questions, et la route s'ouvrira.",
-      trials: [
-        { q: "Voici ma suite : 1, 1, 2, 3, 5, 8, 13… Quel est le nombre suivant ?",
-          answers: ["21", "VINGTETUN", "VINGTEUN"], hints: ["Regarde comment chaque nombre se forme à partir des deux précédents.", "8 + 13… fais le calcul."] },
-        { q: "Avant les chiffres venus d'Inde, l'Europe comptait avec des lettres. Combien vaut MCM en chiffres romains ?",
-          answers: ["1900"], hints: ["M vaut 1000, C vaut 100. Quand une petite lettre précède une grande, on la retire.", "Il y a d'abord un M, puis CM, c'est-à-dire 1000 moins 100."] },
-        { q: "Le mot arabe « sifr », qui signifie « vide », a donné notre mot « zéro ». Quel autre mot français, que tu utilises tous les jours, vient aussi de « sifr » ?",
-          answers: ["CHIFFRE", "CHIFFRES"], hints: ["Ce mot désigne les signes 0, 1, 2… jusqu'à 9.", "On en parle aussi dans « Des … et des lettres »."] }
-      ],
-      frag: "En 1202, Léonard de Pise, dit Fibonacci, publia le Liber abaci, qui fit connaître à l'Europe les chiffres indo-arabes et le zéro. Sa célèbre suite y apparaît à propos d'un problème de lapins." }
-  ];
-
-  // ————— Chapitre II : rencontre imprévue avant Samarcande —————
-  CH2.find(st => st.id === "samarcande").surprise = {
-    title: "Un marchand rusé", type: "intrus",
-    story: "Sur la route de la soie, un marchand t'arrête : « Quatre sacs, trois épices. Trouve l'intrus, et je te laisse passer. »",
-    prompt: "Lequel n'est pas une épice ?", options: ["Safran", "Cannelle", "Jasmin", "Cumin"], answer: 2,
-    hints: ["Trois de ces sacs servent en cuisine pour relever un plat.", "L'intrus se respire plus qu'il ne se mange : c'est une fleur."],
-    frag: "Samarcande était une étape majeure de la route de la soie, où se croisaient marchands chinois, perses et arabes." };
-
-  const CH3 = [
-    { id: "lahaye", place: "La Haye", sage: "Huygens", type: "intrus", glyph: "I",
-      prompt: "Lequel de ces astres n'était pas encore connu au temps de Huygens ?", options: ["Saturne", "Vénus", "Uranus", "Mercure"], answer: 2,
-      hints: ["Trois d'entre eux se voient à l'œil nu depuis l'Antiquité.", "L'intrus est si loin qu'il a fallu attendre 1781 et un grand télescope pour le découvrir."],
-      frag: "En 1655, le Néerlandais Christiaan Huygens découvrit Titan, la plus grande lune de Saturne, et comprit que la planète était entourée d'un anneau." },
-    { id: "paris3", place: "Paris", sage: "Pascal", type: "compte", glyph: "II",
-      plates: [1, 4, 6, 7, 25, 100], target: 529, start: "( 100 − 25 ) × 7",
-      hints: ["Commence par un calcul avec le 100 et le 25.", "Ce calcul, multiplié par un chiffre, t'amène tout près. Il ne manque presque rien."],
-      frag: "À 19 ans, Blaise Pascal inventa la Pascaline, l'une des premières machines à calculer, pour aider son père, collecteur d'impôts." },
-    { id: "londres3", place: "Londres", sage: "Newton", type: "suite", glyph: "III",
-      seq: [1, 2, 4, 8, 16], answers: ["32", "TRENTEDEUX"],
-      hints: ["Compare chaque nombre avec le précédent.", "Chaque nombre est le double du précédent."],
-      frag: "En 1687, Isaac Newton publia ses lois du mouvement et de la gravitation. La légende dit qu'une pomme tombée d'un arbre lui en donna l'idée." },
-    { id: "cirey", place: "Cirey", sage: "Émilie du Châtelet", type: "mot", glyph: "IV",
-      letters: "LECETOPES", min: 7, best: "TELESCOPE",
-      lexicon: ["TELESCOPE","PELOTEES","POTELEES","ECLOPEES","COTELEES","PELOTES","ECLOPES","COTELES","POTELES"],
-      hints: ["Pense à l'instrument qui a permis de mieux voir les planètes.", "Le plus long mot utilise les neuf lettres et commence par un T."],
-      frag: "Au château de Cirey, Émilie du Châtelet traduisit en français l'œuvre de Newton. Sa traduction, parue en 1759, reste encore une référence." },
-    { id: "bale", place: "Bâle", sage: "Euler", type: "chrono", glyph: "V",
-      items: [["Imprimerie de Gutenberg", 1450], ["Lunette de Galilée", 1609], ["Machine à calculer de Pascal", 1642], ["Montgolfière", 1783]],
-      hints: ["La plus ancienne a permis de fabriquer des livres en grand nombre.", "La plus récente vole, et date de la fin du XVIIIᵉ siècle."],
-      frag: "Né à Bâle en 1707, Leonhard Euler fut l'un des mathématiciens les plus prolifiques de l'histoire. Devenu presque aveugle, il continua à publier en dictant ses calculs." },
-    { id: "konigsberg", place: "Königsberg", sage: "Euler", type: "lien", glyph: "VI",
-      clues: ["Arc", "Suspendu", "Levis"], answers: ["PONT", "PONTS"],
-      hints: ["Pense à ce qui permet de traverser une rivière.", "Königsberg en avait sept, et Euler s'est demandé si l'on pouvait tous les franchir une seule fois."],
-      frag: "En 1736, Euler prouva qu'il était impossible de se promener dans Königsberg en traversant ses sept ponts une seule fois chacun. Ce petit problème donna naissance à la théorie des graphes.",
-      surprise: { title: "Un pont effondré", type: "suite",
-        story: "Sur la route de Königsberg, un pont s'est effondré. Le charpentier te montre ses planches : « Il m'en faut une de plus. Mais de quelle longueur ? »",
-        seq: [3, 6, 12, 24], answers: ["48"],
-        hints: ["Compare chaque planche avec la précédente.", "Chaque planche est deux fois plus longue que la précédente."],
-        frag: "Le plus ancien pont de Paris encore debout s'appelle… le Pont-Neuf. Il fut achevé en 1607." } },
-    { id: "edimbourg", place: "Édimbourg", sage: "Hume", type: "nombre", glyph: "VII",
-      clues: ["Les mois de l'année", "Les signes du zodiaque", "Les heures sur un cadran"], answers: ["12", "DOUZE"],
-      hints: ["Commence par compter les mois, de janvier à décembre.", "C'est une douzaine."],
-      frag: "Au XVIIIᵉ siècle, Édimbourg brillait tant par ses savants et ses philosophes, comme David Hume, qu'on la surnommait « l'Athènes du Nord »." },
-    { id: "ferney", place: "Ferney", sage: "Voltaire", type: "boss", glyph: "VIII",
-      speech: "Ah, un voyageur ! J'ai écrit des milliers de lettres, mais je préfère les questions. Réponds aux trois miennes, et je t'ouvre la route.",
-      trials: [
-        { q: "Je suis l'ouvrage de Diderot et d'Alembert, en 28 volumes, qui voulait rassembler tous les savoirs de mon temps. Qui suis-je ?",
-          answers: ["ENCYCLOPEDIE", "LENCYCLOPEDIE"], hints: ["Mon nom vient du grec : « le cercle des connaissances ».", "On y cherche un mot par ordre alphabétique, comme dans un dictionnaire, mais en bien plus détaillé."] },
-        { q: "Newton publia ses lois de la gravitation en 1687. Combien d'années avant la Révolution française de 1789 ?",
-          answers: ["102", "CENTDEUX"], hints: ["Il suffit de faire une soustraction.", "1789 − 1687… commence par les centaines."] },
-        { q: "Le siècle des Lumières est mon siècle. Lequel est-ce ? Écris-le en chiffres romains.",
-          answers: ["XVIII", "XVIIIE", "18", "18E", "DIXHUITIEME"], hints: ["Les années 1700 appartiennent à ce siècle.", "X vaut 10, V vaut 5, I vaut 1."] }
-      ],
-      frag: "Installé à Ferney, près de Genève, Voltaire écrivit plus de 20 000 lettres et défendit toute sa vie la tolérance et la liberté de penser." }
-  ];
-
-  const CH4 = [
-    { id: "gottingen4", place: "Göttingen", sage: "Gauss", type: "suite", glyph: "1",
-      seq: [1, 3, 6, 10, 15, 21], answers: ["28", "VINGTHUIT"],
-      hints: ["Regarde de combien on avance à chaque fois : +2, +3, +4…", "Après +6, vient +7."],
-      frag: "Enfant, Carl Friedrich Gauss aurait calculé en quelques instants la somme de tous les nombres de 1 à 100 : 5 050. Il avait remarqué que 1 + 100, 2 + 99, 3 + 98… font toujours 101." },
-    { id: "paris4", place: "Paris", sage: "Sophie Germain", type: "intrus", glyph: "2",
-      prompt: "Lequel de ces nombres n'est pas un nombre premier ?", options: ["11", "13", "21", "29"], answer: 2,
-      hints: ["Un nombre premier ne se divise que par 1 et par lui-même.", "Essaie de diviser chacun d'eux par 3."],
-      frag: "Pour être prise au sérieux par les savants, Sophie Germain écrivit sous un nom d'homme : « Monsieur Le Blanc ». Ses travaux sur les nombres premiers portent aujourd'hui son nom." },
-    { id: "londres4", place: "Londres", sage: "Ada Lovelace", type: "code", glyph: "3",
-      cipher: "PDFKLQH", answer: "MACHINE",
-      hints: ["Le mot caché a un rapport avec les inventions d'Ada Lovelace et de Charles Babbage.", "Il faut décaler chaque lettre de quelques crans seulement."],
-      frag: "En 1843, Ada Lovelace écrivit pour la machine de Charles Babbage ce que l'on considère comme le premier programme informatique de l'histoire." },
-    { id: "turin", place: "Turin", sage: "Lagrange", type: "compte", glyph: "4",
-      plates: [2, 3, 8, 10, 50, 75], target: 718, start: "( 75 − 3 ) × 10",
-      hints: ["Une multiplication par 10 aide beaucoup.", "Approche-toi de 720, puis retire le petit écart."],
-      frag: "Né à Turin en 1736, Joseph-Louis Lagrange participa à la création du système métrique. On lui doit en partie le mètre et le kilogramme." },
-    { id: "lyon", place: "Lyon", sage: "les frères Lumière", type: "mot", glyph: "5",
-      letters: "NEUTRIVEN", min: 7, best: "INVENTEUR",
-      lexicon: ["INVENTEUR","INVENTER","INVENTE","RUINENT","VINRENT","VEINURE"],
-      hints: ["Pense à ce qu'étaient les frères Lumière, qui ont créé le cinématographe.", "Le plus long mot utilise les neuf lettres et commence par un I."],
-      frag: "À Lyon, les frères Auguste et Louis Lumière mirent au point le cinématographe. Leur première projection publique eut lieu à Paris en 1895." },
-    { id: "glasgow", place: "Glasgow", sage: "James Watt", type: "lien", glyph: "6",
-      clues: ["Vapeur", "Laver", "Écrire"], answers: ["MACHINE", "MACHINES"],
-      hints: ["Pense aux inventions qui travaillent à notre place.", "James Watt a perfectionné celle qui fonctionne à la vapeur."],
-      frag: "À Glasgow, James Watt perfectionna la machine à vapeur à partir de 1765. Son nom sert aujourd'hui d'unité de puissance : le watt." },
-    { id: "liverpool", place: "Liverpool", sage: "George Stephenson", type: "chrono", glyph: "7",
-      items: [["Machine à vapeur de Watt", 1769], ["Locomotive « Rocket » de Stephenson", 1829], ["Téléphone de Bell", 1876], ["Ampoule d'Edison", 1879]],
-      hints: ["La plus ancienne fait tourner les usines.", "Les deux plus récentes datent de la fin du XIXᵉ siècle, et le téléphone est arrivé en premier."],
-      frag: "En 1829, la locomotive Rocket de George Stephenson remporta un concours près de Liverpool. L'année suivante ouvrait la ligne Liverpool–Manchester, l'une des premières lignes de voyageurs.",
-      surprise: { title: "Le contrôleur du train", type: "question",
-        story: "Dans le train pour Liverpool, un contrôleur moustachu t'arrête : « Pas de billet ? Réponds à ma devinette, et je fermerai les yeux. »",
-        q: "J'ai des dents, mais je ne mords jamais. Qui suis-je ?", answers: ["PEIGNE", "UNPEIGNE", "SCIE", "UNESCIE", "ENGRENAGE", "UNENGRENAGE", "CLE", "CLEF", "FOURCHETTE", "UNEFOURCHETTE", "UNECLE", "UNECLEF", "ROUEDENTEE"],
-        hints: ["Tu t'en sers peut-être tous les matins.", "On le passe dans les cheveux."],
-        frag: "Les premiers billets de train en carton, numérotés et datés, furent inventés en Angleterre par Thomas Edmondson vers 1840." } },
-    { id: "nancy", place: "Nancy", sage: "Poincaré", type: "boss", glyph: "8",
-      speech: "Bienvenue à Nancy. Moi, j'aime les formes, les nombres et les idées qui voyagent. Trois questions, et tu pourras continuer.",
-      trials: [
-        { q: "Combien d'arêtes possède un cube ?", answers: ["12", "DOUZE"], hints: ["Une arête, c'est un bord où deux faces se rejoignent.", "Compte les arêtes du dessus, celles du dessous, puis celles qui les relient."] },
-        { q: "Je suis la science des formes qui ne changent pas quand on les étire sans les déchirer : pour moi, une tasse et un beignet, c'est pareil. Qui suis-je ?",
-          answers: ["TOPOLOGIE", "LATOPOLOGIE"], hints: ["Mon nom vient du grec « topos », le lieu.", "Je finis en -logie, comme la biologie."] },
-        { q: "Quel nombre, multiplié trois fois par lui-même (x × x × x), donne 1 000 ?", answers: ["10", "DIX"], hints: ["Il est plus petit que 20.", "Essaie avec un nombre rond."] }
-      ],
-      frag: "Henri Poincaré, né à Nancy en 1854, fut l'un des derniers savants à maîtriser presque toutes les mathématiques de son temps. Une de ses questions, posée en 1904, ne fut résolue qu'un siècle plus tard." }
-  ];
-
-  const CH5 = [
-    { id: "zurich", place: "Zurich", sage: "Einstein", type: "nombre", glyph: "1",
-      clues: ["Les ailes d'un oiseau", "Les roues d'un vélo", "L'exposant dans E = mc…"], answers: ["2", "DEUX"],
-      hints: ["Commence par l'oiseau.", "C'est aussi le nombre de tes yeux."],
-      frag: "Diplômé à Zurich, Albert Einstein publia en 1905, à 26 ans, quatre articles qui bouleversèrent la physique, dont celui qui mène à la célèbre formule E = mc²." },
-    { id: "varsovie", place: "Varsovie", sage: "Marie Curie", type: "mot", glyph: "10",
-      letters: "TAIRNODIA", min: 7, best: "RADIATION",
-      lexicon: ["RADIATION","DRAINAIT","ADORAIT","RADIANT"],
-      hints: ["Pense à ce qu'émettent le radium et le polonium découverts par Marie Curie.", "Le plus long mot utilise les neuf lettres et commence par un R."],
-      frag: "Née à Varsovie en 1867, Marie Curie reste la seule personne à avoir reçu un prix Nobel dans deux sciences différentes. Elle nomma le polonium en hommage à la Pologne." },
-    { id: "madras", place: "Madras", sage: "Ramanujan", type: "suite", glyph: "11",
-      seq: [1, 2, 6, 24], answers: ["120", "CENTVINGT"],
-      hints: ["Divise chaque nombre par le précédent.", "On multiplie par 2, puis par 3, puis par 4…"],
-      frag: "Autodidacte venu de Madras, Srinivasa Ramanujan remplit des carnets entiers de formules géniales. Pour lui, même un numéro de taxi, 1729, était un nombre passionnant." },
-    { id: "gottingen5", place: "Göttingen", sage: "Emmy Noether", type: "intrus", glyph: "100",
-      prompt: "Trois de ces mots se lisent pareil dans les deux sens. Lequel est l'intrus ?", options: ["Radar", "Kayak", "Miroir", "Été"], answer: 2,
-      hints: ["Lis chaque mot de droite à gauche.", "Ironie du sort : l'intrus est un objet qui renvoie les images à l'envers."],
-      frag: "À Göttingen, Emmy Noether démontra un théorème fondamental reliant les symétries de la nature aux lois de conservation. Einstein la tenait pour un génie." },
-    { id: "copenhague", place: "Copenhague", sage: "Niels Bohr", type: "chrono", glyph: "101",
-      items: [["Premier vol des frères Wright", 1903], ["Théorie de la relativité", 1905], ["Premier homme dans l'espace", 1961], ["Premier pas sur la Lune", 1969]],
-      hints: ["Les deux premiers datent du tout début du XXᵉ siècle.", "Il a fallu aller dans l'espace avant de marcher sur la Lune."],
-      frag: "À Copenhague, Niels Bohr fonda un institut où se retrouvèrent les plus grands physiciens des années 1920 pour percer les secrets de l'atome.",
-      surprise: { title: "Le Sphinx", type: "question",
-        story: "Au détour d'un col, une créature ailée au corps de lion te barre la route. Le Sphinx ! Il pose sa devinette, la plus célèbre de toutes.",
-        q: "Quel être marche à quatre pattes le matin, sur deux le midi, et sur trois le soir ?", answers: ["HOMME", "LHOMME", "UNHOMME", "HUMAIN", "LHUMAIN", "ETREHUMAIN", "LETREHUMAIN"],
-        hints: ["Le matin, le midi et le soir représentent les âges de la vie.", "Le soir, la troisième « patte » est une canne."],
-        frag: "Dans la mythologie grecque, Œdipe résolut l'énigme du Sphinx. Vexé, le monstre se serait jeté du haut de son rocher." } },
-    { id: "princeton", place: "Princeton", sage: "von Neumann", type: "compte", glyph: "110",
-      plates: [1, 5, 7, 9, 25, 100], target: 843, start: "( 100 − 7 ) × 9",
-      hints: ["843 est tout près d'un multiple de 9.", "Un calcul entre parenthèses avec le 100 et un chiffre, multiplié par 9, t'amène tout près."],
-      frag: "À Princeton, John von Neumann décrivit l'organisation d'un ordinateur moderne, avec un programme rangé dans la mémoire. La plupart de nos ordinateurs suivent encore ce plan." },
-    { id: "londres5", place: "Londres", sage: "les briseurs de codes", type: "lien", glyph: "111",
-      clues: ["Voûte", "Anglaise", "Contact"], answers: ["CLE", "CLEF", "CLES", "CLEFS"],
-      hints: ["Pense à ce qui ouvre une porte.", "On en parle aussi pour déchiffrer un message secret."],
-      frag: "Pendant la Seconde Guerre mondiale, des milliers de personnes travaillèrent en secret pour déchiffrer les messages ennemis. Beaucoup ne purent en parler qu'après des décennies." },
-    { id: "bletchley", place: "Bletchley Park", sage: "Alan Turing", type: "boss", glyph: "1000",
-      speech: "Bonjour. Je passe mes journées à casser des codes et à me demander si une machine peut penser. Trois questions, et tu seras presque arrivé.",
-      trials: [
-        { q: "Déchiffre ce message, où chaque lettre a été décalée d'un cran dans l'alphabet : NBDIJOF", answers: ["MACHINE", "MACHINES"], hints: ["Remplace chaque lettre par celle qui la précède dans l'alphabet.", "N devient M, B devient A…"] },
-        { q: "En binaire, le langage des ordinateurs, on n'écrit qu'avec des 0 et des 1. Combien vaut 101 en binaire ?", answers: ["5", "CINQ"], hints: ["En binaire, les chiffres valent 4, 2 et 1, de gauche à droite.", "Additionne 4 et 1."] },
-        { q: "J'ai imaginé un test pour savoir si une machine peut se faire passer pour un humain. On l'appelle le test de… ?", answers: ["TURING", "ALANTURING"], hints: ["C'est un nom propre.", "Regarde bien qui te pose la question."] }
-      ],
-      frag: "À Bletchley Park, Alan Turing contribua à percer le secret de la machine Enigma. On le considère comme l'un des pères de l'informatique." }
-  ];
+  const CH1 = [{"id": "milet", "place": "Milet", "sage": "Thalès", "type": "mot", "glyph": "Α", "letters": "OMTRESANO", "min": 5, "best": "ASTRONOME", "lexicon": ["ASTRONOME", "MATERONS", "MATRONES", "MONTERAS", "REMONTAS", "RETAMONS", "TOMERONS", "TRONAMES", "ETAMONS", "MAESTRO", "MATRONE", "MENTORS", "METRONS", "MONSTRE", "MONTERA", "MONTRAS", "MONTRES", "NOTAMES", "NOTERAS", "ORANTES", "ORNAMES", "ORNATES", "OSERONT", "OTERONS", "RAMONES", "REMONTA", "ROMANES", "ROMANOS", "ROTAMES", "SARMENT", "TOMERAS", "TOREONS", "TRAMONS", "AERONS", "AMONTS", "ANTRES", "AORTES", "ARMENT", "ARMETS", "ARMONS", "AROMES", "ATOMES", "ATONES", "ENTRAS", "ESTRAN", "ETRONS", "MANTES", "MARNES", "MARTES", "MATONS", "MENTOR", "METRAS", "METROS", "MONTAS", "MONTER", "MONTES", "MONTRA", "MONTRE", "MORNES", "MOROSE", "MORTES", "MOSANE", "NORMES", "NOTERA", "NOTRES", "ORANTE", "ORANTS", "OTAMES", "OTERAS", "RAMENT", "RAMONE", "RAMONS", "RASENT", "RATONS", "RENOMS", "RENTAS", "ROMANE", "ROMANO", "ROMANS", "RONEOS", "ROSANT", "ROSENT", "ROTONS", "SEMANT", "SERMON", "SERONT", "SONATE", "SONORE", "STROMA", "TARONS", "TENORS", "TOMERA", "TOMONS", "TOREAS", "TORONS", "TRAMES", "TRANSE", "TREMAS", "TRONAS", "TRONES", "AMERS", "AMONT", "ANTES", "ANTRE", "AORTE", "ARMES", "ARMET", "ARMON", "AROME", "ASTER", "ASTRE", "ATOME", "ATONE", "ENTAS", "ENTRA", "ETRON", "MANES", "MANSE", "MANTE", "MARES", "MARNE", "MARTE", "MASER", "MATER", "MATES", "MATON", "MEATS", "MENAS", "MENAT", "METAS", "METRA", "METRO", "MONOS", "MONTA", "MONTE", "MONTS", "MORES", "MORNE", "MORSE", "MORTE", "MORTS", "MOSAN", "MOTOS", "NOMES", "NORME", "NOTAS", "NOTER", "NOTES", "NOTRE", "OMETS", "ORANT", "ORMES", "ORNAS", "ORNAT", "ORNES", "OSANT", "OSENT", "OSERA", "OTERA", "OTONS", "RAMES", "RATES", "RATON", "REANT", "RENOM", "RENTA", "REONS", "RESTA", "ROMAN", "RONEO", "ROSAT", "ROTAS", "ROTES", "SANTE", "SEANT", "SEMAT", "SENAT", "SETON", "SMART", "SONAR", "SORTE", "STENO", "STERA", "STORE", "TAONS", "TARES", "TARSE", "TENOR", "TERSA", "TOMAS", "TOMER", "TOMES", "TOREA", "TORON", "TORSE", "TRAME", "TRAMS", "TREMA", "TRONA", "TRONE"], "hints": ["Un mot de 5 lettres suffit pour passer. Pars d'un petit mot simple, puis allonge-le.", "Pour le mot parfait, avec les neuf lettres : le métier de Thalès, qui passait ses nuits à observer le ciel."], "frag": "Selon Hérodote, Thalès aurait prédit une éclipse de soleil. On raconte aussi qu'il mesura la hauteur d'une pyramide grâce à son ombre, à l'heure où l'ombre d'un homme égale sa taille."}, {"id": "ephese", "place": "Éphèse", "sage": "Héraclite", "type": "lien", "glyph": "Β", "clues": ["Artifice", "Camp", "Joie"], "answers": ["FEU", "FEUX"], "hints": ["Pense aux soirs d'été, quand tout le monde se rassemble et regarde vers le ciel.", "Pour Héraclite, c'était l'élément à l'origine de toute chose."], "frag": "Héraclite voyait le monde comme un changement perpétuel. On lui doit l'idée qu'on ne se baigne jamais deux fois dans le même fleuve."}, {"id": "samos", "place": "Samos", "sage": "Eupalinos", "type": "compte", "glyph": "Γ", "plates": [2, 3, 5, 10, 25, 50], "target": 127, "start": "25 × 5", "hints": ["Deux calculs suffisent. Commence par une multiplication.", "Une multiplication avec le 25 t'amène tout près de 127."], "frag": "Au VIᵉ siècle avant notre ère, le tunnel d'Eupalinos fut creusé depuis les deux côtés de la montagne à la fois. Les deux équipes se rejoignirent au milieu, sur plus d'un kilomètre, avec un écart infime."}, {"id": "delphes", "place": "Delphes", "sage": "La Pythie", "type": "intrus", "glyph": "Δ", "prompt": "Trois d'entre eux étaient des philosophes grecs. Lequel est l'intrus ?", "options": ["Socrate", "Platon", "Aristote", "César"], "answer": 3, "hints": ["L'un d'eux n'était pas grec.", "L'intrus était un général romain, célèbre pour ses conquêtes."], "frag": "Au fronton du temple d'Apollon, à Delphes, était gravée la maxime « Connais-toi toi-même », que Socrate fit sienne."}, {"id": "athenes", "place": "Athènes", "sage": "Platon", "type": "nombre", "glyph": "Ε", "clues": ["Les solides de Platon", "Les sens", "Les anneaux olympiques"], "answers": ["5", "CINQ"], "hints": ["Commence par les sens : la vue, l'ouïe…", "Compte sur tes doigts. Une seule main suffit."], "frag": "Selon la tradition, l'entrée de l'Académie de Platon portait l'inscription « Que nul n'entre ici s'il n'est géomètre »."}, {"id": "cyrene", "place": "Cyrène", "sage": "Ératosthène", "type": "suite", "glyph": "Ϛ", "seq": [1, 3, 5, 7, 9], "answers": ["11", "ONZE"], "hints": ["Regarde l'écart entre deux nombres qui se suivent.", "On ajoute toujours le même nombre : 2."], "frag": "Devenu bibliothécaire d'Alexandrie, Ératosthène estima la circonférence de la Terre en comparant l'ombre du soleil à midi à Syène et à Alexandrie. Son résultat était remarquablement proche de la réalité."}, {"id": "syracuse", "place": "Syracuse", "sage": "Archimède", "type": "citation", "glyph": "Ζ", "before": "« Donnez-moi un point d'", "after": ", et je soulèverai le monde. »", "options": ["appui", "or", "eau", "honneur"], "answer": 0, "hints": ["Archimède parlait du levier.", "C'est le point sur lequel on pose le levier pour qu'il bascule."], "frag": "On prête à Archimède la phrase « Donnez-moi un point d'appui, et je soulèverai le monde ». Il mourut en 212 avant notre ère, lors de la prise de Syracuse par les Romains."}, {"id": "crotone", "place": "Crotone", "sage": "Pythagore", "type": "boss", "glyph": "Π", "speech": "Voyageur, tu as traversé bien des terres. Ici, à Crotone, tout est nombre. Réponds à mes trois questions, et la route s'ouvrira.", "trials": [{"q": "Un triangle rectangle a deux côtés de l'angle droit qui mesurent 3 et 4. Combien mesure le troisième côté, l'hypoténuse ?", "answers": ["5", "CINQ"], "hints": ["Le carré de l'hypoténuse égale la somme des carrés des deux autres côtés : 3 × 3 + 4 × 4.", "Cela fait 25. Quel nombre, multiplié par lui-même, donne 25 ?"]}, {"q": "Je suis le plus petit nombre que l'on peut diviser à la fois par 2, par 3 et par 4. Qui suis-je ?", "answers": ["12", "DOUZE"], "hints": ["Je suis plus petit que 20.", "Je suis aussi le nombre de mois dans une année."]}, {"q": "Je refusais qu'on m'appelle « sage ». Je préférais me dire « ami de la sagesse ». Quel mot, venu du grec, en est né ?", "answers": ["PHILOSOPHE", "PHILOSOPHIE"], "hints": ["Philo- signifie « aimer », et sophia « la sagesse ».", "C'est aussi le nom d'une matière qu'on étudie au lycée… presque."]}], "frag": "Pythagore fonda à Crotone une communauté où l'on partageait les biens et le savoir. Ses disciples tenaient que « tout est nombre », et la tradition lui attribue l'invention du mot « philosophe »."}];
+  const CH2 = [{"id": "bagdad", "place": "Bagdad", "sage": "Al-Khwârizmî", "type": "symboles", "glyph": "١", "eqs": ["🌙 + 🌙 = 10", "🌙 + ⭐ = 13"], "ask": "⭐", "answers": ["8", "HUIT"], "hints": ["Commence par la première ligne : deux lunes font 10.", "Une lune vaut donc 5. Regarde maintenant la deuxième ligne."], "frag": "Au IXᵉ siècle, à la Maison de la Sagesse de Bagdad, Al-Khwârizmî écrivit un traité dont le titre a donné le mot « algèbre ». Son propre nom, déformé en latin, a donné le mot « algorithme »."}, {"id": "bassora", "place": "Bassora", "sage": "Ibn al-Haytham", "type": "lien", "glyph": "٢", "clues": ["Lunettes", "Coup", "Rayon"], "answers": ["SOLEIL", "SOLEILS"], "hints": ["Pense à une journée d'été à la plage.", "Ibn al-Haytham a passé sa vie à étudier sa lumière."], "frag": "Né à Bassora vers 965, Ibn al-Haytham montra que l'on voit grâce à la lumière qui entre dans l'œil, et non grâce à un rayon qui en sortirait. On le considère comme un pionnier de la méthode expérimentale."}, {"id": "samarcande", "place": "Samarcande", "sage": "Ulugh Beg", "type": "compte", "glyph": "٣", "plates": [2, 4, 6, 9, 25, 75], "target": 800, "start": "( 75 + 25 )", "hints": ["800, c'est 8 fois 100.", "Fabrique 100 avec deux grands nombres, et 8 avec deux petits."], "surprise": {"title": "Un marchand rusé", "type": "intrus", "story": "Sur la route de la soie, un marchand t'arrête : « Quatre sacs, trois épices. Trouve l'intrus, et je te laisse passer. »", "prompt": "Lequel n'est pas une épice ?", "options": ["Safran", "Cannelle", "Jasmin", "Cumin"], "answer": 2, "hints": ["Trois de ces sacs servent en cuisine pour relever un plat.", "L'intrus se respire plus qu'il ne se mange : c'est une fleur."], "frag": "Samarcande était une étape majeure de la route de la soie, où se croisaient marchands chinois, perses et arabes."}, "frag": "Au XVᵉ siècle, le prince astronome Ulugh Beg fit bâtir à Samarcande un observatoire géant. Son catalogue d'étoiles, d'une précision remarquable, en recensait plus d'un millier."}, {"id": "lecaire", "place": "Le Caire", "sage": "les savants d'Al-Azhar", "type": "chrono", "glyph": "٤", "items": [["Grande pyramide de Gizeh", -2560], ["Fondation de Rome", -753], ["Fondation de Bagdad", 762], ["Fibonacci publie le Liber abaci", 1202]], "hints": ["La plus ancienne se voit encore près du Caire.", "Rome est bien plus ancienne que Bagdad."], "frag": "Fondée au Xᵉ siècle, l'université Al-Azhar du Caire compte parmi les plus anciennes au monde encore en activité."}, {"id": "cordoue", "place": "Cordoue", "sage": "Averroès", "type": "mot", "glyph": "٥", "letters": "SUCTRINAM", "min": 6, "best": "MANUSCRIT", "lexicon": ["MANUSCRIT", "INCRUSTA", "ATRIUMS", "CARMINS", "CINTRAS", "CRAINTS", "CRIANTS", "CUISANT", "MINUTAS", "MUNIRAS", "MUSCARI", "MUTINAS", "NATRUMS", "RUMINAS", "RUMINAT", "SCRUTAI", "SCRUTIN", "SUCRAIT", "SUCRANT", "SURINAT", "TAURINS", "TSUNAMI", "ACINUS", "AMICTS", "ATRIUM", "CAIRNS", "CANUTS", "CARMIN", "CATINS", "CAURIS", "CINTRA", "CIRANT", "CITRUS", "CRAINS", "CRAINT", "CRIANT", "CUIRAS", "CUITAS", "CUMINS", "CURAIS", "CURAIT", "CURANT", "INSTAR", "INTRUS", "MAINTS", "MARINS", "MASTIC", "MATINS", "MINUTA", "MIRANT", "MISANT", "MITANS", "MUNIRA", "MURAIS", "MURAIT", "MURANT", "MUSAIT", "MUSANT", "MUSCAT", "MUTAIS", "MUTINA", "MUTINS", "NATRUM", "NITRAS", "NUIRAS", "RANCIS", "RANCIT", "RIANTS", "RICTUS", "RIMANT", "RINCAS", "RINCAT", "RUINAS", "RUINAT", "RUMINA", "RUSAIT", "RUSANT", "SACRUM", "SAURIN", "SAURIT", "SCIANT", "SCRUTA", "SUCAIT", "SUCANT", "SUCRAI", "SUCRAT", "SUCRIN", "SUINTA", "SURINA", "TARINS", "TAURIN", "TRAINS", "TRANSI", "TRIMAS", "UNIRAS", "URINAS", "URINAT", "USINAT"], "hints": ["Un mot de 6 lettres suffit. Pars d'un petit mot, puis ajoute des lettres une à une.", "Pour le mot parfait : ce que recopiaient à la main les savants de Cordoue."], "frag": "Au XIIᵉ siècle, le Cordouan Averroès commenta si bien Aristote qu'en Europe on l'appelait simplement « le Commentateur »."}, {"id": "tolede", "place": "Tolède", "sage": "les traducteurs", "type": "motus", "glyph": "٦", "word": "PLUME", "tries": 7, "words": ["PACHA", "PACKS", "PACTE", "PADDY", "PADOU", "PAGEA", "PAGEE", "PAGEL", "PAGER", "PAGES", "PAGEZ", "PAGNE", "PAGRE", "PAGUS", "PAIEN", "PAIES", "PAINS", "PAIRE", "PAIRS", "PALAN", "PALEE", "PALES", "PALET", "PALIE", "PALIR", "PALIS", "PALIT", "PALMA", "PALME", "PALOT", "PALPA", "PALPE", "PALUD", "PALUS", "PAMAI", "PAMAS", "PAMAT", "PAMEE", "PAMER", "PAMES", "PAMEZ", "PAMPA", "PANAI", "PANAS", "PANAT", "PANAX", "PANCA", "PANDA", "PANEE", "PANEL", "PANER", "PANES", "PANEZ", "PANIC", "PANKA", "PANNA", "PANNE", "PANSA", "PANSE", "PANSU", "PAONS", "PAPAL", "PAPAS", "PAPES", "PAPIS", "PAPYS", "PAQUE", "PARAI", "PARAS", "PARAT", "PARCE", "PARCS", "PARDI", "PAREE", "PAREO", "PARER", "PARES", "PAREZ", "PARIA", "PARIE", "PARIS", "PARKA", "PARLA", "PARLE", "PARME", "PARMI", "PAROI", "PAROS", "PARSI", "PARTE", "PARTI", "PARTS", "PARUE", "PARUS", "PARUT", "PASSA", "PASSE", "PATAI", "PATAS", "PATAT", "PATEE", "PATER", "PATES", "PATEZ", "PATIO", "PATIR", "PATIS", "PATIT", "PATON", "PATRE", "PATTA", "PATTE", "PATTU", "PAUMA", "PAUME", "PAUSA", "PAUSE", "PAVAI", "PAVAS", "PAVAT", "PAVEE", "PAVER", "PAVES", "PAVEZ", "PAVIE", "PAVOT", "PAYAI", "PAYAS", "PAYAT", "PAYEE", "PAYER", "PAYES", "PAYEZ", "PAYSE", "PEAGE", "PEANS", "PEAUX", "PECHA", "PECHE", "PEDUM", "PEGRE", "PEINA", "PEINE", "PEINS", "PEINT", "PEKAN", "PEKIN", "PELAI", "PELAS", "PELAT", "PELEE", "PELER", "PELES", "PELEZ", "PELLE", "PELTA", "PELTE", "PENAL", "PENDE", "PENDS", "PENDU", "PENES", "PENIL", "PENIS", "PENNE", "PENNY", "PENON", "PENSA", "PENSE", "PENTE", "PENTU", "PEONS", "PEPES", "PEPIA", "PEPIE", "PEPIN", "PEPON", "PERCA", "PERCE", "PERCU", "PERDE", "PERDS", "PERDU", "PERES", "PERIL", "PERIR", "PERIS", "PERIT", "PERLA", "PERLE", "PEROT", "PERSE", "PERTE", "PESAI", "PESAS", "PESAT", "PESEE", "PESER", "PESES", "PESEZ", "PESON", "PESOS", "PESSE", "PESTA", "PESTE", "PETAI", "PETAS", "PETAT", "PETEE", "PETER", "PETES", "PETEZ", "PETIT", "PETON", "PETRE", "PETRI", "PETUN", "PEULS", "PEURS", "PEZES", "PHAGE", "PHARE", "PHASE", "PHILO", "PHLOX", "PHONE", "PHONO", "PHOTO", "PIAFS", "PIANO", "PIANS", "PICAS", "PICOT", "PIECE", "PIEDS", "PIEGE", "PIETA", "PIETE", "PIEUX", "PIEZE", "PIFAI", "PIFAS", "PIFAT", "PIFEE", "PIFER", "PIFES", "PIFEZ", "PIFFA", "PIFFE", "PIGEA", "PIGEE", "PIGER", "PIGES", "PIGEZ", "PIGNE", "PILAF", "PILAI", "PILAS", "PILAT", "PILEE", "PILER", "PILES", "PILET", "PILEZ", "PILLA", "PILLE", "PILON", "PILOU", "PILUM", "PINCA", "PINCE", "PINNE", "PINOT", "PINTA", "PINTE", "PIONS", "PIPAI", "PIPAS", "PIPAT", "PIPEE", "PIPER", "PIPES", "PIPEZ", "PIPIS", "PIPIT", "PIQUA", "PIQUE", "PIRES", "PISES", "PISSA", "PISSE", "PISTA", "PISTE", "PITES", "PITIE", "PITON", "PITRE", "PIVES", "PIVOT", "PIZZA", "PLACA", "PLACE", "PLAGE", "PLAID", "PLAIE", "PLAIS", "PLAIT", "PLANA", "PLANE", "PLANS", "PLANT", "PLATE", "PLATS", "PLEBE", "PLEIN", "PLEUR", "PLEUT", "PLIAI", "PLIAS", "PLIAT", "PLIEE", "PLIER", "PLIES", "PLIEZ", "PLOIE", "PLOMB", "PLOTS", "PLOUC", "PLOUF", "PLOUK", "PLOYA", "PLOYE", "PLUIE", "PLUMA", "PLUME", "PNEUS", "POCHA", "POCHE", "POELA", "POELE", "POEME", "POETE", "POGNE", "POIDS", "POILA", "POILE", "POILS", "POILU", "POING", "POINS", "POINT", "POIRE", "POISE", "POKER", "POLAR", "POLES", "POLIE", "POLIO", "POLIR", "POLIS", "POLIT", "POLKA", "POLOS", "POMMA", "POMME", "POMPA", "POMPE", "PONCA", "PONCE", "PONDE", "PONDS", "PONDU", "PONEY", "PONGE", "PONTA", "PONTE", "PONTS", "POOLS", "POPES", "POQUA", "POQUE", "PORCS", "PORES", "PORNO", "PORTA", "PORTE", "PORTO", "PORTS", "POSAI", "POSAS", "POSAT", "POSEE", "POSER", "POSES", "POSEZ", "POSTA", "POSTE", "POTEE", "POTES", "POTIN", "POUAH", "POUCE", "POUFS", "POULE", "POULS", "POUPE", "PRAME", "PREAU", "PRELE", "PREND", "PRETA", "PRETE", "PRETS", "PREUX", "PREVU", "PRIAI", "PRIAS", "PRIAT", "PRIEE", "PRIER", "PRIES", "PRIEZ", "PRIMA", "PRIME", "PRIMO", "PRISA", "PRISE", "PRIVA", "PRIVE", "PROBE", "PROFS", "PROIE", "PROLO", "PROMO", "PROMU", "PRONA", "PRONE", "PROSE", "PROTE", "PROUE", "PROVO", "PRUDE", "PRUNE", "PSITT", "PSOAS", "PTOSE", "PUAIS", "PUAIT", "PUANT", "PUBIS", "PUCES", "PUCHE", "PUEES", "PUENT", "PUERA", "PUIEZ", "PUINE", "PUISA", "PUISE", "PUITS", "PULLS", "PULPE", "PULSA", "PULSE", "PUMAS", "PUMES", "PUNAS", "PUNCH", "PUNIE", "PUNIR", "PUNIS", "PUNIT", "PUNKS", "PUONS", "PUPES", "PUREE", "PURES", "PURGE", "PURIN", "PUROT", "PUSSE", "PUTES", "PUTTI", "PUTTO", "PYREX"], "hints": ["C'est l'outil de ceux qui écrivaient et traduisaient les livres.", "Avant le stylo, on la trempait dans l'encre. Elle vient d'un oiseau."], "frag": "Au XIIᵉ siècle, à Tolède, des savants chrétiens, juifs et musulmans traduisirent ensemble des centaines d'ouvrages de l'arabe vers le latin. C'est ainsi que l'Europe redécouvrit la science grecque et arabe."}, {"id": "bologne", "place": "Bologne", "sage": "les premiers étudiants", "type": "intrus", "glyph": "٧", "prompt": "Trois de ces universités existaient déjà au Moyen Âge. Laquelle est l'intrus ?", "options": ["Bologne", "Oxford", "Paris", "Harvard"], "answer": 3, "hints": ["Trois d'entre elles sont en Europe.", "L'intrus a été fondée de l'autre côté de l'Atlantique, en 1636."], "frag": "Fondée en 1088, l'université de Bologne est considérée comme la plus ancienne université du monde occidental."}, {"id": "pise", "place": "Pise", "sage": "Fibonacci", "type": "boss", "glyph": "٨", "speech": "Ah, voyageur ! Moi, je compte tout : les lapins, les pétales, les spirales des coquillages. Réponds à mes trois questions, et la route s'ouvrira.", "trials": [{"q": "Voici ma suite : 1, 1, 2, 3, 5, 8, 13… Quel est le nombre suivant ?", "answers": ["21", "VINGTETUN", "VINGTEUN"], "hints": ["Regarde comment chaque nombre se forme à partir des deux précédents.", "5 + 8 = 13. Et ensuite ?"]}, {"q": "Avant les chiffres venus d'Inde, l'Europe comptait avec des lettres. Combien vaut MCM en chiffres romains ?", "answers": ["1900"], "hints": ["M vaut 1000, C vaut 100. Quand une petite lettre précède une grande, on la retire.", "Il y a d'abord un M, puis CM, c'est-à-dire 1000 moins 100."]}, {"q": "Le mot arabe « sifr », qui signifie « vide », a donné notre mot « zéro ». Quel autre mot français, que tu utilises tous les jours, vient aussi de « sifr » ?", "answers": ["CHIFFRE", "CHIFFRES"], "hints": ["Ce mot désigne les signes 0, 1, 2… jusqu'à 9.", "On en parle aussi dans « Des … et des lettres »."]}], "frag": "En 1202, Léonard de Pise, dit Fibonacci, publia le Liber abaci, qui fit connaître à l'Europe les chiffres indo-arabes et le zéro. Sa célèbre suite y apparaît à propos d'un problème de lapins."}];
+  const CH3 = [{"id": "lahaye", "place": "La Haye", "sage": "Huygens", "type": "intrus", "glyph": "I", "prompt": "Lequel de ces astres n'était pas encore connu au temps de Huygens ?", "options": ["Saturne", "Vénus", "Uranus", "Mercure"], "answer": 2, "hints": ["Trois d'entre eux se voient à l'œil nu depuis l'Antiquité.", "L'intrus est si loin qu'il a fallu attendre 1781 et un grand télescope pour le découvrir."], "frag": "En 1655, le Néerlandais Christiaan Huygens découvrit Titan, la plus grande lune de Saturne, et comprit que la planète était entourée d'un anneau."}, {"id": "paris3", "place": "Paris", "sage": "Pascal", "type": "compte", "glyph": "II", "plates": [1, 4, 6, 7, 25, 100], "target": 529, "start": "( 100 − 25 ) × 7", "hints": ["Commence par un calcul avec le 100 et le 25.", "Ce calcul, multiplié par un chiffre, t'amène tout près. Il ne manque presque rien."], "frag": "À 19 ans, Blaise Pascal inventa la Pascaline, l'une des premières machines à calculer, pour aider son père, collecteur d'impôts."}, {"id": "londres3", "place": "Londres", "sage": "Newton", "type": "date", "glyph": "III", "q": "En quelle année Newton publia-t-il ses lois du mouvement et de la gravitation ?", "year": 1687, "lo": 1600, "hi": 1750, "hints": ["C'était sous le règne de Louis XIV.", "C'était dans les années 1680."], "frag": "En 1687, Isaac Newton publia ses lois du mouvement et de la gravitation. La légende dit qu'une pomme tombée d'un arbre lui en donna l'idée."}, {"id": "cirey", "place": "Cirey", "sage": "Émilie du Châtelet", "type": "mot", "glyph": "IV", "letters": "LECETOPES", "min": 6, "best": "TELESCOPE", "lexicon": ["TELESCOPE", "COTELEES", "ECLOPEES", "PECLOTES", "PELOTEES", "POTELEES", "CELESTE", "COTELEE", "COTELES", "ECLOPEE", "ECLOPES", "ECOPEES", "ECOTEES", "PECLOTE", "PELOTEE", "PELOTES", "PELTEES", "POELEES", "POTELEE", "POTELES", "STEEPLE", "CELEES", "CELTES", "CLOPES", "COPTES", "COTEES", "COTELE", "ECLOPE", "ECLOSE", "ECOLES", "ECOPEE", "ECOPES", "ECOTEE", "ECOTES", "EPELES", "ESPECE", "ETOLES", "LESTEE", "PELEES", "PELOTE", "PELTEE", "PELTES", "PETEES", "POELEE", "POELES", "POETES", "POSTEE", "POTEES", "POTELE", "SELECT", "TOLEES"], "hints": ["Un mot de 6 lettres suffit. Les lettres E et S sont tes amies.", "Pour le mot parfait : l'instrument qui a permis de mieux voir les planètes."], "frag": "Au château de Cirey, Émilie du Châtelet traduisit en français l'œuvre de Newton. Sa traduction, parue en 1759, reste encore une référence."}, {"id": "bale", "place": "Bâle", "sage": "Euler", "type": "carre", "glyph": "V", "grid": [[2, 7, 6], [9, 5, 1], [4, 3, 8]], "blanks": [1, 3, 8], "magic": 15, "hints": ["Commence par la ligne du haut : 2 + ? + 6 doit faire 15.", "Ensuite, regarde la colonne de gauche : 2 + ? + 4 doit faire 15."], "frag": "Né à Bâle en 1707, Leonhard Euler fut l'un des mathématiciens les plus prolifiques de l'histoire. Devenu presque aveugle, il continua à publier en dictant ses calculs."}, {"id": "konigsberg", "place": "Königsberg", "sage": "Euler", "type": "lien", "glyph": "VI", "clues": ["Arc", "Suspendu", "Levis"], "answers": ["PONT", "PONTS"], "hints": ["Pense à ce qui permet de traverser une rivière.", "Königsberg en avait sept, et Euler s'est demandé si l'on pouvait tous les franchir une seule fois."], "surprise": {"title": "Un pont effondré", "type": "suite", "story": "Sur la route de Königsberg, un pont s'est effondré. Le charpentier te montre ses planches : « Il m'en faut une de plus. Mais de quelle longueur ? »", "seq": [3, 6, 12, 24], "answers": ["48"], "hints": ["Compare chaque planche avec la précédente.", "Chaque planche est deux fois plus longue que la précédente."], "frag": "Le plus ancien pont de Paris encore debout s'appelle… le Pont-Neuf. Il fut achevé en 1607."}, "frag": "En 1736, Euler prouva qu'il était impossible de se promener dans Königsberg en traversant ses sept ponts une seule fois chacun. Ce petit problème donna naissance à la théorie des graphes."}, {"id": "edimbourg", "place": "Édimbourg", "sage": "Adam Smith", "type": "citation", "glyph": "VII", "before": "« L'économie serait guidée par une main ", "after": ". »", "options": ["invisible", "de fer", "de maître", "verte"], "answer": 0, "hints": ["On ne la voit pas, mais elle agit.", "C'est le contraire de « visible »."], "frag": "Au XVIIIᵉ siècle, Édimbourg brillait tant par ses savants, comme Adam Smith et David Hume, qu'on la surnommait « l'Athènes du Nord ». En 1776, Smith y décrivit une « main invisible » qui guiderait l'économie."}, {"id": "ferney", "place": "Ferney", "sage": "Voltaire", "type": "boss", "glyph": "VIII", "speech": "Ah, un voyageur ! J'ai écrit des milliers de lettres, mais je préfère les questions. Réponds aux trois miennes, et je t'ouvre la route.", "trials": [{"q": "Je suis l'ouvrage de Diderot et d'Alembert, en 28 volumes, qui voulait rassembler tous les savoirs de mon temps. Qui suis-je ?", "answers": ["ENCYCLOPEDIE", "LENCYCLOPEDIE"], "hints": ["Mon nom vient du grec : « le cercle des connaissances ».", "On y cherche un mot par ordre alphabétique, comme dans un dictionnaire, mais en bien plus détaillé."]}, {"q": "Newton publia ses lois en 1687. Combien d'années avant la Révolution française de 1789 ?", "answers": ["102", "CENTDEUX"], "hints": ["Il suffit de faire une soustraction.", "1789 − 1687… commence par les centaines."]}, {"q": "Le siècle des Lumières est mon siècle. Lequel est-ce ? Écris-le en chiffres romains.", "answers": ["XVIII", "XVIIIE", "18", "18E", "DIXHUITIEME"], "hints": ["Les années 1700 appartiennent à ce siècle.", "X vaut 10, V vaut 5, I vaut 1."]}], "frag": "Installé à Ferney, près de Genève, Voltaire écrivit plus de 20 000 lettres et défendit toute sa vie la tolérance et la liberté de penser."}];
+  const CH4 = [{"id": "gottingen4", "place": "Göttingen", "sage": "Gauss", "type": "suite", "glyph": "1", "seq": [1, 3, 6, 10, 15, 21], "answers": ["28", "VINGTHUIT"], "hints": ["Regarde de combien on avance à chaque fois : +2, +3, +4…", "Après +6, vient +7."], "frag": "Enfant, Carl Friedrich Gauss aurait calculé en quelques instants la somme de tous les nombres de 1 à 100 : 5 050. Il avait remarqué que 1 + 100, 2 + 99, 3 + 98… font toujours 101."}, {"id": "paris4", "place": "Paris", "sage": "Sophie Germain", "type": "intrus", "glyph": "2", "prompt": "Lequel de ces nombres n'est pas un nombre premier ?", "options": ["11", "13", "21", "29"], "answer": 2, "hints": ["Un nombre premier ne se divise que par 1 et par lui-même.", "Essaie de diviser chacun d'eux par 3."], "frag": "Pour être prise au sérieux par les savants, Sophie Germain écrivit sous un nom d'homme : « Monsieur Le Blanc ». Ses travaux sur les nombres premiers portent aujourd'hui son nom."}, {"id": "londres4", "place": "Londres", "sage": "Ada Lovelace", "type": "code", "glyph": "3", "cipher": "PDFKLQH", "answer": "MACHINE", "hints": ["Le mot caché a un rapport avec les inventions d'Ada Lovelace et de Charles Babbage.", "Il faut décaler chaque lettre de quelques crans seulement."], "frag": "En 1843, Ada Lovelace écrivit pour la machine de Charles Babbage ce que l'on considère comme le premier programme informatique de l'histoire."}, {"id": "turin", "place": "Turin", "sage": "Lagrange", "type": "symboles", "glyph": "4", "eqs": ["⚙️ + ⚙️ + ⚙️ = 15", "⚙️ + 🔩 = 9", "🔩 × 🔧 = 12"], "ask": "🔧", "answers": ["3", "TROIS"], "hints": ["Commence par la première ligne : trois engrenages font 15.", "Un engrenage vaut 5, donc un boulon vaut 4. Il reste la dernière ligne."], "frag": "Né à Turin en 1736, Joseph-Louis Lagrange participa à la création du système métrique. On lui doit en partie le mètre et le kilogramme."}, {"id": "lyon", "place": "Lyon", "sage": "les frères Lumière", "type": "mot", "glyph": "5", "letters": "NEUTRIVEN", "min": 7, "best": "INVENTEUR", "lexicon": ["INTERVENU", "INVENTEUR", "ENIVRENT", "INVENTER", "RENVIENT", "VINERENT", "ENTREVU", "ENVIENT", "INNERVE", "INTERNE", "INVENTE", "NEVRITE", "NIERENT", "NUERENT", "RENIENT", "REVIENT", "RUINENT", "UNIRENT", "URINENT", "UTERINE", "VEINENT", "VEINURE", "VENTRUE", "VENTURI", "VINRENT"], "hints": ["Un mot de 7 lettres est nécessaire. Pense aux verbes : ils se conjuguent de bien des façons.", "Pour le mot parfait : ce qu'étaient les frères Lumière, créateurs du cinématographe."], "frag": "À Lyon, les frères Auguste et Louis Lumière mirent au point le cinématographe. Leur première projection publique eut lieu à Paris en 1895."}, {"id": "glasgow", "place": "Glasgow", "sage": "James Watt", "type": "motus", "glyph": "6", "word": "VAPEUR", "tries": 6, "words": ["VACANT", "VACCIN", "VACHER", "VACHES", "VACIVE", "VACUUM", "VAGINS", "VAGIRA", "VAGUAI", "VAGUAS", "VAGUAT", "VAGUER", "VAGUES", "VAGUEZ", "VAHINE", "VAIGRE", "VAILLE", "VAINCS", "VAINCU", "VAINES", "VAIREE", "VAIRES", "VAIRON", "VALAIS", "VALAIT", "VALANT", "VALENT", "VALETA", "VALETE", "VALETS", "VALEUR", "VALGUS", "VALIDA", "VALIDE", "VALIEZ", "VALINE", "VALISA", "VALISE", "VALLEE", "VALLON", "VALOIR", "VALONS", "VALSAI", "VALSAS", "VALSAT", "VALSEE", "VALSER", "VALSES", "VALSEZ", "VALUES", "VALVEE", "VALVES", "VAMPAI", "VAMPAS", "VAMPAT", "VAMPEE", "VAMPER", "VAMPES", "VAMPEZ", "VANDAS", "VANITE", "VANNAI", "VANNAS", "VANNAT", "VANNEE", "VANNER", "VANNES", "VANNEZ", "VANTAI", "VANTAS", "VANTAT", "VANTEE", "VANTER", "VANTES", "VANTEZ", "VAPEUR", "VAQUAI", "VAQUAS", "VAQUAT", "VAQUER", "VAQUES", "VAQUEZ", "VARANS", "VARECH", "VARIAI", "VARIAS", "VARIAT", "VARICE", "VARIEE", "VARIER", "VARIES", "VARIEZ", "VARLET", "VARRON", "VARVES", "VASARD", "VASEUX", "VASQUE", "VASSAL", "VASTES", "VAUDOU", "VAUDRA", "VAUTRA", "VAUTRE", "VECUES", "VEGETA", "VEGETE", "VEILLA", "VEILLE", "VEINAI", "VEINAS", "VEINAT", "VEINEE", "VEINER", "VEINES", "VEINEZ", "VELAGE", "VELAIS", "VELAIT", "VELANT", "VELARS", "VELCHE", "VELENT", "VELERA", "VELIES", "VELIEZ", "VELINS", "VELITE", "VELOCE", "VELONS", "VELOTS", "VELTES", "VELUES", "VELUMS", "VENAIS", "VENAIT", "VENALE", "VENANT", "VENAUX", "VENDES", "VENDEZ", "VENDIS", "VENDIT", "VENDRA", "VENDRE", "VENDUE", "VENDUS", "VENERA", "VENERE", "VENETS", "VENEUR", "VENGEA", "VENGEE", "VENGER", "VENGES", "VENGEZ", "VENIEL", "VENIEZ", "VENINS", "VENONS", "VENTAT", "VENTER", "VENTES", "VENTIS", "VENTRE", "VENTRU", "VENUES", "VEPRES", "VERBAL", "VERBES", "VERDET", "VERDIE", "VERDIR", "VERDIS", "VERDIT", "VEREUX", "VERGEE", "VERGER", "VERGES", "VERGNE", "VERGUE", "VERINE", "VERINS", "VERITE", "VERJUS", "VERLAN", "VERMEE", "VERMET", "VERMIS", "VERNAL", "VERNIE", "VERNIR", "VERNIS", "VERNIT", "VEROLE", "VERRAI", "VERRAS", "VERRAT", "VERREE", "VERRES", "VERREZ", "VERROU", "VERRUE", "VERSAI", "VERSAS", "VERSAT", "VERSEE", "VERSER", "VERSES", "VERSET", "VERSEZ", "VERSOS", "VERSTE", "VERSUS", "VERTES", "VERTEX", "VERTUS", "VERVES", "VESCES", "VESPAS", "VESSAI", "VESSAS", "VESSAT", "VESSER", "VESSES", "VESSEZ", "VESSIE", "VESTES", "VESTON", "VETAIS", "VETAIT", "VETANT", "VETENT", "VETIEZ", "VETIRA", "VETONS", "VETUES", "VETURE", "VEULES", "VEUVES", "VEXAIS", "VEXAIT", "VEXANT", "VEXEES", "VEXENT", "VEXERA", "VEXIEZ", "VEXONS", "VIABLE", "VIADUC", "VIAGER", "VIANDA", "VIANDE", "VIBORD", "VIBRAI", "VIBRAS", "VIBRAT", "VIBREE", "VIBRER", "VIBRES", "VIBREZ", "VICHYS", "VICIAI", "VICIAS", "VICIAT", "VICIEE", "VICIER", "VICIES", "VICIEZ", "VIDAGE", "VIDAIS", "VIDAIT", "VIDAME", "VIDANT", "VIDEES", "VIDENT", "VIDEOS", "VIDERA", "VIDEUR", "VIDIEZ", "VIDIMA", "VIDIME", "VIDOIR", "VIDONS", "VIDURE", "VIELLA", "VIELLE", "VIENNE", "VIERGE", "VIGIES", "VIGILE", "VIGNES", "VIGNOT", "VIKING", "VILAIN", "VILLAS", "VILLES", "VINAGE", "VINAIS", "VINAIT", "VINANT", "VINEES", "VINENT", "VINERA", "VINEUX", "VINGTS", "VINIEZ", "VINMES", "VINONS", "VINSSE", "VINTES", "VINYLE", "VIOLAI", "VIOLAS", "VIOLAT", "VIOLEE", "VIOLER", "VIOLES", "VIOLET", "VIOLEZ", "VIOLON", "VIOQUE", "VIOQUI", "VIORNE", "VIPERE", "VIRAGE", "VIRAGO", "VIRAIS", "VIRAIT", "VIRALE", "VIRANT", "VIRAUX", "VIREES", "VIRENT", "VIRERA", "VIREUR", "VIREUX", "VIRIEZ", "VIRILE", "VIRILS", "VIRION", "VIROLA", "VIROLE", "VIRONS", "VIROSE", "VIRURE", "VISAGE", "VISAIS", "VISAIT", "VISANT", "VISEES", "VISENT", "VISERA", "VISEUR", "VISEUX", "VISIEZ", "VISION", "VISITA", "VISITE", "VISONS", "VISSAI", "VISSAS", "VISSAT", "VISSEE", "VISSER", "VISSES", "VISSEZ", "VISUEL", "VITALE", "VITAUX", "VITRAI", "VITRAS", "VITRAT", "VITREE", "VITRER", "VITRES", "VITREZ", "VIVACE", "VIVAIS", "VIVAIT", "VIVANT", "VIVATS", "VIVENT", "VIVEUR", "VIVIER", "VIVIEZ", "VIVONS", "VIVOTA", "VIVOTE", "VIVRAI", "VIVRAS", "VIVREE", "VIVRES", "VIVREZ", "VIZIRS", "VOCALE", "VOCAUX", "VODKAS", "VOGOUL", "VOGUAI", "VOGUAS", "VOGUAT", "VOGUER", "VOGUES", "VOGUEZ", "VOIENT", "VOILAI", "VOILAS", "VOILAT", "VOILEE", "VOILER", "VOILES", "VOILEZ", "VOIRIE", "VOISIN", "VOLAGE", "VOLAIS", "VOLAIT", "VOLANT", "VOLCAN", "VOLEES", "VOLENT", "VOLERA", "VOLETA", "VOLETE", "VOLETS", "VOLEUR", "VOLIEZ", "VOLIGE", "VOLLEY", "VOLONS", "VOLTAI", "VOLTAS", "VOLTAT", "VOLTER", "VOLTES", "VOLTEZ", "VOLUME", "VOLUTE", "VOLVES", "VOLVOX", "VOMERS", "VOMIES", "VOMIRA", "VORACE", "VORTEX", "VOTAIS", "VOTAIT", "VOTANT", "VOTEES", "VOTENT", "VOTERA", "VOTIEZ", "VOTIFS", "VOTIVE", "VOTONS", "VOTRES", "VOUAIS", "VOUAIT", "VOUANT", "VOUDRA", "VOUEES", "VOUENT", "VOUERA", "VOUGES", "VOUIEZ", "VOULEZ", "VOULUE", "VOULUS", "VOULUT", "VOUONS", "VOUTAI", "VOUTAS", "VOUTAT", "VOUTEE", "VOUTER", "VOUTES", "VOUTEZ", "VOYAGE", "VOYAIS", "VOYAIT", "VOYANT", "VOYERS", "VOYEUR", "VOYIEZ", "VOYONS", "VOYOUS", "VRAIES", "VRILLA", "VRILLE", "VROMBI", "VULPIN", "VULVES"], "hints": ["Elle fait tourner la machine de James Watt.", "C'est ce qui s'échappe d'une casserole d'eau bouillante."], "frag": "À Glasgow, James Watt perfectionna la machine à vapeur à partir de 1765. Son nom sert aujourd'hui d'unité de puissance : le watt."}, {"id": "liverpool", "place": "Liverpool", "sage": "George Stephenson", "type": "chrono", "glyph": "7", "items": [["Machine à vapeur de Watt", 1769], ["Locomotive « Rocket » de Stephenson", 1829], ["Téléphone de Bell", 1876], ["Ampoule d'Edison", 1879]], "hints": ["La plus ancienne fait tourner les usines.", "Les deux plus récentes datent de la fin du XIXᵉ siècle, et le téléphone est arrivé en premier."], "surprise": {"title": "Le contrôleur du train", "type": "question", "story": "Dans le train pour Liverpool, un contrôleur moustachu t'arrête : « Pas de billet ? Réponds à ma devinette, et je fermerai les yeux. »", "q": "J'ai des dents, mais je ne mords jamais. Qui suis-je ?", "answers": ["PEIGNE", "UNPEIGNE", "SCIE", "UNESCIE", "ENGRENAGE", "UNENGRENAGE", "CLE", "CLEF", "UNECLE", "UNECLEF", "FOURCHETTE", "UNEFOURCHETTE", "ROUEDENTEE"], "hints": ["Tu t'en sers peut-être tous les matins.", "On le passe dans les cheveux."], "frag": "Les premiers billets de train en carton, numérotés et datés, furent inventés en Angleterre par Thomas Edmondson vers 1840."}, "frag": "En 1829, la locomotive Rocket de George Stephenson remporta un concours près de Liverpool. L'année suivante ouvrait la ligne Liverpool–Manchester, l'une des premières lignes de voyageurs."}, {"id": "nancy", "place": "Nancy", "sage": "Poincaré", "type": "boss", "glyph": "8", "speech": "Bienvenue à Nancy. Moi, j'aime les formes, les nombres et les idées qui voyagent. Trois questions, et tu pourras continuer.", "trials": [{"q": "Combien d'arêtes possède un cube ?", "answers": ["12", "DOUZE"], "hints": ["Une arête, c'est un bord où deux faces se rejoignent.", "Compte les arêtes du dessus, celles du dessous, puis celles qui les relient."]}, {"q": "Additionne les points de toutes les faces d'un dé à jouer. Combien obtiens-tu ?", "answers": ["21", "VINGTETUN", "VINGTEUN"], "hints": ["Un dé a six faces, de 1 à 6 points.", "1 + 2 + 3 + 4 + 5 + 6. Astuce : 1 + 6, 2 + 5, 3 + 4 font chacun 7."]}, {"q": "Quel nombre, multiplié trois fois par lui-même (x × x × x), donne 1 000 ?", "answers": ["10", "DIX"], "hints": ["Il est plus petit que 20.", "Essaie avec un nombre rond."]}], "frag": "Henri Poincaré, né à Nancy en 1854, fut l'un des derniers savants à maîtriser presque toutes les mathématiques de son temps. Une de ses questions, posée en 1904, ne fut résolue qu'un siècle plus tard."}];
+  const CH5 = [{"id": "zurich", "place": "Zurich", "sage": "Einstein", "type": "motus", "glyph": "1", "word": "LUMIERE", "tries": 6, "words": ["LABARUM", "LABELLE", "LABEURS", "LABIALE", "LABIAUX", "LABIEES", "LABILES", "LABIUMS", "LABOURA", "LABOURE", "LABOURS", "LACAGES", "LACAMES", "LACASSE", "LACATES", "LACCASE", "LACERAI", "LACERAS", "LACERAT", "LACEREE", "LACERER", "LACERES", "LACEREZ", "LACERIE", "LACEURS", "LACEUSE", "LACHAGE", "LACHAIS", "LACHAIT", "LACHANT", "LACHEES", "LACHENT", "LACHERA", "LACHETE", "LACHEUR", "LACHIEZ", "LACHONS", "LACINIE", "LACIONS", "LACTASE", "LACTATE", "LACTEES", "LACTOSE", "LACUNES", "LADANUM", "LAGUNES", "LAICATS", "LAICHES", "LAICISA", "LAICISE", "LAICITE", "LAIDEUR", "LAIERAI", "LAIERAS", "LAIEREZ", "LAINAGE", "LAINAIS", "LAINAIT", "LAINANT", "LAINEES", "LAINENT", "LAINERA", "LAINEUR", "LAINEUX", "LAINIER", "LAINIEZ", "LAINONS", "LAIQUES", "LAISSAI", "LAISSAS", "LAISSAT", "LAISSEE", "LAISSER", "LAISSES", "LAISSEZ", "LAITAGE", "LAITEES", "LAITEUX", "LAITIER", "LAITONS", "LAITUES", "LAKISTE", "LAMAMES", "LAMASSE", "LAMATES", "LAMBEAU", "LAMBELS", "LAMBICS", "LAMBINA", "LAMBINE", "LAMBINS", "LAMBRIS", "LAMELLE", "LAMENTA", "LAMENTE", "LAMENTO", "LAMERAI", "LAMERAS", "LAMEREZ", "LAMIERS", "LAMIFIE", "LAMINAI", "LAMINAS", "LAMINAT", "LAMINEE", "LAMINER", "LAMINES", "LAMINEZ", "LAMIONS", "LAMPAIS", "LAMPAIT", "LAMPANT", "LAMPARO", "LAMPEES", "LAMPENT", "LAMPERA", "LAMPIEZ", "LAMPION", "LAMPONS", "LAMPYRE", "LANCAGE", "LANCAIS", "LANCAIT", "LANCANT", "LANCEES", "LANCENT", "LANCERA", "LANCEUR", "LANCIER", "LANCIEZ", "LANCINA", "LANCINE", "LANCONS", "LANDAIS", "LANDAUS", "LANDIER", "LANGAGE", "LANGEAI", "LANGEAS", "LANGEAT", "LANGEES", "LANGENT", "LANGERA", "LANGIEZ", "LANGUES", "LANGUIE", "LANGUIR", "LANGUIS", "LANGUIT", "LANICES", "LANIERE", "LANIERS", "LAOTIEN", "LAPAMES", "LAPASSE", "LAPATES", "LAPERAI", "LAPERAS", "LAPEREZ", "LAPIDAI", "LAPIDAS", "LAPIDAT", "LAPIDEE", "LAPIDER", "LAPIDES", "LAPIDEZ", "LAPILLI", "LAPINES", "LAPIONS", "LAPONES", "LAPTOTS", "LAQUAGE", "LAQUAIS", "LAQUAIT", "LAQUANT", "LAQUEES", "LAQUENT", "LAQUERA", "LAQUEUR", "LAQUEUX", "LAQUIEZ", "LAQUONS", "LARAIRE", "LARBINS", "LARCINS", "LARDAIS", "LARDAIT", "LARDANT", "LARDEES", "LARDENT", "LARDERA", "LARDIEZ", "LARDONS", "LARGAGE", "LARGEUR", "LARGUAI", "LARGUAS", "LARGUAT", "LARGUEE", "LARGUER", "LARGUES", "LARGUEZ", "LARIGOT", "LARMIER", "LARMOIE", "LARMOYA", "LARMOYE", "LARRONS", "LARVEES", "LARYNGE", "LASAGNE", "LASCARS", "LASCIFS", "LASCIVE", "LASSAIS", "LASSAIT", "LASSANT", "LASSEES", "LASSENT", "LASSERA", "LASSIEZ", "LASSONS", "LASTING", "LATENCE", "LATENTE", "LATENTS", "LATERAL", "LATINES", "LATRIES", "LATTAGE", "LATTAIS", "LATTAIT", "LATTANT", "LATTEES", "LATTENT", "LATTERA", "LATTIEZ", "LATTONS", "LAUREAT", "LAUREES", "LAURIER", "LAVABLE", "LAVABOS", "LAVAGES", "LAVAMES", "LAVANDE", "LAVARET", "LAVASSE", "LAVATES", "LAVERAI", "LAVERAS", "LAVEREZ", "LAVERIE", "LAVETTE", "LAVEURS", "LAVEUSE", "LAVIONS", "LAVOIRS", "LAVURES", "LAXATIF", "LAXISME", "LAXISTE", "LAXITES", "LAYAMES", "LAYASSE", "LAYATES", "LAYERAI", "LAYERAS", "LAYEREZ", "LAYETTE", "LAYIONS", "LAZARET", "LEADERS", "LEASING", "LECHAGE", "LECHAIS", "LECHAIT", "LECHANT", "LECHEES", "LECHENT", "LECHERA", "LECHEUR", "LECHIEZ", "LECHONS", "LECTEUR", "LECTURE", "LEGALES", "LEGENDE", "LEGERES", "LEGGINS", "LEGHORN", "LEGIONS", "LEGISTE", "LEGUAIS", "LEGUAIT", "LEGUANT", "LEGUEES", "LEGUENT", "LEGUERA", "LEGUIEZ", "LEGUMES", "LEGUONS", "LEMMING", "LEMURES", "LENDITS", "LENIFIA", "LENIFIE", "LENITIF", "LENTEUR", "LENTIGO", "LEONARD", "LEONINE", "LEONINS", "LEONURE", "LEOPARD", "LEPIOTE", "LEPISME", "LEPREUX", "LEPTURE", "LESAMES", "LESANTE", "LESANTS", "LESASSE", "LESATES", "LESBIEN", "LESDITS", "LESERAI", "LESERAS", "LESEREZ", "LESINAI", "LESINAS", "LESINAT", "LESINER", "LESINES", "LESINEZ", "LESIONS", "LESSIVA", "LESSIVE", "LESTAGE", "LESTAIS", "LESTAIT", "LESTANT", "LESTEES", "LESTENT", "LESTERA", "LESTIEZ", "LESTONS", "LETALES", "LETCHIS", "LETTONE", "LETTREE", "LETTRES", "LEUCINE", "LEUCITE", "LEUCOME", "LEUCOSE", "LEURRAI", "LEURRAS", "LEURRAT", "LEURREE", "LEURRER", "LEURRES", "LEURREZ", "LEVAGES", "LEVAINS", "LEVAMES", "LEVASSE", "LEVATES", "LEVERAI", "LEVERAS", "LEVEREZ", "LEVIERS", "LEVIGEA", "LEVIGEE", "LEVIGER", "LEVIGES", "LEVIGEZ", "LEVIONS", "LEVIRAT", "LEVITES", "LEVRAUT", "LEVRIER", "LEVRONS", "LEVURES", "LEXEMES", "LEXICAL", "LEXIQUE", "LEZARDA", "LEZARDE", "LEZARDS", "LIAIENT", "LIAISON", "LIANTES", "LIARDAI", "LIARDAS", "LIARDAT", "LIARDER", "LIARDES", "LIARDEZ", "LIASSES", "LIBAGES", "LIBELLA", "LIBELLE", "LIBERAI", "LIBERAL", "LIBERAS", "LIBERAT", "LIBEREE", "LIBERER", "LIBERES", "LIBEREZ", "LIBERTE", "LIBERTY", "LIBIDOS", "LIBYENS", "LICENCE", "LICHAIS", "LICHAIT", "LICHANT", "LICHEES", "LICHENS", "LICHENT", "LICHERA", "LICHIEZ", "LICHONS", "LICIERS", "LICITAI", "LICITAS", "LICITAT", "LICITEE", "LICITER", "LICITES", "LICITEZ", "LICORNE", "LICTEUR", "LIEGEAI", "LIEGEAS", "LIEGEAT", "LIEGEES", "LIEGENT", "LIEGERA", "LIEGIEZ", "LIERAIS", "LIERAIT", "LIERENT", "LIERIEZ", "LIERNES", "LIERONS", "LIERONT", "LIERRES", "LIESSES", "LIEUDIT", "LIEUSES", "LIEVRES", "LIFTAIS", "LIFTAIT", "LIFTANT", "LIFTEES", "LIFTENT", "LIFTERA", "LIFTIER", "LIFTIEZ", "LIFTING", "LIFTONS", "LIGANDS", "LIGNAGE", "LIGNAIS", "LIGNAIT", "LIGNANT", "LIGNARD", "LIGNEES", "LIGNENT", "LIGNERA", "LIGNEUL", "LIGNEUX", "LIGNIEZ", "LIGNINE", "LIGNITE", "LIGNONS", "LIGOTAI", "LIGOTAS", "LIGOTAT", "LIGOTEE", "LIGOTER", "LIGOTES", "LIGOTEZ", "LIGUAIS", "LIGUAIT", "LIGUANT", "LIGUEES", "LIGUENT", "LIGUERA", "LIGUEUR", "LIGUIEZ", "LIGULEE", "LIGULES", "LIGUONS", "LIGURES", "LILIACE", "LILIALE", "LILIAUX", "LIMACES", "LIMACON", "LIMAGES", "LIMAMES", "LIMANDA", "LIMANDE", "LIMASSE", "LIMATES", "LIMERAI", "LIMERAS", "LIMEREZ", "LIMETTE", "LIMEURS", "LIMEUSE", "LIMIERS", "LIMINAL", "LIMIONS", "LIMITAI", "LIMITAS", "LIMITAT", "LIMITEE", "LIMITER", "LIMITES", "LIMITEZ", "LIMNEES", "LIMOGEA", "LIMOGEE", "LIMOGER", "LIMOGES", "LIMOGEZ", "LIMONAI", "LIMONAS", "LIMONAT", "LIMONEE", "LIMONER", "LIMONES", "LIMONEZ", "LIMPIDE", "LIMULES", "LINAIRE", "LINCEUL", "LINEALE", "LINEAUX", "LINETTE", "LINGAMS", "LINGEAI", "LINGEAS", "LINGEAT", "LINGEES", "LINGENT", "LINGERA", "LINGERE", "LINGIEZ", "LINGOTS", "LINGUAL", "LINIERE", "LINIERS", "LINKAGE", "LINNEEN", "LINOTTE", "LINSANG", "LINSOIR", "LINTEAU", "LINTERS", "LIONNES", "LIPARIS", "LIPASES", "LIPEMIE", "LIPIDES", "LIPOIDE", "LIPOMES", "LIPPEES", "LIPPUES", "LIQUEUR", "LIQUIDA", "LIQUIDE", "LIRIONS", "LISAGES", "LISERAI", "LISERAS", "LISERAT", "LISEREE", "LISERER", "LISERES", "LISEREZ", "LISERON", "LISEURS", "LISEUSE", "LISIBLE", "LISIERE", "LISIERS", "LISIONS", "LISSAGE", "LISSAIS", "LISSAIT", "LISSANT", "LISSEES", "LISSENT", "LISSERA", "LISSEUR", "LISSIER", "LISSIEZ", "LISSOIR", "LISSONS", "LISTAGE", "LISTAIS", "LISTAIT", "LISTANT", "LISTEAU", "LISTEES", "LISTELS", "LISTENT", "LISTERA", "LISTIEZ", "LISTING", "LISTONS", "LITAMES", "LITANIE", "LITASSE", "LITATES", "LITCHIS", "LITEAUX", "LITERAI", "LITERAS", "LITEREZ", "LITERIE", "LITHAMS", "LITHINE", "LITHIUM", "LITIERE", "LITIGES", "LITIONS", "LITORNE", "LITOTES", "LITRONS", "LITSAMS", "LIVAROT", "LIVECHE", "LIVIDES", "LIVINGS", "LIVRAIS", "LIVRAIT", "LIVRANT", "LIVREES", "LIVRENT", "LIVRERA", "LIVRETS", "LIVREUR", "LIVRIEZ", "LIVRONS", "LOADERS", "LOBAIRE", "LOBAMES", "LOBASSE", "LOBATES", "LOBBIES", "LOBELIE", "LOBERAI", "LOBERAS", "LOBEREZ", "LOBIONS", "LOBULEE", "LOBULES", "LOCALES", "LOCATIF", "LOCHAIS", "LOCHAIT", "LOCHANT", "LOCHEES", "LOCHENT", "LOCHERA", "LOCHIES", "LOCHIEZ", "LOCHONS", "LOCULEE", "LOCULES", "LOCUSTE", "LOFAMES", "LOFASSE", "LOFATES", "LOFERAI", "LOFERAS", "LOFEREZ", "LOFIONS", "LOGEAIS", "LOGEAIT", "LOGEANT", "LOGEONS", "LOGERAI", "LOGERAS", "LOGEREZ", "LOGETTE", "LOGEURS", "LOGEUSE", "LOGGIAS", "LOGIONS", "LOGIQUE", "LOGISTE", "LOISIRS", "LOKOUMS", "LOMBAGO", "LOMBARD", "LOMBRIC", "LONDRES", "LONGANE", "LONGEAI", "LONGEAS", "LONGEAT", "LONGEES", "LONGENT", "LONGERA", "LONGIEZ", "LONGUES", "LONGUET", "LOOPING", "LOPETTE", "LOQUACE", "LOQUAIS", "LOQUAIT", "LOQUANT", "LOQUEES", "LOQUENT", "LOQUERA", "LOQUETS", "LOQUIEZ", "LOQUONS", "LORDOSE", "LORETTE", "LORGNAI", "LORGNAS", "LORGNAT", "LORGNEE", "LORGNER", "LORGNES", "LORGNEZ", "LORGNON", "LORIOTS", "LORRAIN", "LORSQUE", "LOSANGE", "LOTERIE", "LOTIERS", "LOTIMES", "LOTIONS", "LOTIRAI", "LOTIRAS", "LOTIREZ", "LOTISSE", "LOTITES", "LOUABLE", "LOUAGES", "LOUAMES", "LOUANGE", "LOUASSE", "LOUATES", "LOUBARD", "LOUBARS", "LOUCHAI", "LOUCHAS", "LOUCHAT", "LOUCHER", "LOUCHES", "LOUCHET", "LOUCHEZ", "LOUCHIR", "LOUCHIS", "LOUCHIT", "LOUCHON", "LOUERAI", "LOUERAS", "LOUEREZ", "LOUEURS", "LOUEUSE", "LOUFAIS", "LOUFAIT", "LOUFANT", "LOUFENT", "LOUFERA", "LOUFIAT", "LOUFIEZ", "LOUFONS", "LOUGRES", "LOUIONS", "LOUKOUM", "LOULOUS", "LOUPAGE", "LOUPAIS", "LOUPAIT", "LOUPANT", "LOUPEES", "LOUPENT", "LOUPERA", "LOUPIEZ", "LOUPIOT", "LOUPONS", "LOURAIS", "LOURAIT", "LOURANT", "LOURDAI", "LOURDAS", "LOURDAT", "LOURDEE", "LOURDER", "LOURDES", "LOURDEZ", "LOUREES", "LOURENT", "LOURERA", "LOURIEZ", "LOURONS", "LOUSTIC", "LOUTRES", "LOUVAIS", "LOUVAIT", "LOUVANT", "LOUVEES", "LOUVENT", "LOUVERA", "LOUVETA", "LOUVETE", "LOUVETS", "LOUVIEZ", "LOUVOIE", "LOUVONS", "LOUVOYA", "LOUVOYE", "LOVAMES", "LOVASSE", "LOVATES", "LOVERAI", "LOVERAS", "LOVEREZ", "LOVIONS", "LOYALES", "LOYAUTE", "LUCANES", "LUCARNE", "LUCIDES", "LUCILIE", "LUCIOLE", "LUDIONS", "LUDIQUE", "LUDISME", "LUETINE", "LUETTES", "LUGEAIS", "LUGEAIT", "LUGEANT", "LUGEONS", "LUGERAI", "LUGERAS", "LUGEREZ", "LUGEURS", "LUGEUSE", "LUGIONS", "LUGUBRE", "LUIRAIS", "LUIRAIT", "LUIRIEZ", "LUIRONS", "LUIRONT", "LUISAIS", "LUISAIT", "LUISANT", "LUISENT", "LUISIEZ", "LUISONS", "LUMBAGO", "LUMIERE", "LUNAIRE", "LUNCHAI", "LUNCHAS", "LUNCHAT", "LUNCHER", "LUNCHES", "LUNCHEZ", "LUNETTE", "LUNULES", "LUNURES", "LUPANAR", "LUPULIN", "LURETTE", "LURONNE", "LUSSENT", "LUSSIEZ", "LUSTRAI", "LUSTRAL", "LUSTRAS", "LUSTRAT", "LUSTREE", "LUSTRER", "LUSTRES", "LUSTREZ", "LUTAMES", "LUTASSE", "LUTATES", "LUTEINE", "LUTERAI", "LUTERAS", "LUTEREZ", "LUTHIER", "LUTINAI", "LUTINAS", "LUTINAT", "LUTINEE", "LUTINER", "LUTINES", "LUTINEZ", "LUTIONS", "LUTRINS", "LUTTAIS", "LUTTAIT", "LUTTANT", "LUTTENT", "LUTTERA", "LUTTEUR", "LUTTIEZ", "LUTTONS", "LUXAMES", "LUXASSE", "LUXATES", "LUXERAI", "LUXERAS", "LUXEREZ", "LUXIONS", "LUXUEUX", "LUXURES", "LUZERNE", "LUZULES", "LYCAONS", "LYCEENS", "LYCENES", "LYCHEES", "LYCHNIS", "LYCOPES", "LYCOSES", "LYDDITE", "LYDIENS", "LYMPHES", "LYNCHAI", "LYNCHAS", "LYNCHAT", "LYNCHEE", "LYNCHER", "LYNCHES", "LYNCHEZ", "LYRIQUE", "LYRISME", "LYSAMES", "LYSASSE", "LYSATES", "LYSERAI", "LYSERAS", "LYSEREZ", "LYSINES", "LYSIONS", "LYTIQUE"], "hints": ["Einstein a passé sa vie à l'étudier : rien ne va plus vite qu'elle.", "Le Soleil en envoie sur la Terre ; une ampoule aussi."], "frag": "Diplômé à Zurich, Albert Einstein publia en 1905, à 26 ans, quatre articles qui bouleversèrent la physique, dont celui qui mène à la célèbre formule E = mc²."}, {"id": "varsovie", "place": "Varsovie", "sage": "Marie Curie", "type": "mot", "glyph": "10", "letters": "TAIRNODIA", "min": 7, "best": "RADIATION", "lexicon": ["RADIATION", "DRAINAIT", "RADINAIT", "ADORAIT", "ADORANT", "ANORDIT", "DRAINAI", "DRAINAT", "NAITRAI", "ONDATRA", "RADIAIT", "RADIANT", "RADINAI", "RADINAT", "RADOTAI", "RAINAIT", "RATINAI", "TONDRAI", "TRAINAI"], "hints": ["Un mot de 7 lettres est nécessaire. Essaie les verbes à l'imparfait, en -AIT.", "Pour le mot parfait : ce qu'émettent le radium et le polonium découverts par Marie Curie."], "frag": "Née à Varsovie en 1867, Marie Curie reste la seule personne à avoir reçu un prix Nobel dans deux sciences différentes. Elle nomma le polonium en hommage à la Pologne."}, {"id": "madras", "place": "Madras", "sage": "Ramanujan", "type": "suite", "glyph": "11", "seq": [1, 2, 6, 24], "answers": ["120", "CENTVINGT"], "hints": ["Divise chaque nombre par le précédent.", "On multiplie par 2, puis par 3, puis par 4…"], "frag": "Autodidacte venu de Madras, Srinivasa Ramanujan remplit des carnets entiers de formules géniales. Pour lui, même un numéro de taxi, 1729, était un nombre passionnant."}, {"id": "gottingen5", "place": "Göttingen", "sage": "Emmy Noether", "type": "carre", "glyph": "100", "grid": [[10, 3, 8], [5, 7, 9], [6, 11, 4]], "blanks": [0, 2, 4, 6, 7], "magic": 21, "hints": ["Chaque ligne, colonne et diagonale doit faire 21. Commence par la ligne du milieu : 5 + ? + 9.", "Ensuite, la colonne du milieu : 3 + 7 + ? = 21."], "frag": "À Göttingen, Emmy Noether démontra un théorème fondamental reliant les symétries de la nature aux lois de conservation. Einstein la tenait pour un génie."}, {"id": "copenhague", "place": "Copenhague", "sage": "Niels Bohr", "type": "chrono", "glyph": "101", "items": [["Premier vol des frères Wright", 1903], ["Théorie de la relativité", 1905], ["Découverte de la pénicilline", 1928], ["Premier homme dans l'espace", 1961], ["Premier pas sur la Lune", 1969]], "hints": ["Les deux premiers datent du tout début du XXᵉ siècle, et l'avion est arrivé en premier.", "Il a fallu aller dans l'espace avant de marcher sur la Lune."], "surprise": {"title": "Le Sphinx", "type": "question", "story": "Au détour d'un col, une créature ailée au corps de lion te barre la route. Le Sphinx ! Il pose sa devinette, la plus célèbre de toutes.", "q": "Quel être marche à quatre pattes le matin, sur deux le midi, et sur trois le soir ?", "answers": ["HOMME", "LHOMME", "UNHOMME", "HUMAIN", "LHUMAIN", "ETREHUMAIN", "LETREHUMAIN"], "hints": ["Le matin, le midi et le soir représentent les âges de la vie.", "Le soir, la troisième « patte » est une canne."], "frag": "Dans la mythologie grecque, Œdipe résolut l'énigme du Sphinx. Vexé, le monstre se serait jeté du haut de son rocher."}, "frag": "À Copenhague, Niels Bohr fonda un institut où se retrouvèrent les plus grands physiciens des années 1920 pour percer les secrets de l'atome."}, {"id": "princeton", "place": "Princeton", "sage": "von Neumann", "type": "compte", "glyph": "110", "plates": [1, 5, 7, 9, 25, 100], "target": 843, "start": "( 100 − 7 ) × 9", "hints": ["843 est tout près d'un multiple de 9.", "Un calcul entre parenthèses avec le 100 et un chiffre, multiplié par 9, t'amène tout près."], "frag": "À Princeton, John von Neumann décrivit l'organisation d'un ordinateur moderne, avec un programme rangé dans la mémoire. La plupart de nos ordinateurs suivent encore ce plan."}, {"id": "londres5", "place": "Londres", "sage": "les briseurs de codes", "type": "code", "glyph": "111", "cipher": "ZLJYLA", "answer": "SECRET", "hints": ["Le mot caché est ce que les briseurs de codes cherchaient à percer.", "Le décalage est plus grand que 5."], "frag": "Pendant la Seconde Guerre mondiale, des milliers de personnes travaillèrent en secret pour déchiffrer les messages ennemis. Beaucoup ne purent en parler qu'après des décennies."}, {"id": "bletchley", "place": "Bletchley Park", "sage": "Alan Turing", "type": "boss", "glyph": "1000", "speech": "Bonjour. Je passe mes journées à casser des codes et à me demander si une machine peut penser. Trois questions, et tu seras presque arrivé.", "trials": [{"q": "Déchiffre ce message, où chaque lettre a été décalée d'un cran dans l'alphabet : NBDIJOF", "answers": ["MACHINE", "MACHINES"], "hints": ["Remplace chaque lettre par celle qui la précède dans l'alphabet.", "N devient M, B devient A…"]}, {"q": "En binaire, le langage des ordinateurs, on n'écrit qu'avec des 0 et des 1. Combien vaut 101 en binaire ?", "answers": ["5", "CINQ"], "hints": ["En binaire, les chiffres valent 4, 2 et 1, de gauche à droite.", "Additionne 4 et 1."]}, {"q": "J'ai imaginé un test pour savoir si une machine peut se faire passer pour un humain. On l'appelle le test de… ?", "answers": ["TURING", "ALANTURING"], "hints": ["C'est un nom propre.", "Regarde bien qui te pose la question."]}], "frag": "À Bletchley Park, Alan Turing contribua à percer le secret de la machine Enigma. On le considère comme l'un des pères de l'informatique."}];
   const CHAPTERS = [
     { num: "I", name: "La Côte des Sages", the: "la Côte des Sages", of: "de la Côte des Sages", sea: "Mer Égée", cls: "", style: "coast", stages: CH1 },
     { num: "II", name: "La Route des Sables", the: "la Route des Sables", of: "de la Route des Sables", sea: "Mer de sable", cls: "chap-sand", style: "desert", stages: CH2 },
@@ -1095,13 +958,30 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   // la saison compte 5 chapitres avant Mégalopolis : ceux qui ne sont pas encore écrits restent masqués
   const SEASON_CHAPTERS = ["I", "II", "III", "IV", "V"];
   const NEXT_SOON = "Chapitre III · ???";
+  // le récit de chaque route, rappelé à l'ouverture du chapitre et dans le panneau Histoire
+  const STORY = [
+    { text: "Les premières cités grecques, au bord de la mer Égée. C'est ici que sont nés les premiers savants. Leurs épreuves sont les plus simples : profites-en pour apprendre les règles.", done: "Pythagore t'a ouvert la route à Crotone." },
+    { text: "Le désert et ses caravanes, de Bagdad jusqu'à Pise. Les savants d'Orient ont sauvé les livres anciens et inventé l'algèbre. De nouvelles épreuves t'attendent.", done: "Fibonacci t'a laissé passer à Pise." },
+    { text: "Les villes des Lumières, leurs bibliothèques et leurs salons. On y pense librement… et les épreuves deviennent plus coriaces.", done: "Voltaire t'a ouvert la route à Ferney." },
+    { text: "Les montagnes, les usines et les premières locomotives. Ici, on invente des machines, et les épreuves demandent de la méthode.", done: "Poincaré t'a laissé passer à Nancy." },
+    { text: "Les Hautes Terres, au-dessus des nuages. Les plus grands savants de notre temps gardent la dernière route. Derrière eux : Mégalopolis.", done: "Alan Turing t'a ouvert la dernière route." }
+  ];
+  const QUEST = () => `Tu es ${who()}. Un jour où tu flânais sans but, Glaux, une chouette qui parle, t'a convaincu de partir pour Mégalopolis : « la cité du savoir, le meilleur endroit sur terre ». Il t'a promis une vie de rêve là-bas. Lui espère y être délivré d'une malédiction d'Athéna, qui l'empêche de donner la réponse aux énigmes. Pour entrer dans la cité, il faut traverser cinq routes et réussir l'épreuve de chaque cité. C'est toi qui réponds ; Glaux, lui, ne peut que te mettre sur la piste.`;
+  const EPILOGUE = () => [
+    "Mégalopolis n'était pas la cité du savoir. C'est la cité des géants.",
+    "Les géants achètent des humains intelligents pour les faire travailler. Pour entrer, un humain doit résoudre seul l'énigme de la porte : c'est la preuve qu'il est assez malin.",
+    "Glaux le savait depuis le début. Sa malédiction n'a jamais existé : s'il ne te donnait jamais les réponses, c'est pour que tu réussisses chaque test par toi-même… et que tu vailles plus cher.",
+    `Arrivé à la porte, il t'a vendu pour une bourse d'or, puis il s'est envolé. Te voilà prisonnier des géants, ${who()}.`,
+    "Mais tu n'es pas seul : Hector, L. et Ariane, qui avaient gravé leurs mots sur la porte, sont entrés avant toi. Ils sont peut-être encore là, quelque part…"
+  ];
   const cap1 = t => t.charAt(0).toUpperCase() + t.slice(1);
   let STAGES = CH1;
   const KIND = { mot: "Le mot le plus long", lien: "Le lien caché", compte: "Le compte est bon", nombre: "Le nombre caché", boss: "Épreuve du gardien",
-    suite: "La suite logique", intrus: "L'intrus", chrono: "La frise du temps", code: "Le message codé", question: "La devinette" };
+    suite: "La suite logique", intrus: "L'intrus", chrono: "La frise du temps", code: "Le message codé", question: "La devinette",
+    motus: "Le mot mystère", symboles: "Les symboles cachés", carre: "Le carré magique", citation: "La citation perdue", date: "La date à deviner" };
 
   // ————— État —————
-  const KEY = "chemin-savoir-v2";
+  const KEY = "chemin-savoir-v3";
   let state = { done: {}, introSeen: false };
   const hot = window.claude && window.claude.hot;
   try { const raw = localStorage.getItem(KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); } catch (e) {}
@@ -1140,6 +1020,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     { id: "decoder", ico: "🔐", name: "Briseur de codes", desc: "Déchiffrer un message codé du premier coup.", test: L => L.some(x => x.st.type === "code" && x.d.tries === 1) },
     { id: "timeline", ico: "⏳", name: "Maître du temps", desc: "Remettre une frise dans l'ordre du premier coup.", test: L => L.some(x => x.st.type === "chrono" && x.d.tries === 1) },
     { id: "books", ico: "📚", name: "Bibliophile", desc: "Réunir 10 fragments de savoir.", test: L => L.length >= 10 },
+    { id: "motusfast", ico: "🟥", name: "Motus !", desc: "Trouver un mot mystère en 3 essais ou moins.", test: L => L.some(x => x.st.type === "motus" && x.d.tries <= 3 && !x.d.skipped) },
+    { id: "magic", ico: "🔢", name: "Carré parfait", desc: "Réussir un carré magique du premier coup.", test: L => L.some(x => x.st.type === "carre" && x.d.tries === 1 && !x.d.skipped) },
     { id: "allbooks", ico: "📖", name: "Mémoire du monde", desc: "Réunir tous les fragments de savoir.", test: L => L.length >= allStages().length },
     { id: "curious", ico: "🔁", name: "Élève appliqué", desc: "Revoir un tuto.", test: () => state.stats.tutoReplays > 0 },
     { id: "friend", ico: "🤝", name: "Ami de Glaux", desc: "Demander 10 indices au total.", test: () => state.stats.hints >= 10 }
@@ -1178,6 +1060,18 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
             ? `<div class="note"><b>${esc(st.place)} · ${esc(st.sage)}</b><p>${esc(st.frag)}</p></div>`
             : `<div class="note hidden-note">Étape ${i + 1} · fragment encore inconnu</div>`).join("") + `</div>`;
       }).join("") + SEASON_CHAPTERS.slice(CHAPTERS.length).map(num => `<div class="sheet-chap"><span>🔒 Chapitre ${num} · ???</span></div>`).join("");
+    } else if (kind === "story") {
+      $("#sheetTitle").textContent = "Histoire";
+      $("#sheetSub").textContent = state.seasonDone ? "Saison 1 terminée" : `Route ${state.chapter + 1} sur ${CHAPTERS.length}`;
+      const chapters = CHAPTERS.map((c, k) => {
+        if (!chapUnlocked(k)) return `<div class="sheet-chap"><span>🔒 Chapitre ${c.num} · ???</span></div>`;
+        return `<div class="sheet-chap"><span>Chapitre ${c.num} · ${esc(c.name)}</span><span>${chapDone(k) ? "✓ franchie" : "en cours"}</span></div>
+          <p class="story-p">${esc(STORY[k].text)}${chapDone(k) ? ` <b>${esc(STORY[k].done)}</b>` : ""}</p>`;
+      }).join("");
+      body.innerHTML = `<div class="quest"><b>Ta quête</b><p>${esc(QUEST())}</p><button class="btn ghost" id="storyIntro">🎬 Revoir l'introduction</button></div>` + chapters +
+        (state.seasonDone ? `<div class="sheet-chap"><span>Épilogue · Mégalopolis</span></div>${EPILOGUE().map(t => `<p class="story-p">${esc(t)}</p>`).join("")}<button class="btn ghost" id="storyEnd">🎬 Revoir la fin</button>` : "");
+      $("#storyIntro").onclick = () => { closeSheet(); playIntro(() => home()); };
+      if ($("#storyEnd")) $("#storyEnd").onclick = () => { closeSheet(); enterMegalopolis(); };
     } else {
       const nB = BADGES.filter(b => state.badges[b.id]).length;
       $("#sheetTitle").textContent = "Succès";
@@ -1237,10 +1131,40 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     intrus: s => s.prompt,
     chrono: () => "Remets la frise dans l'ordre, du plus ancien au plus récent.",
     code: () => "Décale les lettres jusqu'à lire un vrai mot.",
-    question: () => "Réponds à la devinette."
+    question: () => "Réponds à la devinette.",
+    motus: s => `Trouve le mot de ${s.word.length} lettres qui commence par ${s.word[0]}.`,
+    symboles: s => `Trouve combien vaut ${s.ask}.`,
+    carre: s => `Complète le carré : chaque ligne doit faire ${s.magic}.`,
+    citation: () => "Retrouve le mot qui manque dans la citation.",
+    date: () => "Devine l'année. Je te dis si tu chauffes."
   };
   // tutoriels : chaque étape demande une action précise, et avance quand le joueur l'a faite
   const TUTO = {
+    motus: s => [
+      { text: `Trouve le mot caché. Il fait ${s.word.length} lettres et commence par ${s.word[0]}. Tape un mot avec le clavier en bas.`, target: "#mkbd", until: "mtype" },
+      { text: "Complète ta ligne, puis touche « Valider ».", target: "#mok", until: "mguess" },
+      { text: "Rouge : bonne lettre, bien placée. Jaune : la lettre est dans le mot, mais ailleurs. À toi de déduire !" }
+    ],
+    symboles: () => [
+      { text: "Chaque symbole cache un nombre. Lis les lignes de haut en bas : chacune t'apprend quelque chose. Touche la case réponse.", target: "#ans", until: "focus" },
+      { text: "Écris la valeur du symbole demandé, puis touche « Valider ».", target: "#ok", until: "submit" },
+      { text: "Les essais sont illimités. Si tu bloques, je peux te souffler une piste." }
+    ],
+    carre: s => [
+      { text: `Dans ce carré, chaque ligne, chaque colonne et chaque diagonale doit faire ${s.magic}. Touche une case vide.`, target: "#mgrid", until: "cselect" },
+      { text: "Touche maintenant un nombre, en dessous, pour le placer dans la case.", target: "#mpool", until: "cfill" },
+      { text: "Les totaux s'affichent au bout des lignes et des colonnes : en vert quand c'est juste. Complète tout, puis touche « Valider ».", target: "#ok", until: "submit" },
+      { text: "Pour corriger, touche une case remplie : le nombre retourne en dessous." }
+    ],
+    citation: () => [
+      { text: "Une citation célèbre a perdu un mot. Touche le mot qui la complète.", target: "#choices4", until: "pick" },
+      { text: "Si tu te trompes, le mot est barré, et tu peux réessayer." }
+    ],
+    date: () => [
+      { text: "Devine l'année. Touche la case réponse.", target: "#ans", until: "focus" },
+      { text: "Écris une année, puis touche « Valider ».", target: "#ok", until: "submit" },
+      { text: "Je te dis si c'est plus tôt ou plus tard, et si tu chauffes. La barre te montre où chercher." }
+    ],
     suite: () => [
       { text: "Chaque nombre suit une règle. Touche la case « ? » à la fin de la suite.", target: "#seqQ", until: "focus" },
       { text: "Écris le nombre qui continue la suite, puis touche « Valider ».", target: "#ok", until: "submit" },
@@ -1330,8 +1254,11 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   // ————— La voix de Glaux : taquin en route et en jeu, toujours bienveillant quand tu réussis —————
   const pick = a => a[Math.floor(Math.random() * a.length)];
   const who = () => state.player || "voyageur";
+  const routesLeft = () => CHAPTERS.length - state.chapter;
   const VOICE = {
     road: [
+      p => `${p}, ${who()}. Plus que ${routesLeft()} route${routesLeft() > 1 ? "s" : ""} avant Mégalopolis, et ma malédiction sera levée !`,
+      p => `Direction ${p}. Pense aux bains chauds de Mégalopolis : ça donne des ailes. Enfin, à moi.`,
       p => `Prochaine étape : ${p}. Allez, on ne traîne pas, j'ai des plumes à lisser.`,
       p => `Direction ${p}, ${who()}. Tu marches ou tu comptes les cailloux ?`,
       p => `${p}, ${who()}. Chaque cité nous rapproche de Mégalopolis. Et de ses hamacs, je sais.`,
@@ -1398,7 +1325,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     if (!state.introSeen) {
       owl.say([`Voici la route vers Mégalopolis, ${who()}. Chaque cité cache une épreuve : réussis-la, et tu gagnes un fragment de savoir.`,
                "Tes fragments sont rangés dans ton carnet, en haut de l'écran. Et je note tes exploits dans tes succès : rien ne m'échappe.",
-               "Touche Milet sur la carte pour commencer. Thalès t'attend, et il n'est pas très patient."]);
+               "Touche Milet sur la carte pour commencer. Thalès t'attend, et il n'est pas très patient.",
+               "Si tu oublies pourquoi on voyage, touche « Histoire » en haut de l'écran. Moi, je n'oublie pas : Mégalopolis !"]);
       return;
     }
     if (fo === -1) {
@@ -1650,6 +1578,42 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   }
 
   function drawNotes() { updateLinks(); }
+  function showChapterCard() {
+    const k = state.chapter, c = chap(), left = CHAPTERS.length - k;
+    state.chapSeen = Object.assign({}, state.chapSeen, { [k]: true }); save();
+    $("#ccNum").textContent = `Chapitre ${c.num} sur ${CHAPTERS.length}`;
+    $("#ccTitle").textContent = c.name;
+    $("#ccText").textContent = STORY[k].text;
+    $("#ccRoad").innerHTML = CHAPTERS.map((ch, j) => `<span class="cc-dot${j < k ? " past" : j === k ? " now" : ""}">${ch.num}</span>`).join('<span class="cc-line"></span>') + '<span class="cc-line"></span><span class="cc-dot city">🏙️</span>';
+    $("#ccLeft").textContent = left === 1 ? "C'est la dernière route avant Mégalopolis." : `Encore ${left} routes avant Mégalopolis.`;
+    $("#ccGlaux").textContent = k === 0
+      ? `Rappelle-toi, ${who()} : à Mégalopolis, les savants lèveront ma malédiction, et toi, tu vivras comme un roi. Moi, je ne peux pas répondre aux énigmes. Mais je peux t'aider à chercher.`
+      : k === CHAPTERS.length - 1 ? "Dernière ligne droite ! Je sens déjà les bains chauds et ma malédiction qui s'envole."
+      : pick([`Courage, ${who()}. Chaque cité nous rapproche de ma délivrance… et de ton hamac.`, "On avance bien. Les savants de Mégalopolis n'ont qu'à bien se tenir."]);
+    $("#chapCard").hidden = false;
+    $("#ccGo").focus({ preventScroll: true });
+    $("#ccGo").onclick = () => { $("#chapCard").hidden = true; centerOnCurrent(); };
+  }
+  // amène l'étape à jouer au centre de l'écran, sous la chouette.
+  // On recentre aussi quand la mise en page se stabilise (polices, bulle de Glaux), sauf si le joueur a déjà fait défiler.
+  let autoY = null;
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  function centerOnCurrent(instant) {
+    const go = smooth => {
+      const n = document.querySelector("#map .node.open") || document.querySelector("#map .next-chap");
+      if (!n || $("#home").hidden || !$("#introScene").hidden || !$("#outroScene").hidden) return;
+      if (autoY !== null && Math.abs(window.scrollY - autoY) > 4) return;   // le joueur a bougé : on ne l'embête pas
+      const r = n.getBoundingClientRect(), owlH = $(".owl").hidden ? 0 : $(".owl").offsetHeight;
+      const target = Math.max(0, Math.round(window.scrollY + r.top + r.height / 2 - (owlH + (window.innerHeight - owlH) / 2)));
+      const reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: target, behavior: smooth && !reduce ? "smooth" : "auto" });
+      autoY = Math.min(target, document.documentElement.scrollHeight - window.innerHeight);
+    };
+    autoY = null;
+    requestAnimationFrame(() => go(!instant));
+    [250, 700].forEach(t => setTimeout(() => go(false), t));
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => go(false));
+  }
   function enterMegalopolis() { playOutro(() => { state.seasonDone = true; save(); checkBadges(); home(); }); }
 
   function home() {
@@ -1660,7 +1624,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     $("#bandRule").textContent = `Traverse les ${c.stages.length} cités ${c.of}. Dans chacune, une épreuve de lettres ou de chiffres ouvre la route suivante.`;
     $("#bandRule").hidden = false;
     $(".owl").hidden = !!state.seasonDone;
-    if (state.seasonDone) $("#bandRule").textContent = "Saison 1 terminée. Glaux s'est envolé avec sa bourse… À suivre : l'évasion.";
+    if (state.seasonDone) $("#bandRule").textContent = "Saison 1 terminée. Glaux t'a vendu aux géants de Mégalopolis… À suivre : l'évasion. Relis tout dans « Histoire ».";
     $("#routeTitle").textContent = c.name;
     $("#mapBoard").className = "board map-board " + c.cls;
     $("#chapTabs").innerHTML = SEASON_CHAPTERS.map((num, k) => {
@@ -1675,7 +1639,10 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       : `<span class="chap-tab hidden-tab final-tab" aria-label="Mégalopolis, destination finale" title="Mégalopolis">🏙️</span>`);
     $("#chapTabs").onclick = e => { if (e.target.closest("[data-final]")) return enterMegalopolis(); const b = e.target.closest(".chap-tab[data-k]"); if (b) { setChapter(+b.dataset.k); home(); } };
     $("#stage").hidden = true; $("#home").hidden = false;
-    drawMap(); drawNotes(); owlOnMap(); window.scrollTo(0, 0);
+    drawMap(); drawNotes(); owlOnMap();
+    window.scrollTo(0, 0); centerOnCurrent(true);
+    const fresh = !STAGES.some(st => state.done[st.id]);
+    if (fresh && !(state.chapSeen && state.chapSeen[state.chapter]) && state.introDone && !state.seasonDone && $("#introScene").hidden) showChapterCard();
   }
 
   // ————— Épreuves —————
@@ -1697,7 +1664,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     el.innerHTML = head + `<div id="body" class="stage"></div>`;
     $("#back").onclick = home;
     $("#tutoBtn").onclick = () => { state.stats.tutoReplays++; save(); checkBadges(); openStage(cur.id, true); };
-    ({ mot: stageMot, lien: stageLien, nombre: stageLien, compte: stageCompte, boss: stageBoss, suite: stageSuite, intrus: stageIntrus, chrono: stageChrono, code: stageCode, question: stageQuestion })[cur.type]($("#body"));
+    ({ mot: stageMot, lien: stageLien, nombre: stageLien, compte: stageCompte, boss: stageBoss, suite: stageSuite, intrus: stageIntrus, chrono: stageChrono, code: stageCode, question: stageQuestion,
+       motus: stageMotus, symboles: stageSymboles, carre: stageCarre, citation: stageCitation, date: stageDate })[cur.type]($("#body"));
     if (cur.isSurprise) owl.say([pick(["Tiens, un imprévu ! La route n'est jamais tout à fait tranquille.", "Oh, on ne s'y attendait pas à celle-là. À toi de jouer !"])]);
     const seen = state.tuto && state.tuto[cur.type];
     $("#tutoBtn").hidden = !seen && !forceTuto;
@@ -1733,6 +1701,18 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     if (t === "chrono") return [
       { text: "Je place le plus ancien à sa place.", act: "chronoFirst" },
       { text: "Et le plus récent aussi. Il n'en reste que deux.", act: "chronoLast" }];
+    if (t === "motus") return [
+      { text: "Je te dévoile une lettre bien placée.", act: "motusReveal" },
+      { text: "Et une deuxième. Avec ça, tu devrais le voir.", act: "motusReveal" }];
+    if (t === "carre") return [
+      { text: "Je place un nombre à sa bonne place.", act: "carreFill" },
+      { text: "Et un deuxième. Il ne t'en reste presque plus.", act: "carreFill" }];
+    if (t === "citation") return [
+      { text: "J'élimine un mot qui ne va pas.", act: "eliminate" },
+      { text: "J'en élimine un deuxième. Plus que deux choix.", act: "eliminate" }];
+    if (t === "date") return [
+      { text: `C'est entre ${src.year - 10} et ${src.year + 10}.` },
+      { text: `Encore plus près : entre ${src.year - 3} et ${src.year + 3}.` }];
     if (t === "intrus") return [
       { text: "J'élimine une réponse qui fait bien partie du groupe.", act: "eliminate" },
       { text: "J'en élimine une deuxième. Plus que deux choix.", act: "eliminate" }];
@@ -1956,9 +1936,9 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     function done(w) {
       finished = true; body.classList.add("done-lock");
       ["#ok", "#reset"].forEach(q => $(q).disabled = true);
-      const extra = w === cur.best ? `<b>${esc(w)}</b> : ${w.length} lettres, le plus long mot possible. Magnifique.`
+      const extra = w.length === cur.letters.length ? `<b>${esc(w)}</b> : ${w.length} lettres, le plus long mot possible. Magnifique.`
         : `Tu as trouvé <b>${esc(w)}</b> (${w.length} lettres). Le plus long mot possible était <b>${esc(cur.best)}</b> (${cur.best.length} lettres).`;
-      win(extra, { perfect: w === cur.best });
+      win(extra, { perfect: w.length === cur.letters.length });
     }
     // verdict en direct : le mot est-il valide, et sinon pourquoi
     function verdict() {
@@ -2297,7 +2277,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
     function render(marks) {
       slots.forEach((it, k) => {
         const c = $("#sl" + k), li = c.parentElement;
-        c.innerHTML = it == null ? "" : `<button class="card4 placed" data-i="${it}">${esc(cur.items[it][0])}${finished ? ` <b>${cur.items[it][1]}</b>` : ""}</button>`;
+        c.innerHTML = it == null ? "" : `<button class="card4 placed" data-i="${it}">${esc(cur.items[it][0])}${finished ? ` <b>${fmtYear(cur.items[it][1])}</b>` : ""}</button>`;
         li.classList.toggle("ok", !!(marks && marks[k] === true)); li.classList.toggle("ko", !!(marks && marks[k] === false));
       });
       $("#pool4").innerHTML = order.filter(i => !slots.includes(i)).map(i => `<button class="card4" data-i="${i}">${esc(cur.items[i][0])}</button>`).join("") || `<span class="pool-empty">Tout est placé.</span>`;
@@ -2365,6 +2345,237 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       owlFail("wrong");
       setStatus(stat, "bad", "<b>✗ Ce n'est pas encore un vrai mot</b> · continue à tourner la roue.");
     };
+    render();
+  }
+
+  const fmtYear = y => y < 0 ? `${-y} av. J.-C.` : String(y);
+
+  // Le mot mystère (Motus) : le mot commence par la lettre donnée ; rouge = bien placée, jaune = mal placée
+  function stageMotus(body) {
+    const H = hintBlock(cur.hints);
+    const W = cur.word, N = W.length, MAXT = cur.tries || 6, valid = new Set(cur.words);
+    let rows = [], guess = W[0], finished = false, known = Array(N).fill(null), keyState = {};
+    known[0] = W[0];
+    const KB = ["AZERTYUIOP", "QSDFGHJKLM", "WXCVBN"];
+    body.innerHTML = `<div class="mgrid-wrap"><div class="motus" id="motus" style="--n:${N}"></div></div>
+      <p class="count status" id="stat" hidden></p>
+      <div class="mkbd" id="mkbd">${KB.map((r, i) => `<div class="mrow">${r.split("").map(c => `<button class="mkey" data-k="${c}">${c}</button>`).join("")}${i === 2 ? `<button class="mkey wide" data-k="DEL" aria-label="Effacer">⌫</button>` : ""}</div>`).join("")}</div>
+      <div class="row actions"><button class="btn" id="mok">Valider</button></div>` + H.html;
+    H.bind();
+    const stat = $("#stat");
+    function marks(g) {
+      const res = Array(N).fill("non"), left = {};
+      for (let i = 0; i < N; i++) if (g[i] === W[i]) res[i] = "ok"; else left[W[i]] = (left[W[i]] || 0) + 1;
+      for (let i = 0; i < N; i++) if (res[i] !== "ok" && left[g[i]] > 0) { res[i] = "mal"; left[g[i]]--; }
+      return res;
+    }
+    function render() {
+      let html = rows.map(r => `<div class="mline">${r.g.split("").map((c, i) => `<span class="mc ${r.m[i]}">${c}</span>`).join("")}</div>`).join("");
+      if (!finished && rows.length < MAXT) {
+        html += `<div class="mline current">${Array.from({ length: N }, (_, i) => i < guess.length ? `<span class="mc typed">${guess[i]}</span>` : `<span class="mc ghost">${known[i] || "·"}</span>`).join("")}</div>`;
+        for (let k = rows.length + 1; k < MAXT; k++) html += `<div class="mline">${Array.from({ length: N }, () => `<span class="mc empty"></span>`).join("")}</div>`;
+      }
+      $("#motus").innerHTML = html;
+      document.querySelectorAll("#mkbd .mkey").forEach(b => { b.className = "mkey" + (b.dataset.k === "DEL" ? " wide" : "") + (keyState[b.dataset.k] ? " " + keyState[b.dataset.k] : ""); });
+      $("#mok").disabled = finished;
+      tutoFocus();
+    }
+    function press(k) {
+      if (finished) return;
+      if (k === "DEL") { if (guess.length > 1) guess = guess.slice(0, -1); }
+      else if (guess.length < N) { guess += k; emit("mtype"); }
+      setStatus(stat); render();
+    }
+    function submit() {
+      if (finished) return;
+      if (guess.length < N) return setStatus(stat, "bad", `<b>✗ Trop court</b> · le mot fait ${N} lettres.`);
+      if (!valid.has(guess)) return setStatus(stat, "bad", `<b>✗ Mot inconnu</b> · ${esc(guess)} n'est pas dans le dictionnaire. Essaie un autre mot.`);
+      const m = marks(guess);
+      rows.push({ g: guess, m });
+      m.forEach((x, i) => { const c = guess[i], rank = { ok: 3, mal: 2, non: 1 }; if (!keyState[c] || rank[x] > rank[keyState[c]]) keyState[c] = x; if (x === "ok") known[i] = c; });
+      setTimeout(() => emit("mguess"), 0);
+      if (guess === W) {
+        finished = true; render();
+        setStatus(stat, "valid", `<b>✓ Bravo !</b> · le mot était ${W}.`);
+        return win(`Trouvé en ${rows.length} essai${rows.length > 1 ? "s" : ""}.`);
+      }
+      owlFail("wrong");
+      guess = W[0];
+      if (rows.length >= MAXT) {
+        rows = [];
+        setStatus(stat, "hint-step", "Plus d'essais : la grille repart à zéro, mais tu gardes les lettres trouvées.");
+      } else setStatus(stat);
+      render();
+    }
+    $("#mkbd").onclick = e => { const b = e.target.closest(".mkey"); if (b) press(b.dataset.k); };
+    $("#mok").onclick = submit;
+    const onKey = e => {
+      if (finished || e.ctrlKey || e.metaKey || e.altKey) return;
+      if (e.target.closest && e.target.closest("input")) return;
+      if (e.key === "Enter") { e.preventDefault(); submit(); return; }
+      if (e.key === "Backspace") { e.preventDefault(); press("DEL"); return; }
+      const k = norm(e.key); if (k.length === 1 && /[A-Z]/.test(k)) press(k);
+    };
+    document.addEventListener("keydown", onKey);
+    cleanups.push(() => document.removeEventListener("keydown", onKey));
+    assist.motusReveal = () => {
+      const i = known.findIndex(x => !x); if (i < 0) return;
+      known[i] = W[i]; keyState[W[i]] = "ok"; render();
+    };
+    render();
+  }
+
+  // Les symboles cachés : de petites équations à déchiffrer
+  function stageSymboles(body) {
+    const top = `<div class="eqs-sym">${cur.eqs.map(e => `<div class="eq-sym">${esc(e)}</div>`).join("")}</div>
+      <p class="sym-ask">Combien vaut <span>${esc(cur.ask)}</span> ?</p>`;
+    inputStage(body, top, { placeholder: "Le nombre", numeric: true });
+  }
+
+  // La citation perdue : un mot manque, quatre propositions
+  function stageCitation(body) {
+    const H = hintBlock(cur.hints);
+    body.innerHTML = `<blockquote class="quote">${esc(cur.before)}<span class="gap" id="gap">…</span>${esc(cur.after)}<cite>— ${esc(cur.sage)}</cite></blockquote>
+      <div class="choices4" id="choices4">${cur.options.map((o, i) => `<button class="pick" data-i="${i}">${esc(o)}</button>`).join("")}</div>
+      <p class="count status" id="stat" hidden></p>` + H.html;
+    H.bind();
+    const stat = $("#stat");
+    let finished = false;
+    assist.eliminate = () => {
+      if (finished) return;
+      const b = [...document.querySelectorAll("#choices4 .pick")].find(x => +x.dataset.i !== cur.answer && !x.disabled);
+      if (b) { b.classList.add("wrong", "gone"); b.disabled = true; }
+    };
+    $("#choices4").onclick = e => {
+      const b = e.target.closest(".pick"); if (!b || finished || b.disabled) return;
+      const i = +b.dataset.i;
+      setTimeout(() => emit("pick"), 0);
+      if (i === cur.answer) {
+        finished = true; b.classList.add("right"); $("#gap").textContent = cur.options[i]; $("#gap").classList.add("found");
+        document.querySelectorAll("#choices4 .pick").forEach(x => x.disabled = true);
+        setStatus(stat, "valid", "<b>✓ C'est bien ça</b> · la citation est complète.");
+        return win();
+      }
+      b.classList.add("wrong"); b.disabled = true; owlFail("wrong");
+      setStatus(stat, "bad", `<b>✗ Pas ce mot-là</b> · essaie encore.`);
+    };
+  }
+
+  // Le carré magique : chaque ligne, colonne et diagonale doit faire la même somme
+  function stageCarre(body) {
+    const H = hintBlock(cur.hints);
+    const sol = cur.grid.flat(), M = cur.magic, blanks = new Set(cur.blanks);
+    let vals = sol.map((v, i) => blanks.has(i) ? null : v), sel = cur.blanks[0], finished = false;
+    const pool = cur.blanks.map(i => sol[i]).sort((a, b) => a - b).map((v, k) => ({ v, k }));
+    let used = new Map();   // indice de case -> indice dans la réserve
+    const LINES = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+    body.innerHTML = `<p class="magic-goal">Chaque ligne, colonne et diagonale doit faire <b>${M}</b>.</p>
+      <div class="mgrid" id="mgrid"></div>
+      <p class="pool-label">Nombres à placer</p><div class="mpool" id="mpool"></div>
+      <p class="count status" id="stat" hidden></p>
+      <div class="row actions"><button class="btn" id="ok">Valider</button><button class="btn ghost" id="reset">Réinitialiser</button></div>` + H.html;
+    H.bind();
+    const stat = $("#stat");
+    const sum = l => l.every(i => vals[i] != null) ? l.reduce((a, i) => a + vals[i], 0) : null;
+    const badge = l => { const v = sum(l); return v == null ? `<span class="msum">…</span>` : `<span class="msum ${v === M ? "good" : "bad"}">${v}</span>`; };
+    function render() {
+      let h = "";
+      for (let r = 0; r < 3; r++) {
+        for (let c = 0; c < 3; c++) {
+          const i = r * 3 + c;
+          h += blanks.has(i)
+            ? `<button class="mcell blank${vals[i] != null ? " filled" : ""}${i === sel && !finished ? " sel" : ""}" data-i="${i}" aria-label="Case vide">${vals[i] ?? ""}</button>`
+            : `<span class="mcell fixed">${vals[i]}</span>`;
+        }
+        h += badge(LINES[r]);
+      }
+      h += [3, 4, 5].map(k => badge(LINES[k])).join("") + badge(LINES[6]);
+      $("#mgrid").innerHTML = h;
+      $("#mpool").innerHTML = pool.map(p => [...used.values()].includes(p.k) ? `<span class="mtile used"></span>` : `<button class="mtile" data-k="${p.k}">${p.v}</button>`).join("");
+      $("#ok").disabled = finished || vals.some(v => v == null); $("#reset").disabled = finished;
+      tutoFocus();
+    }
+    const nextBlank = () => cur.blanks.find(i => vals[i] == null);
+    function put(i, k) {
+      if (used.has(i)) used.delete(i);
+      vals[i] = pool[k].v; used.set(i, k);
+      sel = nextBlank() ?? i; setStatus(stat); render(); emit("cfill");
+    }
+    $("#mgrid").onclick = e => {
+      const b = e.target.closest(".mcell.blank"); if (!b || finished) return;
+      const i = +b.dataset.i;
+      if (vals[i] != null) { vals[i] = null; used.delete(i); }
+      sel = i; setStatus(stat); render(); emit("cselect");
+    };
+    $("#mpool").onclick = e => {
+      const b = e.target.closest(".mtile[data-k]"); if (!b || finished) return;
+      if (sel == null || vals[sel] != null) sel = nextBlank();
+      if (sel == null) return;
+      put(sel, +b.dataset.k);
+    };
+    $("#reset").onclick = () => { vals = sol.map((v, i) => blanks.has(i) ? null : v); used = new Map(); sel = cur.blanks[0]; setStatus(stat); render(); };
+    $("#ok").onclick = () => {
+      if (finished || vals.some(v => v == null)) return;
+      setTimeout(() => emit("submit"), 0);
+      const bad = LINES.filter(l => sum(l) !== M).length;
+      if (!bad) { finished = true; render(); setStatus(stat, "valid", `<b>✓ Carré magique !</b> · tout fait ${M}.`); return win(); }
+      owlFail("wrong");
+      setStatus(stat, "bad", `<b>✗ Pas encore</b> · ${bad} ligne${bad > 1 ? "s ne font" : " ne fait"} pas ${M}. Regarde les totaux en rouge.`);
+    };
+    assist.carreFill = () => {
+      if (finished) return;
+      const i = cur.blanks.find(j => vals[j] !== sol[j]); if (i == null) return;
+      // on libère la bonne valeur si elle est déjà posée ailleurs
+      const k = pool.find(p => p.v === sol[i] && ![...used.values()].includes(p.k))?.k ?? [...used.entries()].find(([j, kk]) => pool[kk].v === sol[i])?.[1];
+      for (const [j, kk] of used) if (kk === k) { vals[j] = null; used.delete(j); }
+      if (vals[i] != null) { used.delete(i); vals[i] = null; }
+      vals[i] = sol[i]; used.set(i, k); blanks.delete(i); sel = nextBlank(); render();
+    };
+    render();
+  }
+
+  // La date à deviner : plus tôt, plus tard, et la température
+  function stageDate(body) {
+    const H = hintBlock(cur.hints);
+    let lo = cur.lo, hi = cur.hi, tries = [], finished = false;
+    body.innerHTML = `<p class="question">${esc(cur.q)}</p>
+      <div class="dbar"><div class="dzone" id="dzone"></div><div class="dmarks" id="dmarks"></div></div>
+      <div class="dlimits"><span id="dlo"></span><span id="dhi"></span></div>
+      <input class="answer" id="ans" autocomplete="off" inputmode="numeric" maxlength="4" placeholder="Une année" aria-label="Ton année">
+      <p class="count status" id="stat" hidden></p>
+      <div class="row actions"><button class="btn" id="ok">Valider</button></div>
+      <div class="dtries" id="dtries"></div>` + H.html;
+    H.bind();
+    const ans = $("#ans"), stat = $("#stat"), span = cur.hi - cur.lo;
+    const pct = y => Math.max(0, Math.min(100, (y - cur.lo) / span * 100));
+    function render() {
+      $("#dzone").style.left = pct(lo) + "%"; $("#dzone").style.width = (pct(hi) - pct(lo)) + "%";
+      $("#dmarks").innerHTML = tries.map(t => `<span class="dmark ${t.y === cur.year ? "hit" : ""}" style="left:${pct(t.y)}%"></span>`).join("");
+      $("#dlo").textContent = lo; $("#dhi").textContent = hi;
+      $("#dtries").innerHTML = tries.slice().reverse().map(t => `<span class="dtry ${t.cls}">${t.y} ${t.arrow}</span>`).join("");
+    }
+    ans.addEventListener("focus", () => emit("focus"));
+    const check = () => {
+      if (finished) return;
+      const y = parseInt(ans.value, 10);
+      if (isNaN(y)) return setStatus(stat, "bad", "<b>✗ Vide</b> · écris d'abord une année.");
+      setTimeout(() => emit("submit"), 0);
+      if (y === cur.year) {
+        finished = true; tries.push({ y, arrow: "✓", cls: "hit" }); lo = hi = y; render();
+        $("#ok").disabled = true; ans.readOnly = true;
+        setStatus(stat, "valid", `<b>✓ C'est bien ${y} !</b>`);
+        return win(`Trouvé en ${tries.length} essai${tries.length > 1 ? "s" : ""}.`);
+      }
+      const later = y < cur.year, d = Math.abs(y - cur.year);
+      if (later) lo = Math.max(lo, y + 1); else hi = Math.min(hi, y - 1);
+      tries.push({ y, arrow: later ? "↑ plus tard" : "↓ plus tôt", cls: d <= 5 ? "hot" : d <= 20 ? "warm" : "cold" });
+      fails++;
+      setStatus(stat, "bad", `<b>${later ? "↑ Plus tard" : "↓ Plus tôt"}</b> · ${d <= 5 ? "🔥 brûlant" : d <= 20 ? "♨️ tu chauffes" : d <= 50 ? "🌤️ tiède" : "❄️ froid"}. Cherche entre ${lo} et ${hi}.`);
+      owl.say([VOICE.temp(d, tries.length)]);
+      ans.value = ""; render();
+    };
+    $("#ok").onclick = check;
+    ans.addEventListener("keydown", e => { if (e.key === "Enter") check(); });
     render();
   }
 
@@ -2613,6 +2824,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   $("#replayIntro").onclick = () => playIntro(() => home());
   $("#openNotes").onclick = () => openSheet("notes");
   $("#openBadges").onclick = () => openSheet("badges");
+  $("#openStory").onclick = () => openSheet("story");
   $("#sheetClose").onclick = closeSheet;
   $("#sheetWrap").onclick = e => { if (e.target.id === "sheetWrap") closeSheet(); };
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#sheetWrap").hidden) closeSheet(); });
@@ -2742,6 +2954,8 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
       gate.style.transition = "none";
       gl.setAttribute("transform", "translate(352 72)");
       await Promise.all([tween(giant, [0, 720], [0, 0], 1800, easeOut), tween(fingers, [0, 120], [0, 0], 1400, easeOut)]);
+      cap.textContent = "Une main immense me soulève. Ce n'est pas une cité de savants… c'est la cité des géants !";
+      await wait(3200);
       cap.classList.remove("show");
       await gtSay("ALORS, C'EST LUI, TON HUMAIN ?");
       await glSay("C'est lui ! Intelligent, débrouillard… enfin, surtout intelligent.");
@@ -2751,17 +2965,24 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
         ch.onclick = e => { const b = e.target.closest(".choice"); if (b) res(b.textContent); };
       });
       await mySay(c);
-      await glSay("Si, si, il a passé tous les tests. Et je ne l'ai jamais aidé, promis.");
+      await glSay("Si, si, il a passé tous les tests. Et je ne lui ai jamais donné une seule réponse, promis.");
       purse.setAttribute("opacity", "1");
       await tween(purse, [120, 60], [352, 30], 900, null, -60);
       await glSay(`Merci pour le voyage, ${name}. Sans rancune ! Il faut bien gagner sa croûte.`);
       glB.classList.remove("show");
       purse.setAttribute("opacity", "0");
       await tween(gl, [352, 72], [520, -80], 1300, easeIn);
+      cap.textContent = "Glaux s'envole avec sa bourse. Il m'a vendu."; cap.classList.add("show");
+      await wait(2600);
       await gtSay("TU VAS BIEN T'AMUSER ICI. HA HA HA HA !");
       shake();
       gtB.classList.remove("show");
       await wait(800);
+      // épilogue : on explique clairement ce qui s'est passé
+      $("#epiText").innerHTML = EPILOGUE().map(t => `<p>${esc(t)}</p>`).join("");
+      $("#epilogue").hidden = false;
+      await new Promise(res => { $("#epiBtn").onclick = res; });
+      $("#epilogue").hidden = true;
       $("#theEnd").hidden = false;
       await new Promise(res => { $("#theEndBtn").onclick = res; });
       unfit(); sc.hidden = true; document.documentElement.style.overflow = "";
@@ -2772,6 +2993,7 @@ button:focus-visible, input:focus-visible, [tabindex]:focus-visible { outline: 3
   // aperçu de la fin pour le créateur du jeu : ouvrir la page avec #fin à la fin du lien
   function start() {
     home(); checkBadges();
+    window.addEventListener("resize", () => { if (!$("#home").hidden) centerOnCurrent(true); });
     if (location.hash === "#fin") return playOutro(() => { try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {} home(); });
     if (!state.introDone && !state.introSeen) playIntro(() => home());
   }
